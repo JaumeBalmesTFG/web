@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddSubjectComponent } from './add-subject.component';
+import { SubjectsAndUfsComponent } from './subjects-and-ufs.component';
 
-describe('AddSubjectComponent', () => {
-  let component: AddSubjectComponent;
-  let fixture: ComponentFixture<AddSubjectComponent>;
+describe('SubjectsAndUfsComponent', () => {
+  let component: SubjectsAndUfsComponent;
+  let fixture: ComponentFixture<SubjectsAndUfsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AddSubjectComponent ]
+      declarations: [ SubjectsAndUfsComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AddSubjectComponent);
+    fixture = TestBed.createComponent(SubjectsAndUfsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

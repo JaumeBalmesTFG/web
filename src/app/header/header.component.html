@@ -1,1 +1,5 @@
-<p>header works!</p>
+<mat-toolbar>
+<a *ngFor="let tab of tabs" (click)="selectTab(tab)">
+    <span class="title">{{ tab.description }}</span>
+</a>
+</mat-toolbar>
