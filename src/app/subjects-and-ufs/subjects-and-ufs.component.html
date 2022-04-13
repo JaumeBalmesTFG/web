@@ -1,1 +1,16 @@
-<p>subjects-and-ufs works!</p>
+<div class="container">
+<mat-card class="card">
+    <mat-card-title>Manage Subjects</mat-card-title>
+    <button mat-raised-button class="button" (click)="openNewSubjectModal()">New Subject</button>
+</mat-card>
+</div>
+<div class="container">
+    <div class="subject-container" *ngFor="let subject of subjects">
+        <mat-card class="card">
+            <mat-card-title>subject.name</mat-card-title>
+            <div class="buttons">
+                <button mat-fab></button>
+            </div>
+        </mat-card>
+    </div>
+</div>

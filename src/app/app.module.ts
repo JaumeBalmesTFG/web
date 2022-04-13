@@ -12,7 +12,13 @@ import { ModalUfComponent } from './subjects-and-ufs/ng-for-ufs/modal-uf/modal-u
 import { ModalSubjectComponent } from './subjects-and-ufs/modal-subject/modal-subject.component';
 import { WebRoutingModule } from './web-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { MatCardModule } from '@angular/material/card'; 
+import {MatButtonModule} from '@angular/material/button'; 
+import {MatDialogModule} from '@angular/material/dialog'; 
+import {MatInputModule} from '@angular/material/input'; 
+import {MatRadioModule} from '@angular/material/radio'; 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+  
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,13 +30,20 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NgForUFsComponent,
     ModalUfComponent,
     ModalSubjectComponent,
-    
   ],
   imports: [
     BrowserModule,
     WebRoutingModule,
     BrowserAnimationsModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatCardModule,
+    MatButtonModule,
+    MatDialogModule,
+    MatInputModule,
+    MatRadioModule,
+    FormsModule, 
+    ReactiveFormsModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

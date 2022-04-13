@@ -1,1 +1,21 @@
-<p>modal-subject works!</p>
+<div [formGroup]="subjectForm">
+    <mat-card>
+        <mat-card-title>New Subject</mat-card-title>
+        <div>Name</div>
+        <mat-form-field appearance="fill">
+            <input id="Name" matInput formControlName="name">
+        </mat-form-field>
+        <div formGroupName="checkColor">Color
+            <div  class="color-buttons">
+                <div *ngFor="let color of colors">
+                    <button (click)="subjectForm.get('checkColor')?.get('option')?.setValue(color.value);" 
+                    type="button" class="subject-color-button" [ngStyle]="{'background-color':color.value}"></button>
+                </div>
+            </div>
+        </div>
+        <div class="end-buttons">
+            <button mat-raised-button mat-dialog-close (click)="createNewSubject()">Save</button>
+            <button mat-raised-button mat-dialog-close class="cancel-button">Cancel</button>
+        </div>
+    </mat-card>
+</div>
