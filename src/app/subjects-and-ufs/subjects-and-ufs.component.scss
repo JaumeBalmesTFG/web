@@ -9,6 +9,14 @@
     margin-right: 100px;
     padding-top: 50px;
 }
-.button{
-    background-color: orange;
+.buttons{
+    display: flex;
+  justify-content: space-between;
+  width: 30%;
+}
+.subject-container{
+    margin-bottom: 50px;
+}
+button{
+    background-color: #FF9F1C !important;
 }

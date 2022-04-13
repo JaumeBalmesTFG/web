@@ -17,6 +17,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatDialogModule} from '@angular/material/dialog'; 
 import {MatInputModule} from '@angular/material/input'; 
 import {MatRadioModule} from '@angular/material/radio'; 
+import {MatIconModule} from '@angular/material/icon'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   
 @NgModule({
@@ -43,7 +44,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatRadioModule,
     FormsModule, 
     ReactiveFormsModule,
-    
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { ModalSubjectComponent } from './modal-subject/modal-subject.component';
+import { ModalUfComponent } from './ng-for-ufs/modal-uf/modal-uf.component';
 @Component({
   selector: 'app-subjects-and-ufs',
   templateUrl: './subjects-and-ufs.component.html',
@@ -13,7 +14,7 @@ export class SubjectsAndUfsComponent implements OnInit {
   ) { }
   
   subjects=[
-    {name: 'Subject 1', color: 'red'},
+    {name: 'Subject 1', checkColor: 'red'},
     {name: 'Subject 2', color: 'green'},
     {name: 'Subject 3', color: 'yellow'}
   ]
@@ -21,10 +22,24 @@ export class SubjectsAndUfsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  
-
   openNewSubjectModal(){
     const dialogRef = this.dialog.open(ModalSubjectComponent);
-    
+  }
+  openEditSubjectModal(subject:any){
+    const dialogRef = this.dialog.open(ModalSubjectComponent, {
+      data: subject
+    });
+  }
+  openNewUfModal(){
+    const dialogRef= this.dialog.open(ModalUfComponent)
+  }
+
+  deleteSubject(subjectToDelete:any){
+
+    this.subjects.forEach((subject,index) => {
+      if(subject.name === subjectToDelete.name){
+        this.subjects.splice(index,1);
+      }
+    })
   }
 }

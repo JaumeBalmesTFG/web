@@ -1,0 +1,32 @@
+button{
+    background-color: #FF9F1C !important;
+}
+input{
+    width:100%;
+}
+.container{
+    width: 400px;
+}
+
+table{
+    width: 100%;
+}
+
+.end-buttons{
+    display: flex;
+    justify-content: end;
+}
+
+.cancel-button{
+    border-color: #FF9F1C;
+    background-color: grey !important;
+    color: #FF9F1C;
+}
+button{
+    margin-top: 10px;
+    margin-right: 5px;
+    margin-left:5px;
+}
+.submit-button{
+    background-color: #FF9F1C;
+}
