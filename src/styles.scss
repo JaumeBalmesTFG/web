@@ -12,3 +12,17 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     justify-content: space-between !important;
     margin-bottom: 5px;
 }
+.end-buttons{
+    display: flex;
+    justify-content: end;
+}
+
+.cancel-button{
+    border-color: #FF9F1C;
+    background-color: grey !important;
+    color: #FF9F1C;
+}
+
+.submit-button{
+    background-color: #FF9F1C;
+}

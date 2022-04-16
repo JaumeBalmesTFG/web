@@ -35,7 +35,6 @@ export class SubjectsAndUfsComponent implements OnInit {
   }
 
   deleteSubject(subjectToDelete:any){
-
     this.subjects.forEach((subject,index) => {
       if(subject.name === subjectToDelete.name){
         this.subjects.splice(index,1);

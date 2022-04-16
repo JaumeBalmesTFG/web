@@ -1,1 +1,22 @@
-<p>modal-truancy-edit works!</p>
+<mat-card>
+    <mat-card-title>Edit Truancy</mat-card-title>
+    <form [formGroup]="formTruancy">
+        <h1>Subject</h1>
+        <mat-select formControlName="subject" (selectionChange)="selectSubject($event.value)" value="{{data.subject}}">
+            <mat-option *ngFor="let subject of dataSubjects" [value]="subject.name">{{subject.name}}</mat-option>
+        </mat-select>
+        <h1 *ngIf="formTruancy.get('subject')?.value!==''">UF</h1>
+        <mat-select formControlName="UF" *ngIf="formTruancy.get('subject')?.value!==''" value="{{data.UF}}">
+            <mat-option *ngFor="let UF of subjectSelected.UFs" [value]="UF" >{{UF}}</mat-option>
+        </mat-select>
+        <h1>Hours</h1>
+        <input formControlName="hours" type="number" min="0">
+        <h1>Reasons</h1>
+        <input formControlName="reason" type="text">
+    </form>
+    <div class="end-buttons">
+        <button class="submit-button" mat-raised-button (click)="editTruancy()">Save</button>
+        <button mat-raised-button mat-dialog-close class="cancel-button">Delete</button>
+        <button mat-raised-button mat-dialog-close class="cancel-button">Cancel</button>
+    </div>
+</mat-card>

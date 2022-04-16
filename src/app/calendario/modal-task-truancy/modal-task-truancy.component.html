@@ -1,1 +1,51 @@
-<p>modal-task-truancy works!</p>
+<mat-tab-group>
+    <mat-tab label="Task">
+        <mat-card>
+            <mat-card-title>New UF</mat-card-title>
+            <form [formGroup]="formTask">
+                <h1>Subject</h1>
+                <mat-select formControlName="subject" (selectionChange)="selectSubject($event.value)">
+                    <mat-option *ngFor="let subject of dataSubjects" [value]="subject.name">{{subject.name}}</mat-option>
+                </mat-select>
+                <h1 *ngIf="formTask.get('subject')?.value!==''">UF</h1>
+                <mat-select formControlName="UF" *ngIf="formTask.get('subject')?.value!==''" (selectionChange)="selectUF($event.value)">
+                    <mat-option *ngFor="let UF of subjectSelected.UFs" [value]="UF.value">{{UF.value}}</mat-option>
+                </mat-select>
+                <h1 *ngIf="formTask.get('UF')?.value!==''">Type</h1>
+                <mat-select formControlName="type" *ngIf="formTask.get('UF')?.value!==''">
+                    <mat-option *ngFor="let type of UFSelected.events" [value]="type">{{type}}</mat-option>
+                </mat-select>
+                <h1>Title</h1>
+                <input formControlName="title" type="text">
+            </form>
+            <div class="end-buttons">
+                <button class="submit-button" mat-raised-button (click)="createNewTask()">Save</button>
+                <button mat-raised-button mat-dialog-close class="cancel-button">Cancel</button>
+            </div>
+        </mat-card>
+    </mat-tab>
+    <mat-tab label="Truancy">
+        <mat-card>
+            <mat-card-title>New Truancy</mat-card-title>
+            <form [formGroup]="formTruancy">
+                <h1>Subject</h1>
+                <mat-select formControlName="subject" (selectionChange)="selectSubjectTruancy($event.value)">
+                    <mat-option *ngFor="let subject of dataSubjects" [value]="subject.name">{{subject.name}}</mat-option>
+                </mat-select>
+                <h1 *ngIf="formTruancy.get('subject')?.value!==''">UF</h1>
+                <mat-select formControlName="UF" *ngIf="formTruancy.get('subject')?.value!==''" >
+                    <mat-option *ngFor="let UF of subjectSelectedTruancy.UFs" [value]="UF.value">{{UF.value}}</mat-option>
+                </mat-select>
+               
+                <h1>Hours</h1>
+                <input formControlName="hours" type="number" min="0">
+                <h1>Reasons</h1>
+                <input formControlName="reason" type="text">
+            </form>
+            <div class="end-buttons">
+                <button class="submit-button" mat-raised-button (click)="createNewTruancy()">Save</button>
+                <button mat-raised-button mat-dialog-close class="cancel-button">Cancel</button>
+            </div>
+        </mat-card>
+    </mat-tab>
+</mat-tab-group>

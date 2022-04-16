@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 @Component({
   selector: 'app-modal-subject',
   templateUrl: './modal-subject.component.html',
@@ -10,7 +10,8 @@ export class ModalSubjectComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    @Inject(MAT_DIALOG_DATA) public data: {name: string, checkColor: string}
+    @Inject(MAT_DIALOG_DATA) public data: {name: string, checkColor: string},
+    public dialogRef: MatDialogRef<ModalSubjectComponent>
   ) { }
   subjectForm!: FormGroup;
 
@@ -36,9 +37,11 @@ export class ModalSubjectComponent implements OnInit {
   }
 
   createNewSubject(){
-    console.log("hola");
-    console.log(this.subjectForm.get('name')?.value);
-    console.log(this.subjectForm.get('checkColor')?.value);
+    if(this.subjectForm.valid){
+      this.dialogRef.close()
+      console.log(this.subjectForm.get('name')?.value);
+      console.log(this.subjectForm.get('checkColor')?.value);
+    }
   }
 
   changeColorValue(color:any){

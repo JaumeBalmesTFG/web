@@ -19,7 +19,20 @@ import {MatInputModule} from '@angular/material/input';
 import {MatRadioModule} from '@angular/material/radio'; 
 import {MatIconModule} from '@angular/material/icon'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-  
+import { FullCalendarModule } from '@fullcalendar/angular';
+import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
+import interactionPlugin from '@fullcalendar/interaction';
+import {MatSelectModule} from '@angular/material/select'; 
+import {MatTabsModule} from '@angular/material/tabs'; 
+import { ModalTaskTruancyComponent } from './calendario/modal-task-truancy/modal-task-truancy.component';
+import { ModalTaskEditComponent } from './calendario/modal-task-edit/modal-task-edit.component';
+import { ModalTruancyEditComponent } from './calendario/modal-truancy-edit/modal-truancy-edit.component';
+
+FullCalendarModule.registerPlugins([ // register FullCalendar plugins
+  dayGridPlugin,
+  interactionPlugin
+]);
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,6 +44,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NgForUFsComponent,
     ModalUfComponent,
     ModalSubjectComponent,
+    ModalTaskTruancyComponent,
+    ModalTaskEditComponent,
+    ModalTruancyEditComponent
   ],
   imports: [
     BrowserModule,
@@ -43,8 +59,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatInputModule,
     MatRadioModule,
     FormsModule, 
+    MatTabsModule,
     ReactiveFormsModule,
     MatIconModule,
+    FullCalendarModule,
+    MatSelectModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
