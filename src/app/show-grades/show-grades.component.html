@@ -1,1 +1,8 @@
-<p>show-grades works!</p>
+<div class="container">
+    <div class="subject-container" *ngFor="let subject of subjects">
+        <mat-card class="card">
+            <mat-card-title>{{subject.name}}</mat-card-title>
+        </mat-card>
+        <app-uf-grades></app-uf-grades>
+    </div>
+</div>

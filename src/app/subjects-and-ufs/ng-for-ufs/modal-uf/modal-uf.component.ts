@@ -59,7 +59,7 @@ export class ModalUfComponent implements OnInit {
   }
   deleteRule(ruleToDelete:any){
     this.arrayOfRules.forEach((rule:any,index:Number) => {
-      if(ruleToDelete.rule === rule.rule){
+      if(ruleToDelete.rule === rule.type){
         this.arrayOfRules.splice(index,1);
       }
     })

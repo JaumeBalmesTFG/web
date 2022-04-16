@@ -1,0 +1,18 @@
+<div class="uf-container">
+    <mat-card class="card" *ngFor="let uf of UFs">
+        <mat-card-title class="titleUf">{{uf.title}}</mat-card-title>
+        <div *ngFor="let event of uf.events" class="event">
+            <div class="activity">
+                
+                <mat-card-title>
+                    <mat-icon style="background-color: orange;" *ngIf="event.grade==null">error</mat-icon>
+                    <mat-icon style="background-color: aquamarine" *ngIf="event.grade!=null">check_circle_outline</mat-icon>
+                    {{event.title}}
+                </mat-card-title>
+            </div>
+            <div class="grade" *ngIf="event.grade!=null">
+                {{event.grade}}/10
+            </div>
+        </div>
+    </mat-card>
+</div>

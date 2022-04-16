@@ -27,7 +27,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import { ModalTaskTruancyComponent } from './calendario/modal-task-truancy/modal-task-truancy.component';
 import { ModalTaskEditComponent } from './calendario/modal-task-edit/modal-task-edit.component';
 import { ModalTruancyEditComponent } from './calendario/modal-truancy-edit/modal-truancy-edit.component';
-
+import {UfGradesComponent} from './show-grades/uf-grades/uf-grades.component'
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
   interactionPlugin
@@ -46,7 +46,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     ModalSubjectComponent,
     ModalTaskTruancyComponent,
     ModalTaskEditComponent,
-    ModalTruancyEditComponent
+    ModalTruancyEditComponent,
+    UfGradesComponent
   ],
   imports: [
     BrowserModule,

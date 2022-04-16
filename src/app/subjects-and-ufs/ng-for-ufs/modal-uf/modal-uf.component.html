@@ -17,7 +17,7 @@
                 <th>Delete</th>
             </tr>
             <tr *ngFor="let rule of UFForm.get('rulesAndPercentages')?.value">
-                <th>{{rule.rule}}</th>
+                <th>{{rule.type}}</th>
                 <th>{{rule.percentage}}</th>
                 <th>
                     <button mat-mini-fab (click)="deleteRule(rule)"><mat-icon>delete</mat-icon></button>

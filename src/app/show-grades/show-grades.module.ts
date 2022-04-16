@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NgForUfsComponent } from './ng-for-ufs/ng-for-ufs.component';
+import { UfGradesComponent } from './uf-grades/uf-grades.component';
 
 
 
 @NgModule({
   declarations: [
-    NgForUfsComponent
+    UfGradesComponent
   ],
   imports: [
     CommonModule

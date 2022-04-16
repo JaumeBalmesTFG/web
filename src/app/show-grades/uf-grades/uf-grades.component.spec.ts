@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NgForUfsComponent } from './ng-for-ufs.component';
+import { UfGradesComponent } from './uf-grades.component';
 
-describe('NgForUfsComponent', () => {
-  let component: NgForUfsComponent;
-  let fixture: ComponentFixture<NgForUfsComponent>;
+describe('UfGradesComponent', () => {
+  let component: UfGradesComponent;
+  let fixture: ComponentFixture<UfGradesComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NgForUfsComponent ]
+      declarations: [ UfGradesComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NgForUfsComponent);
+    fixture = TestBed.createComponent(UfGradesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

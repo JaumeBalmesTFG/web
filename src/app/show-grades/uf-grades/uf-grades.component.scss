@@ -1,0 +1,29 @@
+.event{
+    display: flex;
+    width: 100%;
+    align-content: space-between;
+    background: white;
+    border-color: grey;
+    color: gray;
+    flex-direction: row;
+    border-style: none none solid none;
+    border-width: 1px;
+    margin-bottom: 5px;
+}
+.titleUf{
+    border-style: none none solid none;
+    border-color: grey;
+    
+}
+.card{
+    color: grey;
+    background: white;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    flex-direction: column;
+}
+
+.activity{
+    width: 90%;
+}
