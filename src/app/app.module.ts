@@ -28,6 +28,9 @@ import { ModalTaskTruancyComponent } from './calendario/modal-task-truancy/modal
 import { ModalTaskEditComponent } from './calendario/modal-task-edit/modal-task-edit.component';
 import { ModalTruancyEditComponent } from './calendario/modal-truancy-edit/modal-truancy-edit.component';
 import {UfGradesComponent} from './show-grades/uf-grades/uf-grades.component'
+import {MatProgressBarModule} from '@angular/material/progress-bar'; 
+import {MatExpansionModule} from '@angular/material/expansion'; 
+
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
   interactionPlugin
@@ -65,7 +68,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     MatIconModule,
     FullCalendarModule,
     MatSelectModule,
-    
+    MatProgressBarModule,
+    MatExpansionModule
   ],
   providers: [],
   bootstrap: [AppComponent]

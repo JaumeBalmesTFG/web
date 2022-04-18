@@ -1,5 +1,21 @@
 .container{
     margin-left: 100px;
     margin-right: 100px;
+    color: gray !important;
+    background-color: white;
     // padding-top: 10px;
+}
+.card{
+    background-color: white !important;
+    color: gray !important;
+}
+
+.mat-expansion-panel-header-title{
+    color: gray !important;
+}
+
+.subject-container{
+    background-color: white !important;
+    margin-bottom: 3%;
+    margin-top: 1%;
 }

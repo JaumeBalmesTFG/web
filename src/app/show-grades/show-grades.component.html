@@ -1,8 +1,8 @@
 <div class="container">
-    <div class="subject-container" *ngFor="let subject of subjects">
-        <mat-card class="card">
-            <mat-card-title>{{subject.name}}</mat-card-title>
-        </mat-card>
+    <mat-expansion-panel class="subject-container" *ngFor="let subject of subjects">
+        <mat-expansion-panel-header class="card">
+            <mat-panel-title>{{subject.name}}</mat-panel-title>
+        </mat-expansion-panel-header>
         <app-uf-grades></app-uf-grades>
-    </div>
+    </mat-expansion-panel>
 </div>

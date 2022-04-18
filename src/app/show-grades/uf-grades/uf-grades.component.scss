@@ -1,6 +1,5 @@
 .event{
     display: flex;
-    width: 100%;
     align-content: space-between;
     background: white;
     border-color: grey;
@@ -9,11 +8,18 @@
     border-style: none none solid none;
     border-width: 1px;
     margin-bottom: 5px;
+    margin-left: 4%;
+    margin-right: 4%;
 }
 .titleUf{
-    border-style: none none solid none;
-    border-color: grey;
-    
+    background-color: white;
+    color: gray !important;
+}
+.mat-expansion-panel-header-title{
+    color: gray !important;
+}
+.mat-expansion-indicator{
+    color: gray !important;
 }
 .card{
     color: grey;
@@ -22,8 +28,14 @@
     justify-content: space-between;
     margin-bottom: 5px;
     flex-direction: column;
+    margin-left: 7%;
+    margin-right: 7%;
 }
-
+.truancy{
+    margin-left:4%; 
+    width:92%;
+}
 .activity{
     width: 90%;
+    
 }
