@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { ModalSubjectComponent } from './modal-subject/modal-subject.component';
 import { ModalUfComponent } from './ng-for-ufs/modal-uf/modal-uf.component';
 @Component({
@@ -10,7 +11,8 @@ import { ModalUfComponent } from './ng-for-ufs/modal-uf/modal-uf.component';
 export class SubjectsAndUfsComponent implements OnInit {
 
   constructor(
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private router: Router,
   ) { }
   
   subjects=[
@@ -20,6 +22,11 @@ export class SubjectsAndUfsComponent implements OnInit {
   ]
 
   ngOnInit(): void {
+  }
+
+  selectTab(tabSelected: any){
+    console.log(tabSelected)
+    this.router.navigate([`/${tabSelected}`]);
   }
 
   openNewSubjectModal(){

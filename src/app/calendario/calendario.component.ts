@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { CalendarOptions } from '@fullcalendar/angular';
 import { ModalTaskEditComponent } from './modal-task-edit/modal-task-edit.component';
 import { ModalTaskTruancyComponent } from './modal-task-truancy/modal-task-truancy.component';
@@ -12,7 +13,8 @@ import { ModalTruancyEditComponent } from './modal-truancy-edit/modal-truancy-ed
 export class CalendarioComponent implements OnInit {
 
   constructor(
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private router: Router,
   ) { }
 
 
@@ -31,6 +33,12 @@ export class CalendarioComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  selectTab(tabSelected: any){
+    console.log(tabSelected)
+    this.router.navigate([`/${tabSelected}`]);
+  }
+
   handleDateClick(date:any){
     console.log(date);
     

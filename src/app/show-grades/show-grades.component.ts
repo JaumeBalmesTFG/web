@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-show-grades',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShowGradesComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private router: Router,
+  ) { }
   subjects=[
     {name: 'Subject 1', checkColor: 'red'},
     {name: 'Subject 2', color: 'green'},
@@ -16,4 +19,8 @@ export class ShowGradesComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  selectTab(tabSelected: any){
+    console.log(tabSelected)
+    this.router.navigate([`/${tabSelected}`]);
+  }
 }

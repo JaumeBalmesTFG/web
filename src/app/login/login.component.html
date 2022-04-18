@@ -1,1 +1,46 @@
-<p>login works!</p>
+<div class="background">
+    <mat-card class="container">
+        <img class="img-login" src="../../assets/temporary_k_image.png" style="height:100px; width:100px">
+        <div [formGroup]="formEmail">
+            <div class="login">
+                <div>Email</div>
+                <input matInput formControlName="email">
+                <div class="end-buttons">
+                    <button class="submit-button" mat-raised-button (click)="enterEmail()">Enter</button>
+                </div>
+            </div>
+        </div>
+    </mat-card>
+    <mat-card class="container" *ngIf="login">
+        <img class="img-login" src="../../assets/temporary_k_image.png" style="height:100px; width:100px">
+        <div [formGroup]="formLogin">
+            <div class="login">
+                <div>Email</div>
+                <input matInput formControlName="email">
+                <div>Password</div>
+                <input matInput formControlName="password">
+                <div class="end-buttons">
+                    <button class="submit-button" mat-raised-button (click)="enterLogin()">Enter</button>
+                </div>
+            </div>
+        </div>
+    </mat-card>
+    <mat-card class="container" *ngIf="register">
+        <img class="img-login" src="../../assets/temporary_k_image.png" style="height:100px; width:100px">
+        <div [formGroup]="formRegister">
+            <div class="login">
+                <div>Email</div>
+                <input matInput formControlName="email">
+                <div>First Name</div>
+                <input matInput formControlName="name">
+                <div>Last Name</div>
+                <input matInput formControlName="lastName">
+                <div>Password</div>
+                <input matInput formControlName="password">
+                <div class="end-buttons">
+                    <button class="submit-button" mat-raised-button (click)="enterRegister()">Enter</button>
+                </div>
+            </div>
+        </div>
+    </mat-card>
+</div>
