@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-uf-grades',
-  templateUrl: './uf-grades.component.html',
-  styleUrls: ['./uf-grades.component.scss']
+  selector: 'app-subject-with-uf-and-task',
+  templateUrl: './subject-with-uf-and-task.component.html',
+  styleUrls: ['./subject-with-uf-and-task.component.scss']
 })
-export class UfGradesComponent implements OnInit {
+export class SubjectWithUfAndTaskComponent implements OnInit {
 
   constructor() { }
   UFs=[

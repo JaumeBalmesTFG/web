@@ -1,12 +1,12 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
-import { ModalUfComponent } from './modal-uf/modal-uf.component';
+import { ModalUfComponent } from '../../modals/modal-uf/modal-uf.component';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 @Component({
-  selector: 'app-ng-for-ufs',
-  templateUrl: './ng-for-ufs.component.html',
-  styleUrls: ['./ng-for-ufs.component.scss']
+  selector: 'app-subject-with-uf',
+  templateUrl: './subject-with-uf.component.html',
+  styleUrls: ['./subject-with-uf.component.scss']
 })
-export class NgForUFsComponent implements OnInit {
+export class SubjectWithUfComponent implements OnInit {
 
   @Input() subjectInfo: Object={};
 

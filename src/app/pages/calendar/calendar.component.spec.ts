@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UfGradesComponent } from './uf-grades.component';
+import { CalendarComponent } from './calendar.component';
 
-describe('UfGradesComponent', () => {
-  let component: UfGradesComponent;
-  let fixture: ComponentFixture<UfGradesComponent>;
+describe('CalendarComponent', () => {
+  let component: CalendarComponent;
+  let fixture: ComponentFixture<CalendarComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UfGradesComponent ]
+      declarations: [ CalendarComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UfGradesComponent);
+    fixture = TestBed.createComponent(CalendarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

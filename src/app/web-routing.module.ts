@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { CalendarioComponent } from './calendario/calendario.component';
-import { LoginComponent } from './login/login.component';
-import { ShowGradesComponent } from './show-grades/show-grades.component';
-import { SubjectsAndUfsComponent } from './subjects-and-ufs/subjects-and-ufs.component';
+import { CalendarComponent } from './pages/calendar/calendar.component';
+import { LoginComponent } from './auth/login.component';
+import { ShowGradesComponent } from './pages/show-grades/show-grades.component';
+import { SubjectsAndUfsComponent } from './pages/subjects-and-ufs/subjects-and-ufs.component';
 
 const routes: Routes = [
-  {path:'Login', component: LoginComponent},
-  {path:'Calendari', component: CalendarioComponent},
-  {path:'SubjectsAndUfs', component: SubjectsAndUfsComponent},
-  {path:'ShowGrades', component: ShowGradesComponent},
-  {path:'',redirectTo: '/Calendari', pathMatch: 'full'}
+  {path:'login', component: LoginComponent},
+  {path:'calendar', component: CalendarComponent},
+  {path:'subjectsAndUfs', component: SubjectsAndUfsComponent},
+  {path:'showGrades', component: ShowGradesComponent},
+  {path:'',redirectTo: '/calendar', pathMatch: 'full'}
 ]
 
 @NgModule({
