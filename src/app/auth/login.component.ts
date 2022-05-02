@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { auth } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -20,6 +21,9 @@ export class LoginComponent implements OnInit {
   login=false;
   register=false;
   ngOnInit(): void {
+
+    console.log(auth('test@test.com'));
+    
     this.formEmail = this.formBuilder.group({
       email:['',Validators.required]
     })
