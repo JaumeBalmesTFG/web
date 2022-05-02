@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router
   ) { }
-
+  wrongData=false;
   formEmail!: FormGroup
   formLogin!: FormGroup
   formRegister!: FormGroup
@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
   register=false;
   ngOnInit(): void {
     this.formEmail = this.formBuilder.group({
-      email:['',Validators.required]
+      email:['',[Validators.required,Validators.email]]
     })
     this.formLogin = this.formBuilder.group({
       email:['',Validators.required],
@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
       email:['',Validators.required],
       name:['',Validators.required],
       lastName:['',Validators.required],
-      password:['',Validators.required]
+      password:['',[Validators.required,Validators.pattern('(?=\\D*\\d)(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z]).{6,}')]]
     })
   }
 
@@ -54,14 +54,20 @@ export class LoginComponent implements OnInit {
     if(this.formLogin.valid){
       if(this.formLogin.get('email')?.value==='test@test.com' && this.formLogin.get('password')?.value==='test'){
         console.log("welcome back test");
-        this.router.navigate([`/Calendari`]);
+        this.router.navigate([`/calendar`]);
+      } else {
+        this.wrongData=true;
       }
     }
   }
   enterRegister(){
     if(this.formRegister.valid){
       console.log("Welcome new user");
-      this.router.navigate([`/Calendari`]);
+      this.router.navigate([`/calendar`]);
     }
+  }
+  back(){
+    this.login=false;
+    this.register=false;
   }
 }
