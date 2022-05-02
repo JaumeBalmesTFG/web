@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { 
+  auth, 
+  register,
+  login
+} from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -17,15 +22,16 @@ export class LoginComponent implements OnInit {
   formEmail!: FormGroup
   formLogin!: FormGroup
   formRegister!: FormGroup
-  login=false;
-  register=false;
+  login = false;
+  register = false;
   ngOnInit(): void {
+
     this.formEmail = this.formBuilder.group({
       email:['',[Validators.required,Validators.email]]
     })
     this.formLogin = this.formBuilder.group({
-      email:['',Validators.required],
-      password:['',Validators.required]
+      email: ['', Validators.required],
+      password: ['', Validators.required]
     })
     this.formRegister = this.formBuilder.group({
       email:['',Validators.required],
@@ -35,24 +41,27 @@ export class LoginComponent implements OnInit {
     })
   }
 
-  enterEmail(){
-    if(this.formEmail.valid){
-      if(this.formEmail.get('email')?.value==='test@test.com'){
-        this.login=true;
+  async enterEmail() {
+    if (this.formEmail.valid) {
+      let email: string = this.formEmail.get('email')?.value
+      let res: any = await auth(email)
+      
+      if (res.message==="LOGIN") {
+        this.login = true;
         this.formLogin.patchValue({
           email: this.formEmail.get('email')?.value
         })
-      } else {
-        this.register=true;
+      } else if (res.message==="REGISTER") {
+        this.register = true;
         this.formRegister.patchValue({
           email: this.formEmail.get('email')?.value
         })
       }
     }
   }
-  enterLogin(){
-    if(this.formLogin.valid){
-      if(this.formLogin.get('email')?.value==='test@test.com' && this.formLogin.get('password')?.value==='test'){
+  enterLogin() {
+    if (this.formLogin.valid) {
+      if (this.formLogin.get('email')?.value === 'test@test.com' && this.formLogin.get('password')?.value === 'test') {
         console.log("welcome back test");
         this.router.navigate([`/calendar`]);
       } else {
@@ -60,9 +69,15 @@ export class LoginComponent implements OnInit {
       }
     }
   }
-  enterRegister(){
-    if(this.formRegister.valid){
-      console.log("Welcome new user");
+  async enterRegister() {
+    if (this.formRegister.valid) {
+      let parameters = {
+        firstName: this.formRegister.get('name'),
+        lastName: this.formRegister.get('lastName'),
+        email: this.formRegister.get('email'),
+        password: this.formRegister.get('password')
+      }
+      let res = register(JSON.stringify(parameters))
       this.router.navigate([`/calendar`]);
     }
   }
