@@ -72,12 +72,15 @@ export class LoginComponent implements OnInit {
   async enterRegister() {
     if (this.formRegister.valid) {
       let parameters = {
-        firstName: this.formRegister.get('name'),
-        lastName: this.formRegister.get('lastName'),
-        email: this.formRegister.get('email'),
-        password: this.formRegister.get('password')
+        firstName: this.formRegister.get('name')?.value,
+        lastName: this.formRegister.get('lastName')?.value,
+        email: this.formRegister.get('email')?.value,
+        password: this.formRegister.get('password')?.value
       }
+      
       let res = register(JSON.stringify(parameters))
+      console.log(res);
+      
       this.router.navigate([`/calendar`]);
     }
   }
