@@ -7,11 +7,11 @@ import { ShowGradesComponent } from './show-grades/show-grades.component';
 import { SubjectsAndUfsComponent } from './subjects-and-ufs/subjects-and-ufs.component';
 
 const routes: Routes = [
-  {path:'Login', component: LoginComponent},
-  {path:'Calendari', component: CalendarioComponent},
-  {path:'SubjectsAndUfs', component: SubjectsAndUfsComponent},
-  {path:'ShowGrades', component: ShowGradesComponent},
-  {path:'',redirectTo: '/Calendari', pathMatch: 'full'}
+  {path:'login', component: LoginComponent},
+  {path:'calendar', component: CalendarioComponent},
+  {path:'subjects', component: SubjectsAndUfsComponent},
+  {path:'grades', component: ShowGradesComponent},
+  {path:'',redirectTo: '/calendar', pathMatch: 'full'}
 ]
 
 @NgModule({
