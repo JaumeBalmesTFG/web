@@ -1,28 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
-
-
-.card{
-    color: grey;
-    background: white;
-    display: flex !important;
-    justify-content: space-between !important;
-    margin-bottom: 5px;
-}
-.end-buttons{
-    display: flex;
-    justify-content: end;
+html, body {
+  height: 100%;
+  font-family: 'Open Sans', sans-serif;
 }
 
-.cancel-button{
-    border-color: #FF9F1C;
-    background-color: grey !important;
-    color: #FF9F1C;
-}
+body { margin: 0; }
 
-.submit-button{
-    background-color: #FF9F1C;
-}
