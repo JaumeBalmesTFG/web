@@ -31,3 +31,19 @@ export async function register(data: string): Promise<String> {
 
   return response;
 }
+
+// Register
+export async function login(data: string): Promise<String> {
+  const options = {
+    method: 'POST',
+    body: data,
+    headers: { 'Content-Type': 'application/json' }
+  };
+
+  const response = await fetch(environment.api + "/login", options)
+    .then((res) => { return res.json() })
+    .then((json) => { return json; })
+    .catch(err => { return "error"; });
+
+  return response;
+}
