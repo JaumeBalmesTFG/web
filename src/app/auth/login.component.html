@@ -30,9 +30,6 @@
         <div class=image-container>
             <img class="img-login" src="../../assets/temporary_k_image.png">
         </div>
-        <div *ngIf='wrongData' class="error">
-            Incorrect email and/or password
-        </div>
         <div>
             <h1>Login</h1>
         </div>
@@ -62,6 +59,10 @@
                     Password is required
                   </div>
                 </div>
+              </div>
+
+              <div *ngIf='wrongData' class="error">
+                Incorrect email and/or password
               </div>
 
               <div class="end-buttons">
@@ -96,7 +97,7 @@
               </div>
 
               <div class="input-container">
-                <div>First Name</div>
+                <div>First name</div>
 
                 <input matInput formControlName="name">
                 <div *ngIf="formRegister.get('name')?.invalid && formRegister.get('name')?.touched" class="error">
@@ -107,7 +108,7 @@
               </div>
 
               <div class="input-container">
-                <div>Last Name</div>
+                <div>Last name</div>
                 <input matInput formControlName="lastName">
                 <div *ngIf="formRegister.get('lastName')?.invalid && formRegister.get('lastName')?.touched" class="error">
                   <div *ngIf="formRegister.get('lastName')?.errors?.['required']">
@@ -117,7 +118,7 @@
               </div>
 
               <div class="input-container">
-                <div>Choose password</div>
+                <div>Password</div>
                 <input matInput type="password" formControlName="password">
                 <div *ngIf="formRegister.get('password')?.invalid && formRegister.get('password')?.touched" class="error">
                   <div *ngIf="formRegister.get('password')?.errors?.['required']">
