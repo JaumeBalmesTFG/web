@@ -13,9 +13,9 @@ export class HeaderComponent implements OnInit {
   constructor() { }
 
   tabs=[
-    {description: "UFs", value: "SubjectsAndUfs"},
-    {description: "Calendari", value: "Calendari"},
-    {description: "Notes", value: "ShowGrades"}
+    {description: "UFs", value: "subjectsAndUfs"},
+    {description: "Calendari", value: "calendar"},
+    {description: "Notes", value: "showGrades"}
   ]
 
   ngOnInit(): void {

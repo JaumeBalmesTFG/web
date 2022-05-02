@@ -2,15 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { CalendarOptions } from '@fullcalendar/angular';
-import { ModalTaskEditComponent } from './modal-task-edit/modal-task-edit.component';
-import { ModalTaskTruancyComponent } from './modal-task-truancy/modal-task-truancy.component';
-import { ModalTruancyEditComponent } from './modal-truancy-edit/modal-truancy-edit.component';
+import { ModalTaskEditComponent } from '../../modals/modal-task-edit/modal-task-edit.component';
+import { ModalTaskTruancyComponent } from '../../modals/modal-task-truancy/modal-task-truancy.component';
+import { ModalTruancyEditComponent } from '../../modals/modal-truancy-edit/modal-truancy-edit.component';
 @Component({
-  selector: 'app-calendario',
-  templateUrl: './calendario.component.html',
-  styleUrls: ['./calendario.component.scss']
+  selector: 'app-calendar',
+  templateUrl: './calendar.component.html',
+  styleUrls: ['./calendar.component.scss']
 })
-export class CalendarioComponent implements OnInit {
+export class CalendarComponent implements OnInit {
 
   constructor(
     private dialog: MatDialog,
