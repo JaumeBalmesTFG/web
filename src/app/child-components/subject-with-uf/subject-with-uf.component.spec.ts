@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NgForUFsComponent } from './ng-for-ufs.component';
+import { SubjectWithUfComponent } from '../subject-with-uf/subject-with-uf.component';
 
-describe('NgForUFsComponent', () => {
-  let component: NgForUFsComponent;
-  let fixture: ComponentFixture<NgForUFsComponent>;
+describe('SubjectWithUfComponent', () => {
+  let component: SubjectWithUfComponent;
+  let fixture: ComponentFixture<SubjectWithUfComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NgForUFsComponent ]
+      declarations: [ SubjectWithUfComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NgForUFsComponent);
+    fixture = TestBed.createComponent(SubjectWithUfComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
