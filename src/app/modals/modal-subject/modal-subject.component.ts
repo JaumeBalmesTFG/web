@@ -48,6 +48,8 @@ export class ModalSubjectComponent implements OnInit {
       this.dialogRef.close()
       console.log(this.subjectForm.get('name')?.value);
       console.log(this.subjectForm.get('checkColor')?.value);
+    } else {
+      this.subjectForm.markAllAsTouched()
     }
   }
 
