@@ -24,12 +24,12 @@ export class ModalUfComponent implements OnInit {
     this.UFForm = this.formBuilder.group({
       title:['', Validators.required],
       rulesAndPercentages:[[], Validators.required],
-      totalHours:['',Validators.required],
-      truancyPercentage:['',Validators.required],
+      totalHours:['',[Validators.required,Validators.pattern("^[0-9]*$")]],
+      truancyPercentage:['',[Validators.required,Validators.pattern("^[0-9]*$")]],
     })
     this.rulesAndPercentages = this.formBuilder.group({
       rule:['',Validators.required],
-      percentage:['',Validators.required]
+      percentage:['',[Validators.required, Validators.pattern("^[0-9]*$")]]
     })
     if(this.data !== null){
       console.log(this.data);
@@ -51,6 +51,7 @@ export class ModalUfComponent implements OnInit {
           percentage: Number(this.rulesAndPercentages.get('percentage')?.value)
         };
         this.arrayOfRules.push(rule);
+        this.rulesAndPercentages.reset();
         this.UFForm.get('rulesAndPercentages')?.setValue(this.arrayOfRules);
       } catch(error) {
         return
@@ -59,7 +60,7 @@ export class ModalUfComponent implements OnInit {
   }
   deleteRule(ruleToDelete:any){
     this.arrayOfRules.forEach((rule:any,index:Number) => {
-      if(ruleToDelete.rule === rule.type){
+      if(ruleToDelete.rule === rule.rule){
         this.arrayOfRules.splice(index,1);
       }
     })
@@ -77,5 +78,15 @@ export class ModalUfComponent implements OnInit {
       this.dialogRef.close()
       console.log(this.UFForm.value);
     }
+  }
+  edit(ruleToEdit: any){
+    this.arrayOfRules.forEach((rule:any,index:Number) => {
+      if(ruleToEdit.rule === rule.rule){
+        this.arrayOfRules.splice(index,1);
+      }
+    })
+    this.rulesAndPercentages.patchValue(ruleToEdit)
+    this.UFForm.get('rulesAndPercentages')?.setValue(this.arrayOfRules);
+
   }
 }

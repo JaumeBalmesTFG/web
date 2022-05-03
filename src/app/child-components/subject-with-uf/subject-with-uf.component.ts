@@ -12,9 +12,9 @@ export class SubjectWithUfComponent implements OnInit {
   @Input() subjectInfo: Object={};
 
   UFs=[
-    {title: 'UF 1', rules:[{type:'Examen',percentage:80},{type:'Practicas',percentage:20}], total_hours:300, trauncy_percentage: 15},
-    {title: 'UF 2', rules:[{type:'Examen',percentage:80},{type:'Practicas',percentage:20}], total_hours:300, trauncy_percentage: 15},
-    {title: 'UF 3', rules:[{type:'Examen',percentage:80},{type:'Practicas',percentage:20}], total_hours:300, trauncy_percentage: 15}
+    {title: 'UF 1', rules:[{rule:'Examen',percentage:80},{rule:'Practicas',percentage:20}], total_hours:300, trauncy_percentage: 15},
+    {title: 'UF 2', rules:[{rule:'Examen',percentage:80},{rule:'Practicas',percentage:20}], total_hours:300, trauncy_percentage: 15},
+    {title: 'UF 3', rules:[{rule:'Examen',percentage:80},{rule:'Practicas',percentage:20}], total_hours:300, trauncy_percentage: 15}
   ]
 
   constructor(
