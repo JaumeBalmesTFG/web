@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ModalSubjectComponent } from '../../modals/modal-subject/modal-subject.component';
 import { ModalUfComponent } from '../../modals/modal-uf/modal-uf.component';
 import { 
+  getAll,
   getAllSubjects, 
   getAllArchivedSubjects,
   getOneSubject,

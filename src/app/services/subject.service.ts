@@ -2,6 +2,18 @@
 import { environment } from 'src/environments/environment.prod';
 import { updateFetchHeader } from './reqOptions.service';
 
+// Get all subjects, ufs, tasks, grades, rules, avg...
+export async function getAll(): Promise<String> {
+  const header = updateFetchHeader();
+  const response = await fetch(environment.api + "/module/all", { method: "GET", headers: { ...header } })
+    .then(res => { return res.json() })
+    .then(json => { return json })
+    .catch(err => { return err })
+
+  return response;
+}
+
+
 // Get all subjects
 export async function getAllSubjects(): Promise<String> {
   const header = updateFetchHeader();
