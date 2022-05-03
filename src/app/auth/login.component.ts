@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { 
-  auth, 
+import {
+  auth,
   register,
   login
 } from '../services/auth.service';
@@ -45,13 +45,13 @@ export class LoginComponent implements OnInit {
     if (this.formEmail.valid) {
       let email: string = this.formEmail.get('email')?.value
       let res: any = await auth(email)
-      
-      if (res.message==="LOGIN") {
+
+      if (res.message === "LOGIN") {
         this.login = true;
         this.formLogin.patchValue({
           email: this.formEmail.get('email')?.value
         })
-      } else if (res.message==="REGISTER") {
+      } else if (res.message === "REGISTER") {
         this.register = true;
         this.formRegister.patchValue({
           email: this.formEmail.get('email')?.value
@@ -62,7 +62,6 @@ export class LoginComponent implements OnInit {
   enterLogin() {
     if (this.formLogin.valid) {
       if (this.formLogin.get('email')?.value === 'test@test.com' && this.formLogin.get('password')?.value === 'test') {
-        console.log("welcome back test");
         this.router.navigate([`/calendar`]);
       } else {
         this.wrongData=true;
@@ -77,10 +76,7 @@ export class LoginComponent implements OnInit {
         email: this.formRegister.get('email')?.value,
         password: this.formRegister.get('password')?.value
       }
-      
-      let res = register(JSON.stringify(parameters))
-      console.log(res);
-      
+      let res = register(JSON.stringify(parameters));
       this.router.navigate([`/calendar`]);
     }
   }
