@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
 import { ModalUfComponent } from '../../modals/modal-uf/modal-uf.component';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {ModalDeleteComponent} from "../../modals/modal-delete/modal-delete.component";
 @Component({
   selector: 'app-subject-with-uf',
   templateUrl: './subject-with-uf.component.html',
@@ -22,7 +23,7 @@ export class SubjectWithUfComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.subjectInfo);
-    
+
   }
 
   openEditUfModal(UF:any){
@@ -32,10 +33,8 @@ export class SubjectWithUfComponent implements OnInit {
   }
 
   DeleteUF(ufToDelete:any){
-    this.UFs.forEach((UF,index) => {
-      if(UF.title === ufToDelete.title){
-        this.UFs.splice(index,1);
-      }
+    const dialogRef = this.dialog.open(ModalDeleteComponent, {
+      data: ufToDelete
     })
   }
 }
