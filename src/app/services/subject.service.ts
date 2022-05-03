@@ -29,13 +29,13 @@ export async function createSubject(data: any): Promise<String> {
 // Update Subject
 export async function updateSubject(data: any): Promise<String> {
   const header = updateFetchHeader();
-  const authorId = data.authorId;
+  const moduleId = data.moduleId;
   
-  delete data.authorId;
+  delete data.moduleId;
   
   data = JSON.stringify(data);
 
-  const response = await fetch(environment.api + `/module/${authorId}`, {
+  const response = await fetch(environment.api + `/module/${moduleId}`, {
     method: "PUT", headers: { 'Content-Type': 'application/json', ...header }, body: data
   })
     .then(res => { return res.json() })
