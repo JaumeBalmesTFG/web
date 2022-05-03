@@ -1,18 +1,18 @@
 <app-header (activeTab)="selectTab($event)"></app-header>
-<div class="container">
-<mat-card class="card">
-    <mat-card-title>Manage Subjects</mat-card-title>
-    <button mat-raised-button (click)="openNewSubjectModal()">New Subject</button>
-</mat-card>
+<div class="container subject-header box-shadow">
+  <mat-card class="card">
+      <mat-card-title>Manage Subjects</mat-card-title>
+      <button mat-raised-button (click)="openNewSubjectModal()">New Subject</button>
+  </mat-card>
 </div>
 <div class="container">
     <div class="subject-container" *ngFor="let subject of subjects">
-        <mat-card class="card">
+        <mat-card class="card subject-card">
             <mat-card-title>{{subject.name}}</mat-card-title>
             <div class="buttons">
-                <button mat-fab (click)="openNewUfModal()"><mat-icon>add</mat-icon></button>
-                <button mat-fab (click)="openEditSubjectModal(subject)"><mat-icon>edit</mat-icon></button>
-                <button mat-fab (click)="deleteSubject(subject)"><mat-icon>archive</mat-icon></button>
+                <button mat-fab class="header-icon" (click)="openNewUfModal()"><mat-icon>add</mat-icon></button>
+                <button mat-fab class="header-icon" (click)="openEditSubjectModal(subject)"><mat-icon>edit</mat-icon></button>
+                <button mat-fab class="header-icon" (click)="deleteSubject(subject)"><mat-icon>archive</mat-icon></button>
             </div>
         </mat-card>
         <app-subject-with-uf [subjectInfo]="subject"></app-subject-with-uf>

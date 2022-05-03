@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
 import { ModalUfComponent } from '../../modals/modal-uf/modal-uf.component';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {ModalDeleteComponent} from "../../modals/modal-delete/modal-delete.component";
 @Component({
   selector: 'app-subject-with-uf',
   templateUrl: './subject-with-uf.component.html',
@@ -11,9 +12,9 @@ export class SubjectWithUfComponent implements OnInit {
   @Input() subjectInfo: Object={};
 
   UFs=[
-    {title: 'UF 1', rules:[{type:'Examen',percentage:80},{type:'Practicas',percentage:20}], total_hours:300, trauncy_percentage: 15},
-    {title: 'UF 2', rules:[{type:'Examen',percentage:80},{type:'Practicas',percentage:20}], total_hours:300, trauncy_percentage: 15},
-    {title: 'UF 3', rules:[{type:'Examen',percentage:80},{type:'Practicas',percentage:20}], total_hours:300, trauncy_percentage: 15}
+    {title: 'UF 1', rules:[{rule:'Examen',percentage:80},{rule:'Practicas',percentage:20}], total_hours:300, trauncy_percentage: 15},
+    {title: 'UF 2', rules:[{rule:'Examen',percentage:80},{rule:'Practicas',percentage:20}], total_hours:300, trauncy_percentage: 15},
+    {title: 'UF 3', rules:[{rule:'Examen',percentage:80},{rule:'Practicas',percentage:20}], total_hours:300, trauncy_percentage: 15}
   ]
 
   constructor(
@@ -22,7 +23,7 @@ export class SubjectWithUfComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.subjectInfo);
-    
+
   }
 
   openEditUfModal(UF:any){
@@ -32,10 +33,8 @@ export class SubjectWithUfComponent implements OnInit {
   }
 
   DeleteUF(ufToDelete:any){
-    this.UFs.forEach((UF,index) => {
-      if(UF.title === ufToDelete.title){
-        this.UFs.splice(index,1);
-      }
+    const dialogRef = this.dialog.open(ModalDeleteComponent, {
+      data: ufToDelete
     })
   }
 }
