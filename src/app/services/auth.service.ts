@@ -1,14 +1,14 @@
 import { environment } from "src/environments/environment.prod";
 
 // Check localstorage token
-export function checkLocalStorageToken(): boolean {
+export function isLocalStorageToken(): boolean {
   const token:any = localStorage.getItem('token');
   if(token){ return true; }
   return false;
 }
 
 // check if is true and store the token on the localstorage
-export function checkAndStore(token: string): void {
+export function checkAndStoreToken(token: string): void {
   if (token) {
     localStorage.setItem('token', token);
   }
@@ -38,12 +38,12 @@ export async function register(data: string): Promise<String> {
     headers: { 'Content-Type': 'application/json' }
   };
 
-  const response = await fetch(environment.api + "/regiasdfster", options)
+  const response = await fetch(environment.api + "/register", options)
     .then((res) => { return res.json() })
     .then((json) => { return json; })
     .catch(err => { return "error"; });
 
-  checkAndStore(response.token);
+  checkAndStoreToken(response.token);
   
   return response;
 }
@@ -61,7 +61,7 @@ export async function login(data: string): Promise<String> {
     .then((json) => { return json; })
     .catch(err => { return "error"; });
 
-  checkAndStore(response.token);
+  checkAndStoreToken(response.token);
 
   return response;
 }
