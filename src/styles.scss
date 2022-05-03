@@ -12,7 +12,7 @@ body { margin: 0; }
 
 .cancel-button {
   border-color: #FF9F1C;
-  background-color: grey !important;
+  background-color: #f5f5f5;
   color: #FF9F1C;
 }
 
@@ -43,3 +43,6 @@ body { margin: 0; }
   padding: 0;
 }
 
+.mat-dialog-container {
+  background: white;
+}
