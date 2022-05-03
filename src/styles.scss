@@ -42,7 +42,10 @@ body { margin: 0; }
 .subject-container .mat-card .buttons .mat-fab .mat-button-wrapper {
   padding: 0;
 }
+
 .mat-dialog-container{
   background-color: white !important;
+  max-height: calc(100vh - 100px) !important;
+  overflow-y: auto;
 }
 
