@@ -4,7 +4,8 @@ import { Router } from '@angular/router';
 import {
   auth,
   register,
-  login
+  login,
+  checkLocalStorageToken
 } from '../services/auth.service';
 
 @Component({
@@ -25,7 +26,6 @@ export class LoginComponent implements OnInit {
   login = false;
   register = false;
   ngOnInit(): void {
-
     this.formEmail = this.formBuilder.group({
       email:['',[Validators.required,Validators.email]]
     })
