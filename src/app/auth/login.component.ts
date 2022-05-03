@@ -4,8 +4,7 @@ import { Router } from '@angular/router';
 import {
   auth,
   register,
-  login,
-  checkLocalStorageToken
+  login
 } from '../services/auth.service';
 
 @Component({
