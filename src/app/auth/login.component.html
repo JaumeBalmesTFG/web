@@ -3,9 +3,8 @@
         <div class=image-container>
             <img class="img-login" src="../../assets/temporary_k_image.png">
         </div>
-        <div [formGroup]="formEmail">
+        <div [formGroup]="formEmail" (keyup.enter)="enterEmail()">
             <div class="login">
-
               <div class="input-container">
                 <div>Email</div>
                 <input matInput id="email" formControlName="email">
@@ -13,15 +12,14 @@
                   <div *ngIf="formEmail.get('email')?.errors?.['required']">
                     Email is required
                   </div>
-                  <div *ngIf="formEmail.get('email')?.errors?.['email']">
-                    Incorrect email format
-                  </div>
                 </div>
               </div>
-
-                <div class="end-buttons">
-                    <button class="submit-button" mat-raised-button (click)="enterEmail()">Next</button>
-                </div>
+              <div class="end-buttons">
+                  <button class="submit-button" mat-raised-button (click)="enterEmail()">Next</button>
+              </div>
+              <div *ngIf="error" class="error">
+                <p>{{error}}</p>
+              </div>
             </div>
         </div>
     </mat-card>
@@ -33,7 +31,7 @@
         <div>
             <h1>Login</h1>
         </div>
-        <div [formGroup]="formLogin">
+        <div [formGroup]="formLogin" (keyup.enter)="enterLogin()">
             <div class="login">
 
               <div class="input-container">
@@ -43,9 +41,6 @@
                 <div *ngIf="formLogin.get('email')?.invalid && formLogin.get('email')?.touched" class="error">
                   <div *ngIf="formLogin.get('email')?.errors?.['required']">
                     Email is required
-                  </div>
-                  <div *ngIf="formLogin.get('email')?.errors?.['email']">
-                    Incorrect email format
                   </div>
                 </div>
               </div>
@@ -60,13 +55,11 @@
                   </div>
                 </div>
               </div>
-
-              <div *ngIf='wrongData' class="error">
-                Incorrect email and/or password
-              </div>
-
               <div class="end-buttons">
                   <button class="submit-button call-to-action-btn" mat-raised-button (click)="enterLogin()">Login</button>
+              </div>
+              <div *ngIf="error" class="error">
+                <p>{{error}}</p>
               </div>
             </div>
         </div>
@@ -79,26 +72,19 @@
         <div>
             <h1>Register</h1>
         </div>
-        <div [formGroup]="formRegister">
+        <div [formGroup]="formRegister" (keyup.enter)="enterRegister()">
             <div class="login">
-
               <div class="input-container">
                 <div>Email</div>
-
                 <input matInput formControlName="email">
                 <div *ngIf="formRegister.get('email')?.invalid && formRegister.get('email')?.touched" class="error">
                   <div *ngIf="formRegister.get('email')?.errors?.['required']">
                     Email is required
                   </div>
-                  <div *ngIf="formRegister.get('email')?.errors?.['email']">
-                    Incorrect email format
-                  </div>
                 </div>
               </div>
-
               <div class="input-container">
                 <div>First name</div>
-
                 <input matInput formControlName="name">
                 <div *ngIf="formRegister.get('name')?.invalid && formRegister.get('name')?.touched" class="error">
                   <div *ngIf="formRegister.get('name')?.errors?.['required']">
@@ -106,7 +92,6 @@
                   </div>
                 </div>
               </div>
-
               <div class="input-container">
                 <div>Last name</div>
                 <input matInput formControlName="lastName">
@@ -116,7 +101,6 @@
                   </div>
                 </div>
               </div>
-
               <div class="input-container">
                 <div>Password</div>
                 <input matInput type="password" formControlName="password">
@@ -124,15 +108,14 @@
                   <div *ngIf="formRegister.get('password')?.errors?.['required']">
                     Password is required
                   </div>
-                  <span *ngIf="formRegister.get('password')?.errors?.['pattern']">
-                    Password must contain: at least one number and one uppercase and lowercase letter, and at least 6 or more characters
-                  </span>
                 </div>
               </div>
-
-                <div class="end-buttons">
-                    <button class="submit-button call-to-action-btn" mat-raised-button (click)="enterRegister()">Register</button>
-                </div>
+              <div class="end-buttons">
+                <button class="submit-button call-to-action-btn" mat-raised-button (click)="enterRegister()">Register</button>
+              </div>
+              <div *ngIf="error" class="error">
+                <p>{{error}}</p>
+              </div>
             </div>
         </div>
     </mat-card>

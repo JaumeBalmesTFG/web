@@ -3,20 +3,68 @@
     background: white;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
+
+.header-icon {
+  width: 50px;
+  height: 50px;
+  color: white;
+}
+
 .container{
-    margin-left: 100px;
-    margin-right: 100px;
-    padding-top: 50px;
+  max-width: 800px;
+  margin: 50px auto;
 }
+
+.subject-header .mat-card-title {
+  margin: 0;
+}
+
+.subject-card {
+  margin-bottom: 25px;
+  border-bottom: 4px solid #cbf3f0;
+  cursor: default;
+  border-radius: 0;
+}
+
+.subject-card .mat-card-title {
+  font-size: 29px;
+  font-weight: 400;
+  padding: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mat-card:not([class*=mat-elevation-z]) {
+  box-shadow: unset;
+}
+
 .buttons{
-    display: flex;
+  display: flex;
   justify-content: space-between;
-  width: 30%;
+  gap: 30px;
 }
+
 .subject-container{
     margin-bottom: 50px;
 }
+
 button{
     background-color: #FF9F1C !important;
+}
+
+
+@media only screen and (max-width: 600px) {
+  .buttons {
+    gap: 15px;
+  }
+
+}
+
+@media only screen and (max-width: 350px) {
+  .subject-header .mat-card .mat-card-title {
+    font-size: 20px;
+  }
 }

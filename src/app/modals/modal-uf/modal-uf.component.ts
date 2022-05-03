@@ -24,8 +24,8 @@ export class ModalUfComponent implements OnInit {
     this.UFForm = this.formBuilder.group({
       title:['', Validators.required],
       rulesAndPercentages:[[], Validators.required],
-      totalHours:['',Validators.required],
-      truancyPercentage:['',Validators.required],
+      totalHours:['',[Validators.required,Validators.pattern("^[0-9]*$")]],
+      truancyPercentage:['',[Validators.required,Validators.pattern("^[0-9]*$")]],
     })
     this.rulesAndPercentages = this.formBuilder.group({
       rule:['',Validators.required],
