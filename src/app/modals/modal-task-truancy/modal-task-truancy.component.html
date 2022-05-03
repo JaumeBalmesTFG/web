@@ -36,7 +36,7 @@
                 <mat-select formControlName="UF" *ngIf="formTruancy.get('subject')?.value!==''" >
                     <mat-option *ngFor="let UF of subjectSelectedTruancy.UFs" [value]="UF.value">{{UF.value}}</mat-option>
                 </mat-select>
-               
+
                 <h1>Hours</h1>
                 <input formControlName="hours" type="number" min="0">
                 <h1>Reasons</h1>

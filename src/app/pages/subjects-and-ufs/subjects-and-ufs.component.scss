@@ -7,44 +7,44 @@
 }
 
 .header-icon {
-  width: 50px;
-  height: 50px;
-  color: white;
+    width: 50px;
+    height: 50px;
+    color: white;
 }
 
 .container{
-  max-width: 800px;
-  margin: 50px auto;
+    max-width: 800px;
+    margin: 50px auto;
 }
 
 .subject-header .mat-card-title {
-  margin: 0;
+    margin: 0;
 }
 
 .subject-card {
-  margin-bottom: 25px;
-  border-bottom: 4px solid #cbf3f0;
-  cursor: default;
-  border-radius: 0;
+    margin-bottom: 25px;
+    border-bottom: 4px solid #cbf3f0;
+    cursor: default;
+    border-radius: 0;
 }
 
 .subject-card .mat-card-title {
-  font-size: 29px;
-  font-weight: 400;
-  padding: 10px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+    font-size: 29px;
+    font-weight: 400;
+    padding: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .mat-card:not([class*=mat-elevation-z]) {
-  box-shadow: unset;
+    box-shadow: unset;
 }
 
 .buttons{
-  display: flex;
-  justify-content: space-between;
-  gap: 30px;
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
 }
 
 .subject-container{
@@ -57,15 +57,15 @@ button{
 
 
 @media only screen and (max-width: 600px) {
-  .buttons {
-    gap: 15px;
-  }
+    .buttons {
+        gap: 15px;
+    }
 
 }
 
 @media only screen and (max-width: 350px) {
-  .subject-header .mat-card .mat-card-title {
-    font-size: 20px;
-  }
+    .subject-header .mat-card .mat-card-title {
+        font-size: 20px;
+    }
 }
 
