@@ -97,9 +97,14 @@ export class LoginComponent implements OnInit {
         email: this.formRegister.get('email')?.value,
         password: this.formRegister.get('password')?.value
       }
-      let res: any = register(JSON.stringify(parameters));
-      //We redirect the user to the main app
-      this.router.navigate([`/calendar`]);
+      let res: any = await register(JSON.stringify(parameters));
+      //We redirect the user to the main app if the information is correct
+      if(res.message==="USER_CREATED"){
+        this.router.navigate([`/calendar`]);
+      //Otherwise we show them the errors
+      } else {
+        this.error = res.message
+      }
     } else {
       this.formRegister.markAllAsTouched();
     }
