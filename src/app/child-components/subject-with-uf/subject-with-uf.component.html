@@ -1,9 +1,13 @@
 <div class="uf-container">
-    <mat-card class="card" *ngFor="let uf of UFs">
-        <mat-card-title>{{uf.title}}</mat-card-title>
-            <div class="buttons">
-                <button mat-mini-fab (click)="openEditUfModal(uf)"><mat-icon>edit</mat-icon></button>
-                <button mat-mini-fab (click)="DeleteUF(uf)"><mat-icon>delete</mat-icon></button>
-            </div>
+    <mat-card class="card uf-card" *ngFor="let uf of UFs">
+
+        <mat-card-title class="uf-card-title">
+          <div class="uf-title-icon"><mat-icon>book</mat-icon></div>
+          {{uf.title}}
+        </mat-card-title>
+        <div class="buttons">
+            <button mat-mini-fab class="uf-icon" (click)="openEditUfModal(uf)"><mat-icon>edit</mat-icon></button>
+            <button mat-mini-fab class="uf-icon" (click)="DeleteUF(uf)"><mat-icon>delete</mat-icon></button>
+        </div>
     </mat-card>
 </div>

@@ -13,6 +13,7 @@ import {
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  error: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -29,45 +30,65 @@ export class LoginComponent implements OnInit {
       email:['',[Validators.required,Validators.email]]
     })
     this.formLogin = this.formBuilder.group({
-      email: ['', Validators.required],
+      email: [{value: '',disabled: true}, Validators.required,],
       password: ['', Validators.required]
     })
     this.formRegister = this.formBuilder.group({
-      email:['',Validators.required],
+      email:[{value: '',disabled: true},Validators.required],
       name:['',Validators.required],
       lastName:['',Validators.required],
-      password:['',[Validators.required,Validators.pattern('(?=\\D*\\d)(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z]).{6,}')]]
+      password:['',[Validators.required]]
     })
   }
 
   async enterEmail() {
+    // Function to redirect the user to Login or Register
     if (this.formEmail.valid) {
       let email: string = this.formEmail.get('email')?.value
       let res: any = await auth(email)
-
+      //If the user's email exist in our DB we redirect them to login
       if (res.message === "LOGIN") {
         this.login = true;
         this.formLogin.patchValue({
           email: this.formEmail.get('email')?.value
         })
+        this.error=''
+      //If the user's email doesn't exist in our DB we redirect them to register
       } else if (res.message === "REGISTER") {
         this.register = true;
         this.formRegister.patchValue({
           email: this.formEmail.get('email')?.value
         })
+        this.error=''
+      } else {
+        this.error = res.message
       }
+    } else {
+      this.formEmail.markAllAsTouched();
     }
   }
-  enterLogin() {
+  async enterLogin() {
+    // Function to validate the login
     if (this.formLogin.valid) {
-      if (this.formLogin.get('email')?.value === 'test@test.com' && this.formLogin.get('password')?.value === 'test') {
+      let parameters={
+        email: this.formLogin.get('email')?.value,
+        password: this.formLogin.get('password')?.value
+      }
+      let res: any = await login(JSON.stringify(parameters));
+      // If the login is succesful we redirect the user to calendar
+      if (res.message==='LOGIN_SUCCESSFUL') {
         this.router.navigate([`/calendar`]);
+      // Otherwise we send them the error
       } else {
+        this.error = res.message;
         this.wrongData=true;
       }
+    } else {
+      this.formLogin.markAllAsTouched();
     }
   }
   async enterRegister() {
+    // Function to validate the register
     if (this.formRegister.valid) {
       let parameters = {
         firstName: this.formRegister.get('name')?.value,
@@ -75,8 +96,16 @@ export class LoginComponent implements OnInit {
         email: this.formRegister.get('email')?.value,
         password: this.formRegister.get('password')?.value
       }
-      let res = register(JSON.stringify(parameters));
-      this.router.navigate([`/calendar`]);
+      let res: any = await register(JSON.stringify(parameters));
+      //We redirect the user to the main app if the information is correct
+      if(res.message==="USER_CREATED"){
+        this.router.navigate([`/calendar`]);
+      //Otherwise we show them the errors
+      } else {
+        this.error = res.message
+      }
+    } else {
+      this.formRegister.markAllAsTouched();
     }
   }
   back(){

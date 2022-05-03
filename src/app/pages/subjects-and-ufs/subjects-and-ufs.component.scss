@@ -20,3 +20,18 @@
 button{
     background-color: #FF9F1C !important;
 }
+
+
+@media only screen and (max-width: 600px) {
+  .buttons {
+    gap: 15px;
+  }
+
+}
+
+@media only screen and (max-width: 350px) {
+  .subject-header .mat-card .mat-card-title {
+    font-size: 20px;
+  }
+}
+
