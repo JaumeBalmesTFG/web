@@ -9,7 +9,7 @@ body { margin: 0; }
 
 .cancel-button {
   border-color: #FF9F1C;
-  background-color: grey !important;
+  background-color: #f5f5f5 !important;
   color: #FF9F1C;
 }
 
@@ -28,4 +28,7 @@ body { margin: 0; }
 .end-buttons {
   display: flex;
   justify-content: end;
+}
+.mat-dialog-container{
+  background: white !important;
 }

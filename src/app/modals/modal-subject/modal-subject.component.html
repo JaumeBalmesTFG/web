@@ -1,20 +1,18 @@
-<div [formGroup]="subjectForm">
-    <mat-card>
-        <mat-card-title *ngIf="data===null">New Subject</mat-card-title>
-        <mat-card-title *ngIf="data!==null">Edit Subject</mat-card-title>
-        <div>Name</div>
-        <input matInput formControlName="name">
-        <div formGroupName="checkColor">Color
-            <div  class="color-buttons">
-                <div *ngFor="let color of colors">
-                    <button (click)="subjectForm.get('checkColor')?.get('option')?.setValue(color.value);" 
-                    type="button" class="subject-color-button" [ngStyle]="{'background-color':color.value}"></button>
-                </div>
+<div [formGroup]="subjectForm" class="form-subject">
+    <h1 *ngIf="data===null">New Subject</h1>
+    <h1 *ngIf="data!==null">Edit Subject</h1>
+    <div>Name</div>
+    <input matInput formControlName="name">
+    <div formGroupName="checkColor">Color
+        <div  class="color-buttons">
+            <div *ngFor="let color of colors">
+                <button (click)="subjectForm.get('checkColor')?.get('option')?.setValue(color.value);" 
+                type="button" class="subject-color-button" [ngStyle]="{'background-color':color.value, 'border-color': subjectForm.get('checkColor')?.get('option')?.value===color.value ? '#FF9F1C' : 'white', 'border-width': subjectForm.get('checkColor')?.get('option')?.value===color.value ? '3px' : '0px'}"></button>
             </div>
         </div>
-        <div class="end-buttons">
-            <button class="submit-button" mat-raised-button (click)="createNewSubject()">Save</button>
-            <button mat-raised-button mat-dialog-close class="cancel-button">Cancel</button>
-        </div>
-    </mat-card>
+    </div>
+    <div class="end-buttons">
+        <button class="submit-button" (click)="createNewSubject()">Save</button>
+        <button mat-dialog-close class="cancel-button">Cancel</button>
+    </div>
 </div>
