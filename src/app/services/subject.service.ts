@@ -2,7 +2,6 @@
 import { environment } from 'src/environments/environment.prod';
 import { updateFetchHeader } from './reqOptions.service';
 
-
 // Get all subjects
 export async function getAll(): Promise<String> {
   const header = updateFetchHeader();
@@ -11,7 +10,6 @@ export async function getAll(): Promise<String> {
     .then(json => { return json })
     .catch(err => { return err })
 
-  console.log(response);
   return response;
 }
 
@@ -19,13 +17,30 @@ export async function getAll(): Promise<String> {
 export async function createSubject(data: any): Promise<String> {
   const header = updateFetchHeader();
   const response = await fetch(environment.api + "/module", {
-    method: "POST", headers: { 'Content-Type': 'application/json', ...header }, body: data})
+    method: "POST", headers: { 'Content-Type': 'application/json', ...header }, body: data
+  })
     .then(res => { return res.json() })
     .then(json => { return json })
     .catch(err => { return err })
 
-  console.log(response);
-
   return response;
 }
 
+// Update Subject
+export async function updateSubject(data: any): Promise<String> {
+  const header = updateFetchHeader();
+  const authorId = data.authorId;
+  
+  delete data.authorId;
+  
+  data = JSON.stringify(data);
+
+  const response = await fetch(environment.api + `/module/${authorId}`, {
+    method: "PUT", headers: { 'Content-Type': 'application/json', ...header }, body: data
+  })
+    .then(res => { return res.json() })
+    .then(json => { return json })
+    .catch(err => { return err })
+
+  return response;
+}

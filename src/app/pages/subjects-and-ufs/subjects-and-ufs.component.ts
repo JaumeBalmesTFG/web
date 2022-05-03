@@ -3,7 +3,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { Router } from '@angular/router';
 import { ModalSubjectComponent } from '../../modals/modal-subject/modal-subject.component';
 import { ModalUfComponent } from '../../modals/modal-uf/modal-uf.component';
-import { getAll, createSubject } from '../../services/subject.service';
+import { getAll, createSubject, updateSubject } from '../../services/subject.service';
 
 @Component({
   selector: 'app-subjects-and-ufs',
@@ -24,13 +24,6 @@ export class SubjectsAndUfsComponent implements OnInit {
   ]
 
   ngOnInit(): void {
-
-    getAll();
-
-    // createSubject(JSON.stringify({
-    //   name: 'Subject1',
-    //   color: '#123464'
-    // }));
   }
 
   selectTab(tabSelected: any) {
