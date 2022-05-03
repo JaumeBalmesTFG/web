@@ -22,25 +22,34 @@ export class ModalSubjectComponent implements OnInit {
     {value:'#f04e4c'},
     {value:'#a8ff65'},
     {value:'#ff45d5'},
-    {value:'#c3c4c3'}
+    {value:'#c3c4c3'},
+    {value:'#c3c4c1'}
   ]
   ngOnInit(): void {
+    //We create the form
     this.subjectForm = this.formBuilder.group({
       name: ['', Validators.required],
       checkColor: this.formBuilder.group({
         option:['',Validators.required]
       })
     })
+    //If we got information from the subjects and ufs component (aka, we're editing) we patch the values onto the form
     if(this.data!==null){
-      this.subjectForm.patchValue(this.data)
+      this.subjectForm.get('name')?.patchValue(this.data.name)
+      this.subjectForm.get('checkColor')?.patchValue({
+        option: this.data.checkColor
+      })
     }
   }
 
   createNewSubject(){
+    //Check if the form is correct and, then, send it to the backend
     if(this.subjectForm.valid){
       this.dialogRef.close()
       console.log(this.subjectForm.get('name')?.value);
       console.log(this.subjectForm.get('checkColor')?.value);
+    } else {
+      this.subjectForm.markAllAsTouched()
     }
   }
 

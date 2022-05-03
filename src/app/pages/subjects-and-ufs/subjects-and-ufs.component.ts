@@ -16,9 +16,9 @@ export class SubjectsAndUfsComponent implements OnInit {
   ) { }
   
   subjects=[
-    {name: 'Subject 1', checkColor: 'red'},
-    {name: 'Subject 2', color: 'green'},
-    {name: 'Subject 3', color: 'yellow'}
+    {name: 'Subject 1', checkColor: '#f04e4c'},
+    {name: 'Subject 2', checkColor: '#f04e4c'},
+    {name: 'Subject 3', checkColor: '#f04e4c'}
   ]
 
   ngOnInit(): void {
