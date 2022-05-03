@@ -14,7 +14,7 @@ export class SubjectsAndUfsComponent implements OnInit {
     private dialog: MatDialog,
     private router: Router,
   ) { }
-  
+
   subjects=[
     {name: 'Subject 1', checkColor: '#f04e4c'},
     {name: 'Subject 2', checkColor: '#f04e4c'},

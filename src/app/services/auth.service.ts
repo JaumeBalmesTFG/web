@@ -43,7 +43,7 @@ export async function register(data: string): Promise<String> {
     .then((json) => { return json; })
     .catch(err => { return "error"; });
 
-  checkAndStoreToken(response.token);
+  checkAndStoreToken(response.body.token);
   
   return response;
 }
@@ -61,7 +61,7 @@ export async function login(data: string): Promise<String> {
     .then((json) => { return json; })
     .catch(err => { return "error"; });
 
-  checkAndStoreToken(response.token);
+  checkAndStoreToken(response.body.token);
 
   return response;
 }
