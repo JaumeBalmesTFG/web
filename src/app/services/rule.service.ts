@@ -37,3 +37,19 @@ export async function getAllRules(data: any): Promise<String> {
 
     return response;
 }
+
+// Edit Rule
+export async function updateRule(data: any): Promise<String> {
+    const header = updateFetchHeader();
+    const ruleId = data.ruleId;
+    delete data.ruleId;
+
+    data = JSON.stringify(data);
+
+    const response = await fetch(environment.api + `/rule/${ruleId}/edit`, { method: "PUT", headers: { "Content-Type": "application/json", ...header }, body: data })
+        .then(res => { return res.json() })
+        .then(json => { return json })
+        .catch(err => { return err })
+
+    return response;
+}
