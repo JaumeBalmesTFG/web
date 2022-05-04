@@ -11,7 +11,5 @@ export async function createRule(data: any): Promise<String> {
         .then(json => { return json })
         .catch(err => { return err })
 
-    console.log(response);
-
     return response;
 }
