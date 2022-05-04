@@ -4,48 +4,53 @@ import { Router } from '@angular/router';
 import { ModalSubjectComponent } from '../../modals/modal-subject/modal-subject.component';
 import { ModalUfComponent } from '../../modals/modal-uf/modal-uf.component';
 @Component({
-  selector: 'app-subjects-and-ufs',
-  templateUrl: './subjects-and-ufs.component.html',
-  styleUrls: ['./subjects-and-ufs.component.scss']
+    selector: 'app-subjects-and-ufs',
+    templateUrl: './subjects-and-ufs.component.html',
+    styleUrls: ['./subjects-and-ufs.component.scss']
 })
 export class SubjectsAndUfsComponent implements OnInit {
 
-  constructor(
-    private dialog: MatDialog,
-    private router: Router,
-  ) { }
-  
-  subjects=[
-    {name: 'Subject 1', checkColor: '#f04e4c'},
-    {name: 'Subject 2', checkColor: '#f04e4c'},
-    {name: 'Subject 3', checkColor: '#f04e4c'}
-  ]
+    constructor(
+        private dialog: MatDialog,
+        private router: Router,
+    ) { }
 
-  ngOnInit(): void {
-  }
+    subjects=[
+        {name: 'Subject 1', checkColor: '#f04e4c'},
+        {name: 'Subject 2', checkColor: '#f04e4c'},
+        {name: 'Subject 3', checkColor: '#f04e4c'}
+    ]
 
-  selectTab(tabSelected: any){
-    console.log(tabSelected)
-    this.router.navigate([`/${tabSelected}`]);
-  }
+    ngOnInit(): void {
+    }
 
-  openNewSubjectModal(){
-    const dialogRef = this.dialog.open(ModalSubjectComponent);
-  }
-  openEditSubjectModal(subject:any){
-    const dialogRef = this.dialog.open(ModalSubjectComponent, {
-      data: subject
-    });
-  }
-  openNewUfModal(){
-    const dialogRef= this.dialog.open(ModalUfComponent)
-  }
+    selectTab(tabSelected: any){
+        console.log(tabSelected)
+        this.router.navigate([`/${tabSelected}`]);
+    }
 
-  deleteSubject(subjectToDelete:any){
-    this.subjects.forEach((subject,index) => {
-      if(subject.name === subjectToDelete.name){
-        this.subjects.splice(index,1);
-      }
-    })
-  }
+    openNewSubjectModal(){
+        const dialogRef = this.dialog.open(ModalSubjectComponent,{
+            autoFocus: false,
+        });
+    }
+    openEditSubjectModal(subject:any){
+        const dialogRef = this.dialog.open(ModalSubjectComponent, {
+            data: subject,
+            autoFocus: false
+        });
+    }
+    openNewUfModal(){
+        const dialogRef= this.dialog.open(ModalUfComponent,{
+            autoFocus: false
+        })
+    }
+
+    deleteSubject(subjectToDelete:any){
+        this.subjects.forEach((subject,index) => {
+            if(subject.name === subjectToDelete.name){
+                this.subjects.splice(index,1);
+            }
+        })
+    }
 }

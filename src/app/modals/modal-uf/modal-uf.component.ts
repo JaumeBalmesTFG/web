@@ -3,46 +3,47 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-modal-uf',
-  templateUrl: './modal-uf.component.html',
-  styleUrls: ['./modal-uf.component.scss']
+    selector: 'app-modal-uf',
+    templateUrl: './modal-uf.component.html',
+    styleUrls: ['./modal-uf.component.scss']
 })
 export class ModalUfComponent implements OnInit {
   errorPercentage!: boolean;
 
-  constructor(
-    private formBuilder: FormBuilder,
-    @Inject(MAT_DIALOG_DATA) public data: {title: string, rules: any, total_hours:Number, trauncy_percentage:Number},
-    public dialogRef: MatDialogRef<ModalUfComponent>
-  ) { }
-  
-  close= false;
-  UFForm!: FormGroup;
-  rulesAndPercentages!: FormGroup;
-  arrayOfRules: any=[]
+    constructor(
+        private formBuilder: FormBuilder,
+        @Inject(MAT_DIALOG_DATA) public data: {title: string, rules: any, total_hours:Number, trauncy_percentage:Number},
+        public dialogRef: MatDialogRef<ModalUfComponent>
+    ) { }
 
-  ngOnInit(): void {
-    this.UFForm = this.formBuilder.group({
-      title:['', Validators.required],
-      rulesAndPercentages:[[], Validators.required],
-      totalHours:['',[Validators.required,Validators.pattern("^[0-9]*$")]],
-      truancyPercentage:['',[Validators.required,Validators.pattern("^[0-9]*$")]],
-    })
-    this.rulesAndPercentages = this.formBuilder.group({
-      rule:['',Validators.required],
-      percentage:['',[Validators.required, Validators.pattern("^[0-9]*$")]]
-    })
-    if(this.data !== null){
-      console.log(this.data);
-      this.arrayOfRules= this.data.rules;
-      this.UFForm.patchValue({
-        title: this.data.title,
-        rulesAndPercentages: this.arrayOfRules,
-        totalHours: this.data.total_hours,
-        truancyPercentage: this.data.trauncy_percentage
-      });
+    close= false; 
+    UFForm!: FormGroup;
+    rulesAndPercentages!: FormGroup;
+    arrayOfRules: any=[]
+
+    ngOnInit(): void {
+        this.UFForm = this.formBuilder.group({
+            title:['', Validators.required],
+            rulesAndPercentages:[[], Validators.required],
+            totalHours:['',[Validators.required,Validators.pattern("^[0-9]*$")]],
+            truancyPercentage:['',[Validators.required,Validators.pattern("^[0-9]*$")]],
+        })
+        this.rulesAndPercentages = this.formBuilder.group({
+            rule:['',Validators.required],
+            percentage:['',[Validators.required, Validators.pattern("^[0-9]*$")]]
+        })
+        if(this.data !== null){
+            console.log(this.data);
+            this.arrayOfRules= this.data.rules;
+            this.UFForm.patchValue({
+                title: this.data.title,
+                rulesAndPercentages: this.data.rules,
+                totalHours: this.data.total_hours,
+                truancyPercentage: this.data.trauncy_percentage
+            });
+        }
+        
     }
-  }
 
   addRule(){
     if(this.rulesAndPercentages.get('rule')?.value !== '' && this.rulesAndPercentages.get('percentage')?.value !=='' && Number(this.rulesAndPercentages.get('percentage')?.value)){

@@ -4,14 +4,14 @@
     <mat-icon mat-dialog-close class="close">close</mat-icon>
 </div>
 <form [formGroup]="UFForm" class="form-subject">
-    <h1>Title</h1>
+    <div>Name</div>
     <input formControlName="title" type="text" id="title">
     <div *ngIf="UFForm.get('title')?.invalid && UFForm.get('title')?.touched" class="error">
         <div *ngIf="UFForm.get('title')?.errors?.['required']">
-          Title is required
+            Name is required
         </div>
     </div>
-    <h1>Total hours</h1>
+    <div>Total hours</div>
     <input formControlName="totalHours" type="text">
     <div *ngIf="UFForm.get('totalHours')?.invalid && UFForm.get('totalHours')?.touched" class="error">
         <div *ngIf="UFForm.get('totalHours')?.errors?.['required']">
@@ -21,7 +21,7 @@
             The value must be numeric
         </div>
     </div>
-    <h1>Truancy Percentage</h1>
+    <div>Truancy Percentage</div>
     <input formControlName="truancyPercentage" type="text">
     <div *ngIf="UFForm.get('truancyPercentage')?.invalid && UFForm.get('truancyPercentage')?.touched" class="error">
         <div *ngIf="UFForm.get('truancyPercentage')?.errors?.['required']">
@@ -31,31 +31,36 @@
             The value must be numeric
         </div>
     </div>
-    <h1 [formGroup]="rulesAndPercentages">Rules
-        <h2 for="name">Name</h2>
-        <input formControlName="rule" id="name" type="text">
-        <div *ngIf="rulesAndPercentages.get('rule')?.invalid && rulesAndPercentages.get('rule')?.touched" class="error">
-            <div *ngIf="rulesAndPercentages.get('rule')?.errors?.['required']">
-              Rule is required
+    <div [formGroup]="rulesAndPercentages">
+        <div class="subtitle">Rules</div>
+        <div class="mt-15">
+            <div>Name</div>
+            <input formControlName="rule" id="name" type="text">
+            <div *ngIf="rulesAndPercentages.get('rule')?.invalid && rulesAndPercentages.get('rule')?.touched" class="error">
+                <div *ngIf="rulesAndPercentages.get('rule')?.errors?.['required']">
+                Name is required
+                </div>
             </div>
         </div>
-        <h2 for="percentage">Percentage</h2>
-        <input formControlName="percentage" id="percentage" type="text">
-        <div *ngIf="rulesAndPercentages.get('percentage')?.invalid && rulesAndPercentages.get('percentage')?.touched" class="error">
-            <div *ngIf="rulesAndPercentages.get('percentage')?.errors?.['required']">
-              Percentage is required
-            </div>
-            <div *ngIf="rulesAndPercentages.get('percentage')?.errors?.['pattern']">
-                The value must be numeric
+        <div class="mt-15">
+            <div>Percentage</div>
+            <input formControlName="percentage" id="percentage" type="text">
+            <div *ngIf="rulesAndPercentages.get('percentage')?.invalid && rulesAndPercentages.get('percentage')?.touched" class="error">
+                <div *ngIf="rulesAndPercentages.get('percentage')?.errors?.['required']">
+                  Percentage is required
+                </div>
+                <div *ngIf="rulesAndPercentages.get('percentage')?.errors?.['pattern']">
+                    The value must be numeric
+                </div>
             </div>
         </div>
-    </h1>
+    </div>
     <button class="add-button" (click)="addRule()">Add Rule</button>
     <table *ngIf="UFForm.get('rulesAndPercentages')?.value.length>0">
-        <tr>
-            <th>Rule</th>
+        <tr class="header-row">
+            <th>Type</th>
             <th>Percentage</th>
-            <th>Delete</th>
+            <th>Actions</th>
         </tr>
         <tr *ngFor="let rule of UFForm.get('rulesAndPercentages')?.value">
             <th>{{rule.rule}}</th>
@@ -71,6 +76,6 @@
     </div>
     <div class="end-buttons">
         <button class="submit-button" mat-raised-button (click)="addUf()">Save</button>
-        <button mat-raised-button mat-dialog-close class="cancel-button">Cancel</button>
+        <button mat-raised-button  mat-dialog-close class="cancel-button">Cancel</button>
     </div>
 </form>

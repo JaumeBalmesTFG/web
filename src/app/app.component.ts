@@ -12,8 +12,4 @@ export class AppComponent {
     private router: Router,
   ){}
 
-  selectTab(tabSelected: any){
-    console.log(tabSelected)
-    this.router.navigate([`/${tabSelected}`]);
-  }
 }
