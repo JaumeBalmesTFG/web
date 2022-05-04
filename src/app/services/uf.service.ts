@@ -14,3 +14,16 @@ export async function createUf(data: any): Promise<String> {
     console.log(response);
     return response;
 }
+
+// Get UF
+export async function getUf(data:any): Promise<String> {
+    const header = updateFetchHeader();
+
+    const response = await fetch(environment.api + `/uf/${data}`, { method: "GET", headers: { ...header } })
+        .then(res => { return res.json() })
+        .then(json => { return json })
+        .catch(err => { return err })
+
+    console.log(response);
+    return response;
+}
