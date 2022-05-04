@@ -2,6 +2,14 @@
 import { environment } from 'src/environments/environment.prod';
 import { updateFetchHeader } from './reqOptions.service';
 
+/** -- UF SCHEMA --
+ *  moduleId:
+    ufId:
+    name:
+    hours:
+    truancy_percentage:
+ */
+
 // Create UF
 export async function createUf(data: any): Promise<String> {
     const header = updateFetchHeader();
@@ -39,8 +47,6 @@ export async function updateUf(data:any): Promise<String> {
         .then(json => { return json })
         .catch(err => { return err })
 
-    console.log(response);
-
     return response;
 }
 
@@ -52,8 +58,6 @@ export async function deleteUf(data:any): Promise<String> {
         .then(res => { return res.json() })
         .then(json => { return json })
         .catch(err => { return err })
-
-    console.log(response);
 
     return response;
 }
