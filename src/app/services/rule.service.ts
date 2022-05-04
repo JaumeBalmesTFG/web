@@ -5,8 +5,20 @@ import { updateFetchHeader } from './reqOptions.service';
 // Create Rule
 export async function createRule(data: any): Promise<String> {
     const header = updateFetchHeader();
-    
+
     const response = await fetch(environment.api + "/rule/create", { method: "POST", headers: { "Content-Type": "application/json", ...header }, body: data })
+        .then(res => { return res.json() })
+        .then(json => { return json })
+        .catch(err => { return err })
+
+    return response;
+}
+
+// Get Rule
+export async function getRule(data: any): Promise<String> {
+    const header = updateFetchHeader();
+
+    const response = await fetch(environment.api + `/rule/${data}`, { method: "GET", headers: { ...header }})
         .then(res => { return res.json() })
         .then(json => { return json })
         .catch(err => { return err })
