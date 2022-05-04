@@ -43,7 +43,7 @@ export async function register(data: string): Promise<String> {
         .then((json) => { return json; })
         .catch(err => { return "error"; });
 
-    checkAndStoreToken(response.body.token);
+    checkAndStoreToken(response.token);
 
     return response;
 }

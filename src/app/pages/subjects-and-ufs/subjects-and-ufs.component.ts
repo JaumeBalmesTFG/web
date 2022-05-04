@@ -3,6 +3,9 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog
 import { Router } from '@angular/router';
 import { ModalSubjectComponent } from '../../modals/modal-subject/modal-subject.component';
 import { ModalUfComponent } from '../../modals/modal-uf/modal-uf.component';
+import { createUf } from 'src/app/services/uf.service';
+import { getAll } from 'src/app/services/subject.service';
+
 @Component({
     selector: 'app-subjects-and-ufs',
     templateUrl: './subjects-and-ufs.component.html',
@@ -22,6 +25,7 @@ export class SubjectsAndUfsComponent implements OnInit {
     ]
 
     ngOnInit(): void {
+        // console.log(getAll().then(res => { console.log(res); }));
     }
 
     selectTab(tabSelected: any){
