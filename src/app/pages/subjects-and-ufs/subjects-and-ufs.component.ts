@@ -3,6 +3,11 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog
 import { Router } from '@angular/router';
 import { ModalSubjectComponent } from '../../modals/modal-subject/modal-subject.component';
 import { ModalUfComponent } from '../../modals/modal-uf/modal-uf.component';
+import {
+    getAllSubjects,
+    getAll,
+    archiveOrDearchiveSubject
+} from '../../services/subject.service';
 @Component({
     selector: 'app-subjects-and-ufs',
     templateUrl: './subjects-and-ufs.component.html',
@@ -15,17 +20,23 @@ export class SubjectsAndUfsComponent implements OnInit {
         private router: Router,
     ) { }
 
-    subjects=[
-        {name: 'Subject 1', checkColor: '#f04e4c'},
-        {name: 'Subject 2', checkColor: '#f04e4c'},
-        {name: 'Subject 3', checkColor: '#f04e4c'}
-    ]
+    subjects: any[]=[]
 
-    ngOnInit(): void {
+    async ngOnInit(): Promise<void> {
+        let res: any = await getAll()
+        res.forEach((data: any) => {
+            let subject = {
+                name: data.name,
+                checkColor: data.color,
+                moduleId: data._id
+            }
+            this.subjects.push(subject);
+        })
+        console.log(res);
+        
     }
 
     selectTab(tabSelected: any){
-        console.log(tabSelected)
         this.router.navigate([`/${tabSelected}`]);
     }
 
@@ -41,11 +52,7 @@ export class SubjectsAndUfsComponent implements OnInit {
         const dialogRef= this.dialog.open(ModalUfComponent)
     }
 
-    deleteSubject(subjectToDelete:any){
-        this.subjects.forEach((subject,index) => {
-            if(subject.name === subjectToDelete.name){
-                this.subjects.splice(index,1);
-            }
-        })
+    async deleteSubject(subjectToDelete:any){
+        let res = await archiveOrDearchiveSubject(subjectToDelete)
     }
 }
