@@ -60,6 +60,20 @@ button{
   letter-spacing: 2px;
 }
 
+.text-center {
+    text-align: center;
+    padding: 15px;
+}
+
+.info-container p {
+    font-size: 16px;
+    margin-bottom: 25px;
+}
+
+.call-to-action-btn {
+    padding: 4px 32px;
+}
+
 @media only screen and (max-width: 600px) {
     .buttons {
         gap: 15px;

@@ -16,14 +16,14 @@ export class ModalSubjectComponent implements OnInit {
     subjectForm!: FormGroup;
 
     colors=[
-        {value:'#80ce90'},
-        {value:'#f0742c'},
-        {value:'#14115d'},
-        {value:'#f04e4c'},
-        {value:'#a8ff65'},
-        {value:'#ff45d5'},
-        {value:'#c3c4c3'},
-        {value:'#c3c4c1'}
+        {value:'#009688'},
+        {value:'#4caf4f'},
+        {value:'#f44336'},
+        {value:'#e91e62'},
+        {value:'#00bbd4'},
+        {value:'#2194f3'},
+        {value:'#4c62e2'},
+        {value:'#7e57c2'}
     ]
     ngOnInit(): void {
         //We create the form
