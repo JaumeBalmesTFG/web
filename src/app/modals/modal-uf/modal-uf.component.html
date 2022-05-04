@@ -4,24 +4,40 @@
     <mat-icon mat-dialog-close class="close">close</mat-icon>
 </div>
 <form [formGroup]="UFForm" class="form-subject">
-    <h1>Title</h1>
+
+  <div>
+    <div>Name</div>
     <input formControlName="title" type="text" id="title">
-    <h1>Total hours</h1>
+  </div>
+
+  <div>
+    <div>Total hours</div>
     <input formControlName="totalHours" type="text">
-    <h1>Truancy Percentage</h1>
+  </div>
+
+  <div>
+    <div>Truancy percentage</div>
     <input formControlName="truancyPercentage" type="text">
-    <h1 [formGroup]="rulesAndPercentages">Rules
-        <h2 for="name">Name</h2>
-        <input formControlName="rule" id="name" type="text">
-        <h2 for="percentage">Percentage</h2>
-        <input formControlName="percentage" id="percentage" type="text">
-    </h1>
+  </div>
+
+    <div [formGroup]="rulesAndPercentages">
+        <div class="subtitle">Rules</div>
+        <div class="mt-15">
+            <div>Name</div>
+            <input formControlName="rule" id="name" type="text">
+        </div>
+
+        <div>
+            <div>Percentage</div>
+            <input formControlName="percentage" id="percentage" type="text">
+        </div>
+    </div>
     <button class="add-button" (click)="addRule()">Add Rule</button>
     <table *ngIf="UFForm.get('rulesAndPercentages')?.value.length>0">
-        <tr>
-            <th>Rule</th>
+        <tr class="header-row">
+            <th>Type</th>
             <th>Percentage</th>
-            <th>Delete</th>
+            <th>Actions</th>
         </tr>
         <tr *ngFor="let rule of UFForm.get('rulesAndPercentages')?.value">
             <th>{{rule.rule}}</th>

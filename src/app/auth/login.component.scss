@@ -1,5 +1,5 @@
 .background{
-    background-color: rgb(28, 241, 170);
+    background-color: #2ec4b6;
     width: 100%;
     height: calc(100vh + 75px);
     display: flex;
@@ -68,6 +68,7 @@ button{
     text-transform: uppercase;
     letter-spacing: 2px;
     padding: 5px 20px;
+    font-size: 16px;
 }
 .call-to-action-btn {
     padding: 5px 20px;
