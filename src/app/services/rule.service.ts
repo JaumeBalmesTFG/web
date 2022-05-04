@@ -25,3 +25,15 @@ export async function getRule(data: any): Promise<String> {
 
     return response;
 }
+
+// Get All Rules From Uf
+export async function getAllRules(data: any): Promise<String> {
+    const header = updateFetchHeader();
+
+    const response = await fetch(environment.api + `/rule/uf/${data}`, { method: "GET", headers: { ...header }})
+        .then(res => { return res.json() })
+        .then(json => { return json })
+        .catch(err => { return err })
+
+    return response;
+}
