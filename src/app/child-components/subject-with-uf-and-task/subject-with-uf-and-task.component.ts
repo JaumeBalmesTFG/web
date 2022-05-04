@@ -21,6 +21,7 @@ export class SubjectWithUfAndTaskComponent implements OnInit {
         {title: 'UF 3', rules:[{rule:'Examen',percentage:80},{rule:'Practicas',percentage:20}], total_hours:300, truancy_percentage: 15}
     ]
     ngOnInit(): void {
+        
     }
 
 }

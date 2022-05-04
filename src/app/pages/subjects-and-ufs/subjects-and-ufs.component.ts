@@ -28,7 +28,8 @@ export class SubjectsAndUfsComponent implements OnInit {
             let subject = {
                 name: data.name,
                 checkColor: data.color,
-                moduleId: data._id
+                moduleId: data._id,
+                ufs: data.ufs
             }
             this.subjects.push(subject);
         })

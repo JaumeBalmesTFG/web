@@ -9,12 +9,9 @@ import {ModalDeleteComponent} from "../../modals/modal-delete/modal-delete.compo
 })
 export class SubjectWithUfComponent implements OnInit {
 
-    @Input() subjectInfo: Object={};
+    @Input() subjectInfo: any;
 
-    UFs=[
-        {title: 'UF 1', rules:[{rule:'Examen',percentage:80},{rule:'Practicas',percentage:20}], total_hours:300, trauncy_percentage: 15},
-        {title: 'UF 2', rules:[{rule:'Examen',percentage:80},{rule:'Practicas',percentage:20}], total_hours:300, trauncy_percentage: 15},
-        {title: 'UF 3', rules:[{rule:'Examen',percentage:80},{rule:'Practicas',percentage:20}], total_hours:300, trauncy_percentage: 15}
+    UFs: any[]=[
     ]
 
     constructor(
@@ -23,6 +20,15 @@ export class SubjectWithUfComponent implements OnInit {
 
     ngOnInit(): void {
         console.log(this.subjectInfo);
+        this.subjectInfo.ufs.forEach((data: any)=>{
+          let uf = {
+            title: data.name,
+            rules:{},
+            total_hours:data.hours,
+            truancy_percentage: data.truancy_percentage
+          }
+          this.UFs.push(uf)
+        })
     }
 
     openEditUfModal(UF:any){
