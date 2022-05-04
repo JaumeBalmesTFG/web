@@ -3,7 +3,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog
 import { Router } from '@angular/router';
 import { ModalSubjectComponent } from '../../modals/modal-subject/modal-subject.component';
 import { ModalUfComponent } from '../../modals/modal-uf/modal-uf.component';
-import { createUf, getUf } from 'src/app/services/uf.service';
+import { createUf, getUf, updateUf } from 'src/app/services/uf.service';
 import { getAll } from 'src/app/services/subject.service';
 
 @Component({
@@ -25,6 +25,13 @@ export class SubjectsAndUfsComponent implements OnInit {
     ]
 
     ngOnInit(): void {
+        updateUf({
+            moduleId: "627292424f6c373bf5c40cfd",
+            ufId: "6272946a4f6c373bf5c40d25",
+            name: "ESTA UF ES LA HOSTIA",
+            hours: 99,
+            truancy_percentage: 80,
+        })
     }
 
     selectTab(tabSelected: any){

@@ -11,7 +11,6 @@ export async function createUf(data: any): Promise<String> {
         .then(json => { return json })
         .catch(err => { return err })
 
-    console.log(response);
     return response;
 }
 
@@ -24,6 +23,23 @@ export async function getUf(data:any): Promise<String> {
         .then(json => { return json })
         .catch(err => { return err })
 
+    return response;
+}
+
+// Edit UF
+export async function updateUf(data:any): Promise<String> {
+    const header = updateFetchHeader();
+    const ufId = data.ufId;
+    delete data.ufId;
+
+    data = JSON.stringify(data);
+
+    const response = await fetch(environment.api + `/uf/${ufId}/edit`, { method: "PUT", headers: { "Content-Type": "application/json", ...header }, body: data })
+        .then(res => { return res.json() })
+        .then(json => { return json })
+        .catch(err => { return err })
+
     console.log(response);
+
     return response;
 }
