@@ -4,33 +4,42 @@
     <mat-icon mat-dialog-close class="close">close</mat-icon>
 </div>
 <form [formGroup]="UFForm" class="form-subject">
-    <div>Name</div>
-    <input formControlName="title" type="text" id="title">
-    <div *ngIf="UFForm.get('title')?.invalid && UFForm.get('title')?.touched" class="error">
-        <div *ngIf="UFForm.get('title')?.errors?.['required']">
-            Name is required
+    <div class="mt-15">
+        <div>Name</div>
+        <input formControlName="title" type="text" id="title">
+        <div *ngIf="UFForm.get('title')?.invalid && UFForm.get('title')?.touched" class="error">
+            <div *ngIf="UFForm.get('title')?.errors?.['required']">
+                Name is required
+            </div>
         </div>
     </div>
-    <div>Total hours</div>
-    <input formControlName="totalHours" type="text">
-    <div *ngIf="UFForm.get('totalHours')?.invalid && UFForm.get('totalHours')?.touched" class="error">
-        <div *ngIf="UFForm.get('totalHours')?.errors?.['required']">
-          Total hours is required
-        </div>
-        <div *ngIf="UFForm.get('totalHours')?.errors?.['pattern']">
-            The value must be numeric
-        </div>
-    </div>
-    <div>Truancy Percentage</div>
-    <input formControlName="truancyPercentage" type="text">
-    <div *ngIf="UFForm.get('truancyPercentage')?.invalid && UFForm.get('truancyPercentage')?.touched" class="error">
-        <div *ngIf="UFForm.get('truancyPercentage')?.errors?.['required']">
-          Truancy Percentage is required
-        </div>
-        <div *ngIf="UFForm.get('truancyPercentage')?.errors?.['pattern']">
-            The value must be numeric
+
+    <div class="mt-15">
+        <div>Total hours</div>
+        <input formControlName="totalHours" type="text">
+        <div *ngIf="UFForm.get('totalHours')?.invalid && UFForm.get('totalHours')?.touched" class="error">
+            <div *ngIf="UFForm.get('totalHours')?.errors?.['required']">
+                Total hours is required
+            </div>
+            <div *ngIf="UFForm.get('totalHours')?.errors?.['pattern']">
+                The value must be a number
+            </div>
         </div>
     </div>
+
+    <div class="mt-15">
+        <div>Truancy percentage</div>
+        <input formControlName="truancyPercentage" type="text">
+        <div *ngIf="UFForm.get('truancyPercentage')?.invalid && UFForm.get('truancyPercentage')?.touched" class="error">
+            <div *ngIf="UFForm.get('truancyPercentage')?.errors?.['required']">
+                Truancy percentage is required
+            </div>
+            <div *ngIf="UFForm.get('truancyPercentage')?.errors?.['pattern']">
+                The value must be a number
+            </div>
+        </div>
+    </div>
+
     <div [formGroup]="rulesAndPercentages">
         <div class="subtitle">Rules</div>
         <div class="mt-15">
