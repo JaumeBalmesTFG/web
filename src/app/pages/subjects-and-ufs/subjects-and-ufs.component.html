@@ -5,7 +5,9 @@
       <button class="add-subject-btn" mat-raised-button (click)="openNewSubjectModal()">New Subject</button>
   </mat-card>
 </div>
-<div class="container">
+
+<!-- Element appears when user have subjects -->
+<div class="container" *ngIf="subjects.length > 0">
     <div class="subject-container" *ngFor="let subject of subjects">
         <mat-card class="card subject-card">
             <mat-card-title>{{subject.name}}</mat-card-title>
@@ -17,4 +19,17 @@
         </mat-card>
         <app-subject-with-uf [subjectInfo]="subject"></app-subject-with-uf>
     </div>
+</div>
+
+<!-- Element appears when user NOT have subjects -->
+<div class="container" *ngIf="subjects.length < 0">
+    <div class="text-center info-container">
+        <p>Ups! It seems that you don't have any subject created yet! To start press the button and create one.</p>
+
+        <div>
+            <button class="add-subject-btn call-to-action-btn" mat-raised-button (click)="openNewSubjectModal()">New subject</button>
+        </div>
+
+    </div>
+
 </div>
