@@ -1,5 +1,14 @@
 import { environment } from "src/environments/environment.prod";
 
+/** -- UF SCHEMA --
+ *  moduleId:
+    ufId:
+    name:
+    hours:
+    truancy_percentage:
+ */
+
+
 // Check localstorage token
 export function isLocalStorageToken(): boolean {
     const token:any = localStorage.getItem('token');
@@ -43,7 +52,7 @@ export async function register(data: string): Promise<String> {
         .then((json) => { return json; })
         .catch(err => { return "error"; });
 
-    checkAndStoreToken(response.body.token);
+    checkAndStoreToken(response.token);
 
     return response;
 }

@@ -41,15 +41,21 @@ export class SubjectsAndUfsComponent implements OnInit {
     }
 
     openNewSubjectModal(){
-        const dialogRef = this.dialog.open(ModalSubjectComponent);
+        const dialogRef = this.dialog.open(ModalSubjectComponent,{
+            autoFocus: false,
+        });
     }
     openEditSubjectModal(subject:any){
         const dialogRef = this.dialog.open(ModalSubjectComponent, {
-            data: subject
+            data: subject,
+            autoFocus: false
         });
     }
-    openNewUfModal(){
-        const dialogRef= this.dialog.open(ModalUfComponent)
+    openNewUfModal(subjectId: string){
+        const dialogRef= this.dialog.open(ModalUfComponent,{
+            data: subjectId,
+            autoFocus: false
+        })
     }
 
     async deleteSubject(subjectToDelete:any){

@@ -23,12 +23,12 @@ export class SubjectWithUfComponent implements OnInit {
 
     ngOnInit(): void {
         console.log(this.subjectInfo);
-
     }
 
     openEditUfModal(UF:any){
         const dialogRef = this.dialog.open(ModalUfComponent, {
-            data: UF
+            data: UF,
+            autoFocus: false
         });
     }
 
