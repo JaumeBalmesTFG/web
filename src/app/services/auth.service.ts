@@ -1,13 +1,5 @@
 import { environment } from "src/environments/environment.prod";
 
-/** -- UF SCHEMA --
- *  moduleId:
-    ufId:
-    name:
-    hours:
-    truancy_percentage:
- */
-
 
 // Check localstorage token
 export function isLocalStorageToken(): boolean {

@@ -42,14 +42,11 @@ button{
 }
 
 .form-subject{
-
     background-color: white;
     width: 611px;
     color: #5f6368;
     font-size: 16px;
     font-weight: 500;
-    padding-right: 30px;
-    padding-left: 30px;
 }
 input{
     width:95%;
@@ -137,4 +134,28 @@ h2{
     font-size: 20px;
     padding: 10px;
     border-bottom: 1px solid #ccc;
+}
+
+@media (max-width: 830px){
+
+    .form-subject {
+        width: 500px;
+    }
+
+}
+
+@media (max-width: 686px){
+
+    .form-subject {
+        width: 350px;
+    }
+
+}
+
+@media (max-width: 500px){
+
+    .form-subject {
+        width: 215px;
+    }
+
 }

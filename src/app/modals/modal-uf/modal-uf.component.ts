@@ -44,7 +44,7 @@ export class ModalUfComponent implements OnInit {
                 title: this.data.title,
                 rulesAndPercentages: this.data.rules,
                 totalHours: this.data.total_hours,
-                truancyPercentage: this.data.trauncy_percentage
+                truancyPercentage: this.data.truancyPercentage
             });
         }
     }

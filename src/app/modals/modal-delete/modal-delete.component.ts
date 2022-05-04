@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
-
+import { deleteUf } from "../../services/uf.service";
 @Component({
     selector: 'app-modal-delete',
     templateUrl: './modal-delete.component.html',
@@ -9,11 +9,14 @@ import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 export class ModalDeleteComponent implements OnInit {
 
     constructor(
-        @Inject(MAT_DIALOG_DATA) public data: {title: string, rules: any, total_hours:Number, trauncy_percentage:Number}
+        @Inject(MAT_DIALOG_DATA) public data: any
     ) { }
 
     ngOnInit(): void {
-        console.log(this.data);
     }
 
+    removeUf(){
+        console.log(this.data);
+        deleteUf(this.data.id)
+    }
 }
