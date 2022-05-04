@@ -23,7 +23,7 @@ export class SubjectWithUfComponent implements OnInit {
         this.subjectInfo.ufs.forEach((data: any)=>{
           let uf = {
             title: data.name,
-            rules:{},
+            rules:[],
             total_hours:data.hours,
             truancy_percentage: data.truancy_percentage
           }

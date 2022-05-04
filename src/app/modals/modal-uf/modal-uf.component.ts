@@ -4,6 +4,9 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import {
   createUf
 } from '../../services/uf.service'
+import {
+  createRule
+} from '../../services/rule.service'
 @Component({
     selector: 'app-modal-uf',
     templateUrl: './modal-uf.component.html',
@@ -44,9 +47,7 @@ export class ModalUfComponent implements OnInit {
                 truancyPercentage: this.data.trauncy_percentage
             });
         }
-        
     }
-
   addRule(){
     if(this.rulesAndPercentages.get('rule')?.value !== '' && this.rulesAndPercentages.get('percentage')?.value !=='' && Number(this.rulesAndPercentages.get('percentage')?.value)){
       try{
@@ -72,7 +73,7 @@ export class ModalUfComponent implements OnInit {
     })
     this.UFForm.get('rulesAndPercentages')?.setValue(this.arrayOfRules);
   }
-  addUf(){
+  async addUf(){
     let totalPercentage: Number=0;
     this.UFForm.get('rulesAndPercentages')?.value.forEach((ruleAndPercentage: any) => {
       totalPercentage += ruleAndPercentage.percentage
@@ -88,10 +89,17 @@ export class ModalUfComponent implements OnInit {
         hours: this.UFForm.get('totalHours')?.value,
         truancy_percentage: this.UFForm.get('truancyPercentage')?.value,
       }
-      let res = createUf(JSON.stringify(parameters))
+      let res: any = await createUf(JSON.stringify(parameters))
+      this.UFForm.get('rulesAndPercentages')?.value.forEach((rule: any) => {
+        let parametersRule={
+          ufId: res.body._id,
+          title: rule.rule,
+          percentage: rule.percentage
+        }
+        createRule(JSON.stringify(parametersRule))
+      })
       this.dialogRef.close()
-      console.log('res');
-
+      console.log(res);
     }
   }
   edit(ruleToEdit: any){
