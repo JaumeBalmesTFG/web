@@ -28,7 +28,8 @@ export class SubjectWithUfComponent implements OnInit {
 
     openEditUfModal(UF:any){
         const dialogRef = this.dialog.open(ModalUfComponent, {
-            data: UF
+            data: UF,
+            autoFocus: false
         });
     }
 

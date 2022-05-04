@@ -8,6 +8,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
     styleUrls: ['./modal-uf.component.scss']
 })
 export class ModalUfComponent implements OnInit {
+  errorPercentage!: boolean;
 
     constructor(
         private formBuilder: FormBuilder,
@@ -15,7 +16,7 @@ export class ModalUfComponent implements OnInit {
         public dialogRef: MatDialogRef<ModalUfComponent>
     ) { }
 
-    close= false;
+    close= false; 
     UFForm!: FormGroup;
     rulesAndPercentages!: FormGroup;
     arrayOfRules: any=[]
@@ -33,7 +34,7 @@ export class ModalUfComponent implements OnInit {
         })
         if(this.data !== null){
             console.log(this.data);
-
+            this.arrayOfRules= this.data.rules;
             this.UFForm.patchValue({
                 title: this.data.title,
                 rulesAndPercentages: this.data.rules,
@@ -41,52 +42,55 @@ export class ModalUfComponent implements OnInit {
                 truancyPercentage: this.data.trauncy_percentage
             });
         }
+        
     }
 
-    addRule(){
-        if(this.rulesAndPercentages.get('rule')?.value !== '' && this.rulesAndPercentages.get('percentage')?.value !=='' && Number(this.rulesAndPercentages.get('percentage')?.value)){
-            try{
-                let rule={
-                    rule: this.rulesAndPercentages.get('rule')?.value,
-                    percentage: Number(this.rulesAndPercentages.get('percentage')?.value)
-                };
-                this.arrayOfRules.push(rule);
-                this.rulesAndPercentages.reset();
-                this.UFForm.get('rulesAndPercentages')?.setValue(this.arrayOfRules);
-            } catch(error) {
-                return
-            }
-        }
-    }
-    deleteRule(ruleToDelete:any){
-        this.arrayOfRules.forEach((rule:any,index:Number) => {
-            if(ruleToDelete.rule === rule.rule){
-                this.arrayOfRules.splice(index,1);
-            }
-        })
+  addRule(){
+    if(this.rulesAndPercentages.get('rule')?.value !== '' && this.rulesAndPercentages.get('percentage')?.value !=='' && Number(this.rulesAndPercentages.get('percentage')?.value)){
+      try{
+        let rule={
+          rule: this.rulesAndPercentages.get('rule')?.value,
+          percentage: Number(this.rulesAndPercentages.get('percentage')?.value)
+        };
+        this.arrayOfRules.push(rule);
+        this.rulesAndPercentages.reset();
         this.UFForm.get('rulesAndPercentages')?.setValue(this.arrayOfRules);
+      } catch(error) {
+        return
+      }
+    } else {
+      this.rulesAndPercentages.markAllAsTouched()
     }
-    addUf(){
-        let totalPercentage: Number=0;
-        this.UFForm.get('rulesAndPercentages')?.value.forEach((ruleAndPercentage: any) => {
-            totalPercentage += ruleAndPercentage.percentage
-        })
-        if(this.UFForm.invalid){
-            console.log("invalid form");
-        }
-        else if(totalPercentage === 100){
-            this.dialogRef.close()
-            console.log(this.UFForm.value);
-        }
+  }
+  deleteRule(ruleToDelete:any){
+    this.arrayOfRules.forEach((rule:any,index:Number) => {
+      if(ruleToDelete.rule === rule.rule){
+        this.arrayOfRules.splice(index,1);
+      }
+    })
+    this.UFForm.get('rulesAndPercentages')?.setValue(this.arrayOfRules);
+  }
+  addUf(){
+    let totalPercentage: Number=0;
+    this.UFForm.get('rulesAndPercentages')?.value.forEach((ruleAndPercentage: any) => {
+      totalPercentage += ruleAndPercentage.percentage
+    })
+    if(this.UFForm.invalid || totalPercentage !== 100){
+      this.UFForm.markAllAsTouched();
+      this.errorPercentage = true;
     }
-    edit(ruleToEdit: any){
-        this.arrayOfRules.forEach((rule:any,index:Number) => {
-            if(ruleToEdit.rule === rule.rule){
-                this.arrayOfRules.splice(index,1);
-            }
-        })
-        this.rulesAndPercentages.patchValue(ruleToEdit)
-        this.UFForm.get('rulesAndPercentages')?.setValue(this.arrayOfRules);
-
+    else if(totalPercentage === 100 && this.UFForm.valid){
+      this.dialogRef.close()
+      console.log(this.UFForm.value);
     }
+  }
+  edit(ruleToEdit: any){
+    this.arrayOfRules.forEach((rule:any,index:Number) => {
+      if(ruleToEdit.rule === rule.rule){
+        this.arrayOfRules.splice(index,1);
+      }
+    })
+    this.rulesAndPercentages.patchValue(ruleToEdit)
+    this.UFForm.get('rulesAndPercentages')?.setValue(this.arrayOfRules);
+  }
 }
