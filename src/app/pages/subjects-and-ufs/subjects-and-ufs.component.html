@@ -1,9 +1,9 @@
 <app-header (activeTab)="selectTab($event)"></app-header>
 <div class="container subject-header box-shadow">
-  <mat-card class="card">
-      <mat-card-title>Manage Subjects</mat-card-title>
-      <button mat-raised-button (click)="openNewSubjectModal()">New Subject</button>
-  </mat-card>
+    <mat-card class="card">
+        <mat-card-title>Manage Subjects</mat-card-title>
+        <button mat-raised-button (click)="openNewSubjectModal()">New Subject</button>
+    </mat-card>
 </div>
 <div class="container">
     <div class="subject-container" *ngFor="let subject of subjects">

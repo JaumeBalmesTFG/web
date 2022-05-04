@@ -5,21 +5,21 @@
         </div>
         <div [formGroup]="formEmail" (keyup.enter)="enterEmail()">
             <div class="login">
-              <div class="input-container">
-                <div>Email</div>
-                <input matInput id="email" formControlName="email">
-                <div *ngIf="formEmail.get('email')?.invalid && formEmail.get('email')?.touched" class="error">
-                  <div *ngIf="formEmail.get('email')?.errors?.['required']">
-                    Email is required
-                  </div>
+                <div class="input-container">
+                    <div>Email</div>
+                    <input matInput id="email" formControlName="email">
+                    <div *ngIf="formEmail.get('email')?.invalid && formEmail.get('email')?.touched" class="error">
+                        <div *ngIf="formEmail.get('email')?.errors?.['required']">
+                            Email is required
+                        </div>
+                    </div>
                 </div>
-              </div>
-              <div class="end-buttons">
-                  <button class="submit-button" mat-raised-button (click)="enterEmail()">Next</button>
-              </div>
-              <div *ngIf="error" class="error">
-                <p>{{error}}</p>
-              </div>
+                <div class="end-buttons">
+                    <button class="submit-button" mat-raised-button (click)="enterEmail()">Next</button>
+                </div>
+                <div *ngIf="error" class="error">
+                    <p>{{error}}</p>
+                </div>
             </div>
         </div>
     </mat-card>
@@ -34,33 +34,33 @@
         <div [formGroup]="formLogin" (keyup.enter)="enterLogin()">
             <div class="login">
 
-              <div class="input-container">
-                <div>Email</div>
+                <div class="input-container">
+                    <div>Email</div>
 
-                <input matInput formControlName="email">
-                <div *ngIf="formLogin.get('email')?.invalid && formLogin.get('email')?.touched" class="error">
-                  <div *ngIf="formLogin.get('email')?.errors?.['required']">
-                    Email is required
-                  </div>
+                    <input matInput formControlName="email">
+                    <div *ngIf="formLogin.get('email')?.invalid && formLogin.get('email')?.touched" class="error">
+                        <div *ngIf="formLogin.get('email')?.errors?.['required']">
+                            Email is required
+                        </div>
+                    </div>
                 </div>
-              </div>
 
-              <div class="input-container">
-                <div>Password</div>
+                <div class="input-container">
+                    <div>Password</div>
 
-                <input matInput type="password" formControlName="password">
-                <div *ngIf="formLogin.get('password')?.invalid && formLogin.get('password')?.touched" class="error">
-                  <div *ngIf="formLogin.get('password')?.errors?.['required']">
-                    Password is required
-                  </div>
+                    <input matInput type="password" formControlName="password">
+                    <div *ngIf="formLogin.get('password')?.invalid && formLogin.get('password')?.touched" class="error">
+                        <div *ngIf="formLogin.get('password')?.errors?.['required']">
+                            Password is required
+                        </div>
+                    </div>
                 </div>
-              </div>
-              <div class="end-buttons">
-                  <button class="submit-button call-to-action-btn" mat-raised-button (click)="enterLogin()">Login</button>
-              </div>
-              <div *ngIf="error" class="error">
-                <p>{{error}}</p>
-              </div>
+                <div class="end-buttons">
+                    <button class="submit-button call-to-action-btn" mat-raised-button (click)="enterLogin()">Login</button>
+                </div>
+                <div *ngIf="error" class="error">
+                    <p>{{error}}</p>
+                </div>
             </div>
         </div>
     </mat-card>
@@ -74,48 +74,48 @@
         </div>
         <div [formGroup]="formRegister" (keyup.enter)="enterRegister()">
             <div class="login">
-              <div class="input-container">
-                <div>Email</div>
-                <input matInput formControlName="email">
-                <div *ngIf="formRegister.get('email')?.invalid && formRegister.get('email')?.touched" class="error">
-                  <div *ngIf="formRegister.get('email')?.errors?.['required']">
-                    Email is required
-                  </div>
+                <div class="input-container">
+                    <div>Email</div>
+                    <input matInput formControlName="email">
+                    <div *ngIf="formRegister.get('email')?.invalid && formRegister.get('email')?.touched" class="error">
+                        <div *ngIf="formRegister.get('email')?.errors?.['required']">
+                            Email is required
+                        </div>
+                    </div>
                 </div>
-              </div>
-              <div class="input-container">
-                <div>First name</div>
-                <input matInput formControlName="name">
-                <div *ngIf="formRegister.get('name')?.invalid && formRegister.get('name')?.touched" class="error">
-                  <div *ngIf="formRegister.get('name')?.errors?.['required']">
-                    First name is required
-                  </div>
+                <div class="input-container">
+                    <div>First name</div>
+                    <input matInput formControlName="name">
+                    <div *ngIf="formRegister.get('name')?.invalid && formRegister.get('name')?.touched" class="error">
+                        <div *ngIf="formRegister.get('name')?.errors?.['required']">
+                            First name is required
+                        </div>
+                    </div>
                 </div>
-              </div>
-              <div class="input-container">
-                <div>Last name</div>
-                <input matInput formControlName="lastName">
-                <div *ngIf="formRegister.get('lastName')?.invalid && formRegister.get('lastName')?.touched" class="error">
-                  <div *ngIf="formRegister.get('lastName')?.errors?.['required']">
-                    Last name is required
-                  </div>
+                <div class="input-container">
+                    <div>Last name</div>
+                    <input matInput formControlName="lastName">
+                    <div *ngIf="formRegister.get('lastName')?.invalid && formRegister.get('lastName')?.touched" class="error">
+                        <div *ngIf="formRegister.get('lastName')?.errors?.['required']">
+                            Last name is required
+                        </div>
+                    </div>
                 </div>
-              </div>
-              <div class="input-container">
-                <div>Password</div>
-                <input matInput type="password" formControlName="password">
-                <div *ngIf="formRegister.get('password')?.invalid && formRegister.get('password')?.touched" class="error">
-                  <div *ngIf="formRegister.get('password')?.errors?.['required']">
-                    Password is required
-                  </div>
+                <div class="input-container">
+                    <div>Password</div>
+                    <input matInput type="password" formControlName="password">
+                    <div *ngIf="formRegister.get('password')?.invalid && formRegister.get('password')?.touched" class="error">
+                        <div *ngIf="formRegister.get('password')?.errors?.['required']">
+                            Password is required
+                        </div>
+                    </div>
                 </div>
-              </div>
-              <div class="end-buttons">
-                <button class="submit-button call-to-action-btn" mat-raised-button (click)="enterRegister()">Register</button>
-              </div>
-              <div *ngIf="error" class="error">
-                <p>{{error}}</p>
-              </div>
+                <div class="end-buttons">
+                    <button class="submit-button call-to-action-btn" mat-raised-button (click)="enterRegister()">Register</button>
+                </div>
+                <div *ngIf="error" class="error">
+                    <p>{{error}}</p>
+                </div>
             </div>
         </div>
     </mat-card>

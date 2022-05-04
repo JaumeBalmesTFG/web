@@ -6,64 +6,64 @@ import { ModalTaskEditComponent } from '../../modals/modal-task-edit/modal-task-
 import { ModalTaskTruancyComponent } from '../../modals/modal-task-truancy/modal-task-truancy.component';
 import { ModalTruancyEditComponent } from '../../modals/modal-truancy-edit/modal-truancy-edit.component';
 @Component({
-  selector: 'app-calendar',
-  templateUrl: './calendar.component.html',
-  styleUrls: ['./calendar.component.scss']
+    selector: 'app-calendar',
+    templateUrl: './calendar.component.html',
+    styleUrls: ['./calendar.component.scss']
 })
 export class CalendarComponent implements OnInit {
 
-  constructor(
-    private dialog: MatDialog,
-    private router: Router,
-  ) { }
+    constructor(
+        private dialog: MatDialog,
+        private router: Router,
+    ) { }
 
 
-  calendarOptions: CalendarOptions = {
-    initialView: 'dayGridMonth',
-    headerToolbar: {
-      left: 'prev',
-      center: 'title',
-      right: 'next',
-    },
-    dateClick: this.handleDateClick.bind(this),
-    datesSet: this.handleDatesSet.bind(this),
-    events:[],
-    eventClick: this.clickEvent.bind(this)
-  }
-
-  ngOnInit(): void {
-  }
-
-  selectTab(tabSelected: any){
-    console.log(tabSelected)
-    this.router.navigate([`/${tabSelected}`]);
-  }
-
-  handleDateClick(date:any){
-    console.log(date);
-    
-    const dialogRef = this.dialog.open(ModalTaskTruancyComponent,{
-      data: date.dateStr
-    });
-  }
-  clickEvent(arg:any){
-    console.log('hola', arg.event._def.extendedProps);
-    console.log(arg.event._def.extendedProps.info);
-    if(arg.event._def.extendedProps.info == 'task'){
-      const dialogRef = this.dialog.open(ModalTaskEditComponent,{
-        data: arg.event._def.extendedProps.data
-      });
+    calendarOptions: CalendarOptions = {
+        initialView: 'dayGridMonth',
+        headerToolbar: {
+            left: 'prev',
+            center: 'title',
+            right: 'next',
+        },
+        dateClick: this.handleDateClick.bind(this),
+        datesSet: this.handleDatesSet.bind(this),
+        events:[],
+        eventClick: this.clickEvent.bind(this)
     }
-    else if(arg.event._def.extendedProps.info == 'truancy'){
-      const dialogRef = this.dialog.open(ModalTruancyEditComponent,{
-        data: arg.event._def.extendedProps.data
-      });
+
+    ngOnInit(): void {
     }
-  }
-  handleDatesSet(arg:any){
-    this.calendarOptions.events = [
-      { title: 'event 1', date: '2022-04-14', info: 'task', data: {subject: "Subject 1", UF: "uf 1", title: 'event 1', type: 'examen', date: '2022-04-14'} },
-      { title: 'event 2', date: '2022-04-03', info: 'truancy', data: {subject: "Subject 1", UF: "uf 1", hours: 2, date: '2022-04-03'} }
-    ]
-  }
+
+    selectTab(tabSelected: any){
+        console.log(tabSelected)
+        this.router.navigate([`/${tabSelected}`]);
+    }
+
+    handleDateClick(date:any){
+        console.log(date);
+
+        const dialogRef = this.dialog.open(ModalTaskTruancyComponent,{
+            data: date.dateStr
+        });
+    }
+    clickEvent(arg:any){
+        console.log('hola', arg.event._def.extendedProps);
+        console.log(arg.event._def.extendedProps.info);
+        if(arg.event._def.extendedProps.info == 'task'){
+            const dialogRef = this.dialog.open(ModalTaskEditComponent,{
+                data: arg.event._def.extendedProps.data
+            });
+        }
+        else if(arg.event._def.extendedProps.info == 'truancy'){
+            const dialogRef = this.dialog.open(ModalTruancyEditComponent,{
+                data: arg.event._def.extendedProps.data
+            });
+        }
+    }
+    handleDatesSet(arg:any){
+        this.calendarOptions.events = [
+            { title: 'event 1', date: '2022-04-14', info: 'task', data: {subject: "Subject 1", UF: "uf 1", title: 'event 1', type: 'examen', date: '2022-04-14'} },
+            { title: 'event 2', date: '2022-04-03', info: 'truancy', data: {subject: "Subject 1", UF: "uf 1", hours: 2, date: '2022-04-03'} }
+        ]
+    }
 }

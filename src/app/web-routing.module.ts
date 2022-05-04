@@ -7,20 +7,20 @@ import { ShowGradesComponent } from './pages/show-grades/show-grades.component';
 import { SubjectsAndUfsComponent } from './pages/subjects-and-ufs/subjects-and-ufs.component';
 
 const routes: Routes = [
-  {path:'login', component: LoginComponent},
-  {path:'calendar', component: CalendarComponent},
-  {path:'subjectsAndUfs', component: SubjectsAndUfsComponent},
-  {path:'showGrades', component: ShowGradesComponent},
-  {path:'',redirectTo: '/calendar', pathMatch: 'full'}
+    {path:'login', component: LoginComponent},
+    {path:'calendar', component: CalendarComponent},
+    {path:'subjectsAndUfs', component: SubjectsAndUfsComponent},
+    {path:'showGrades', component: ShowGradesComponent},
+    {path:'',redirectTo: '/calendar', pathMatch: 'full'}
 ]
 
 @NgModule({
-  declarations: [],
-  imports: [
-    CommonModule,
-    RouterModule.forRoot(routes),
-    RouterModule
-  ],
-  exports: [RouterModule]
+    declarations: [],
+    imports: [
+        CommonModule,
+        RouterModule.forRoot(routes),
+        RouterModule
+    ],
+    exports: [RouterModule]
 })
 export class WebRoutingModule { }

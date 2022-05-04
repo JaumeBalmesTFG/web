@@ -4,16 +4,14 @@ import { ModalTaskTruancyComponent } from '../../modals/modal-task-truancy/modal
 import { ModalTaskEditComponent } from '../../modals/modal-task-edit/modal-task-edit.component';
 import { ModalTruancyEditComponent } from '../../modals/modal-truancy-edit/modal-truancy-edit.component';
 
-
-
 @NgModule({
-  declarations: [
-    ModalTaskTruancyComponent,
-    ModalTaskEditComponent,
-    ModalTruancyEditComponent
-  ],
-  imports: [
-    CommonModule
-  ]
+    declarations: [
+        ModalTaskTruancyComponent,
+        ModalTaskEditComponent,
+        ModalTruancyEditComponent
+    ],
+    imports: [
+        CommonModule
+    ]
 })
 export class CalendarioModule { }
