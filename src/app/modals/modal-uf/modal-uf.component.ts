@@ -8,6 +8,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./modal-uf.component.scss']
 })
 export class ModalUfComponent implements OnInit {
+  errorPercentage!: boolean;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -33,10 +34,10 @@ export class ModalUfComponent implements OnInit {
     })
     if(this.data !== null){
       console.log(this.data);
-      
+      this.arrayOfRules= this.data.rules;
       this.UFForm.patchValue({
         title: this.data.title,
-        rulesAndPercentages: this.data.rules,
+        rulesAndPercentages: this.arrayOfRules,
         totalHours: this.data.total_hours,
         truancyPercentage: this.data.trauncy_percentage
       });
@@ -56,6 +57,8 @@ export class ModalUfComponent implements OnInit {
       } catch(error) {
         return
       }
+    } else {
+      this.rulesAndPercentages.markAllAsTouched()
     }
   }
   deleteRule(ruleToDelete:any){
@@ -71,10 +74,11 @@ export class ModalUfComponent implements OnInit {
     this.UFForm.get('rulesAndPercentages')?.value.forEach((ruleAndPercentage: any) => {
       totalPercentage += ruleAndPercentage.percentage
     })
-    if(this.UFForm.invalid){
-      console.log("invalid form");
+    if(this.UFForm.invalid || totalPercentage !== 100){
+      this.UFForm.markAllAsTouched();
+      this.errorPercentage = true;
     }
-    else if(totalPercentage === 100){
+    else if(totalPercentage === 100 && this.UFForm.valid){
       this.dialogRef.close()
       console.log(this.UFForm.value);
     }
@@ -87,6 +91,5 @@ export class ModalUfComponent implements OnInit {
     })
     this.rulesAndPercentages.patchValue(ruleToEdit)
     this.UFForm.get('rulesAndPercentages')?.setValue(this.arrayOfRules);
-
   }
 }

@@ -6,15 +6,49 @@
 <form [formGroup]="UFForm" class="form-subject">
     <h1>Title</h1>
     <input formControlName="title" type="text" id="title">
+    <div *ngIf="UFForm.get('title')?.invalid && UFForm.get('title')?.touched" class="error">
+        <div *ngIf="UFForm.get('title')?.errors?.['required']">
+          Title is required
+        </div>
+    </div>
     <h1>Total hours</h1>
     <input formControlName="totalHours" type="text">
+    <div *ngIf="UFForm.get('totalHours')?.invalid && UFForm.get('totalHours')?.touched" class="error">
+        <div *ngIf="UFForm.get('totalHours')?.errors?.['required']">
+          Total hours is required
+        </div>
+        <div *ngIf="UFForm.get('totalHours')?.errors?.['pattern']">
+            The value must be numeric
+        </div>
+    </div>
     <h1>Truancy Percentage</h1>
     <input formControlName="truancyPercentage" type="text">
+    <div *ngIf="UFForm.get('truancyPercentage')?.invalid && UFForm.get('truancyPercentage')?.touched" class="error">
+        <div *ngIf="UFForm.get('truancyPercentage')?.errors?.['required']">
+          Truancy Percentage is required
+        </div>
+        <div *ngIf="UFForm.get('truancyPercentage')?.errors?.['pattern']">
+            The value must be numeric
+        </div>
+    </div>
     <h1 [formGroup]="rulesAndPercentages">Rules
         <h2 for="name">Name</h2>
         <input formControlName="rule" id="name" type="text">
+        <div *ngIf="rulesAndPercentages.get('rule')?.invalid && rulesAndPercentages.get('rule')?.touched" class="error">
+            <div *ngIf="rulesAndPercentages.get('rule')?.errors?.['required']">
+              Rule is required
+            </div>
+        </div>
         <h2 for="percentage">Percentage</h2>
         <input formControlName="percentage" id="percentage" type="text">
+        <div *ngIf="rulesAndPercentages.get('percentage')?.invalid && rulesAndPercentages.get('percentage')?.touched" class="error">
+            <div *ngIf="rulesAndPercentages.get('percentage')?.errors?.['required']">
+              Percentage is required
+            </div>
+            <div *ngIf="rulesAndPercentages.get('percentage')?.errors?.['pattern']">
+                The value must be numeric
+            </div>
+        </div>
     </h1>
     <button class="add-button" (click)="addRule()">Add Rule</button>
     <table *ngIf="UFForm.get('rulesAndPercentages')?.value.length>0">
@@ -32,6 +66,9 @@
             </th>
         </tr>
     </table>
+    <div *ngIf="errorPercentage" class="error">
+        The total percentage of the rules must be 100%
+    </div>
     <div class="end-buttons">
         <button class="submit-button" mat-raised-button (click)="addUf()">Save</button>
         <button mat-raised-button mat-dialog-close class="cancel-button">Cancel</button>
