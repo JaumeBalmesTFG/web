@@ -17,8 +17,30 @@
     margin-bottom: 15px;
 }
 
-.end-buttons {
-    gap: 10px;
+.submit-button{
+    width: 105px;
+    height: 40px;
+    margin: 33px 10px 0 17px;
+    font-size: 16px;
+    color: white;
+    border-radius: 4px;
+    border: 0px;
+    background-color: #ff9f1c;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+.cancel-button{
+    width: 100px;
+    font-size: 16px;
+    height: 40px;
+    margin: 33px 0 0 10px;
+    border-radius: 4px;
+    border: solid 1px #ff9f1c;
+    background-color: #f5f5f5;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
 .button-secondary {
