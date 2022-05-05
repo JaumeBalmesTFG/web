@@ -69,7 +69,6 @@ export class SubjectsAndUfsComponent implements OnInit {
                 moduleId: data._id,
                 ufs: data.ufs
             }
-            
             this.subjects.push(subject);
         })
     }
