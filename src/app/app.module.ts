@@ -31,6 +31,7 @@ import {SubjectWithUfAndTaskComponent} from './child-components/subject-with-uf-
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { ModalDeleteComponent } from './modals/modal-delete/modal-delete.component';
+import { ArchiveSubjectsComponent } from './pages/archive-subjects/archive-subjects.component';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     dayGridPlugin,
@@ -52,7 +53,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
         ModalTaskEditComponent,
         ModalTruancyEditComponent,
         SubjectWithUfAndTaskComponent,
-        ModalDeleteComponent
+        ModalDeleteComponent,
+        ArchiveSubjectsComponent
     ],
     imports: [
         BrowserModule,
