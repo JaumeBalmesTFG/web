@@ -41,3 +41,14 @@ export async function updateTruancy(data: any): Promise<String> {
     return response;
 }
 
+// Delete Tryabct
+export async function deleteTruancy(data: any): Promise<String> {
+    const header = updateFetchHeader();
+
+    const response = await fetch(environment.api + `/truancy/${data}/delete`, { method: "DELETE", headers: { ...header } })
+        .then(res => { return res.json() })
+        .then(json => { return json })
+        .catch(err => { return err })
+
+    return response;
+}
