@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ModalUfComponent } from '../../modals/modal-uf/modal-uf.component';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {ModalDeleteComponent} from "../../modals/modal-delete/modal-delete.component";
@@ -11,7 +11,7 @@ import { getAllRules } from "../../services/rule.service"
 export class SubjectWithUfComponent implements OnInit {
 
     @Input() subjectInfo: any;
-
+    @Output() reloadEvent = new EventEmitter<any>();
     UFs: any[]=[]
 
     constructor(
@@ -48,11 +48,20 @@ export class SubjectWithUfComponent implements OnInit {
             data: UF,
             autoFocus: false
         });
+        dialogRef.afterClosed().subscribe(()=>{
+            this.reload()
+        })
     }
 
     DeleteUF(ufToDelete:any){
         const dialogRef = this.dialog.open(ModalDeleteComponent, {
             data: ufToDelete
+        });
+        dialogRef.afterClosed().subscribe(()=>{
+            this.reload()
         })
+    }
+    reload(){
+        this.reloadEvent.emit();
     }
 }

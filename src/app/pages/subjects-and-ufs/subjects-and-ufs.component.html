@@ -17,7 +17,7 @@
                 <button mat-fab class="header-icon" (click)="deleteSubject(subject)"><mat-icon>archive</mat-icon></button>
             </div>
         </mat-card>
-        <app-subject-with-uf [subjectInfo]="subject"></app-subject-with-uf>
+        <app-subject-with-uf [subjectInfo]="subject" (reloadEvent)="reloadData()"></app-subject-with-uf>
     </div>
 </div>
 
