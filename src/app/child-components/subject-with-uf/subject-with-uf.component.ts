@@ -25,14 +25,16 @@ export class SubjectWithUfComponent implements OnInit {
                 rules:[],
                 total_hours:data.hours,
                 truancyPercentage: data.truancy_percentage,
-                id: data._id
+                _id: data._id,
+                moduleId: data.moduleId
             }
             getAllRules(data._id).then((res: any)=>{
                 res.body.forEach((data:any) => {
                 let rule = {
                     rule: data.title,
                     percentage: data.percentage,
-                    id: data._id,
+                    ufId: data.ufId,
+                    ruleId: data._id
                 }
                 uf.rules.push(rule)
                 })

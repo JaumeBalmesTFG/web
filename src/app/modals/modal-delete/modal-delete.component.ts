@@ -16,7 +16,6 @@ export class ModalDeleteComponent implements OnInit {
     }
 
     removeUf(){
-        console.log(this.data);
-        deleteUf(this.data.id)
+        deleteUf(this.data._id)
     }
 }

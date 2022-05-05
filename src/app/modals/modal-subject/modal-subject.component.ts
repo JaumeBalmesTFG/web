@@ -72,7 +72,6 @@ export class ModalSubjectComponent implements OnInit {
         }
     }
     changeColorValue(color:any){
-        console.log(color);
     }
 }
 

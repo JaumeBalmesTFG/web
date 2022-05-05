@@ -33,7 +33,6 @@ export class SubjectsAndUfsComponent implements OnInit {
             }
             this.subjects.push(subject);
         })
-        console.log(res);
         
     }
 

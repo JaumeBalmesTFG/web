@@ -21,7 +21,6 @@ export class HeaderComponent implements OnInit {
     ngOnInit(): void {
     }
     selectTab(tab: any){
-        console.log(tab.value);
         this.activeTab.emit(tab.value);
     }
 }
