@@ -18,7 +18,7 @@ export class ModalSubjectComponent implements OnInit {
         public dialogRef: MatDialogRef<ModalSubjectComponent>
     ) { }
     subjectForm!: FormGroup;
-
+    error!: string
     colors=[
         {value:'#009688'},
         {value:'#4CAF4F'},
@@ -50,22 +50,29 @@ export class ModalSubjectComponent implements OnInit {
     async createNewSubject(){
         //Check if the form is correct and, then, send it to the backend
         if(this.subjectForm.valid){
-            this.dialogRef.close()
-            
             if (this.data){
               let parameters = {
                 name: this.subjectForm.get('name')?.value,
                 color: this.subjectForm.get('checkColor')?.value.option,
                 moduleId: this.data.moduleId
+              }  
+              let res:any = await updateSubject(parameters);
+              if (res.error || res.message === "ALREADY_EXISTS"){
+                  this.error = res.message
+              } else {
+                this.dialogRef.close()
               }
-              
-              let res = await updateSubject(parameters);
             } else {
-              let parameters = {
-                name: this.subjectForm.get('name')?.value,
-                color: this.subjectForm.get('checkColor')?.value.option,
-              }
-              let res = await createSubject(JSON.stringify(parameters));
+                let parameters = {
+                    name: this.subjectForm.get('name')?.value,
+                    color: this.subjectForm.get('checkColor')?.value.option,
+                }
+                let res: any = await createSubject(JSON.stringify(parameters));
+                if (res.error || res.message === "ALREADY_EXISTS"){
+                    this.error = res.message
+                } else {
+                    this.dialogRef.close()
+                }
             }
         } else {
             this.subjectForm.markAllAsTouched()
