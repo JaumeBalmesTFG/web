@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { ModalSubjectComponent } from '../../modals/modal-subject/modal-subject.component';
 import { ModalUfComponent } from '../../modals/modal-uf/modal-uf.component';
 import { createUf, deleteUf, getUf, updateUf } from 'src/app/services/uf.service';
-import { getAll, getAllSubjects } from 'src/app/services/subject.service';
+import { getAll, getAllSubjects, archiveOrDearchiveSubject } from 'src/app/services/subject.service';
 import { createRule, deleteRule, getAllRules, getRule, updateRule } from 'src/app/services/rule.service';
 import { createTask, deleteTask, getTask, updateTask } from 'src/app/services/task.service';
 
@@ -20,17 +20,23 @@ export class SubjectsAndUfsComponent implements OnInit {
         private router: Router,
     ) { }
 
-    subjects=[
-        {name: 'Subject 1', checkColor: '#f04e4c'},
-        {name: 'Subject 2', checkColor: '#f04e4c'},
-        {name: 'Subject 3', checkColor: '#f04e4c'}
-    ]
+    subjects: any[]=[]
 
-    ngOnInit(): void {
+    async ngOnInit(): Promise<void> {
+        let res: any = await getAll()
+        res.forEach((data: any) => {
+            let subject = {
+                name: data.name,
+                checkColor: data.color,
+                moduleId: data._id,
+                ufs: data.ufs
+            }
+            this.subjects.push(subject);
+        })
+        
     }
 
     selectTab(tabSelected: any){
-        console.log(tabSelected)
         this.router.navigate([`/${tabSelected}`]);
     }
 
@@ -45,17 +51,14 @@ export class SubjectsAndUfsComponent implements OnInit {
             autoFocus: false
         });
     }
-    openNewUfModal(){
+    openNewUfModal(subjectId: string){
         const dialogRef= this.dialog.open(ModalUfComponent,{
+            data: subjectId,
             autoFocus: false
         })
     }
 
-    deleteSubject(subjectToDelete:any){
-        this.subjects.forEach((subject,index) => {
-            if(subject.name === subjectToDelete.name){
-                this.subjects.splice(index,1);
-            }
-        })
+    async deleteSubject(subjectToDelete:any){
+        let res = await archiveOrDearchiveSubject(subjectToDelete)
     }
 }

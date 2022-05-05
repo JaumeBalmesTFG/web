@@ -3,20 +3,20 @@
         <mat-expansion-panel-header class="titleUf">
             <mat-panel-title>{{uf.title}}</mat-panel-title>
         </mat-expansion-panel-header>
-        <div class="truancy" *ngIf="uf.truancy_total">
+        <div class="truancy" *ngIf="uf?.truancy_total">
             <div>Truancy percentage</div>
-            <mat-progress-bar mode="determinate" value="{{uf.truancy_total}}"></mat-progress-bar>
+            <mat-progress-bar mode="determinate" value="{{uf?.truancy_total}}"></mat-progress-bar>
         </div>
-        <div *ngFor="let event of uf.events" class="event">
+        <div *ngFor="let event of uf?.events" class="event">
             <div class="activity">
                 <div>
-                    <mat-icon style="color: orange;" *ngIf="event.grade==null">error</mat-icon>
-                    <mat-icon style="color: aquamarine" *ngIf="event.grade!=null">check_circle</mat-icon>
-                    {{event.title}}
+                    <mat-icon style="color: orange;" *ngIf="event?.grade==null">error</mat-icon>
+                    <mat-icon style="color: aquamarine" *ngIf="event?.grade!=null">check_circle</mat-icon>
+                    {{event?.title}}
                 </div>
             </div>
             <div class="grade" *ngIf="event.grade!=null">
-                {{event.grade}}/10
+                {{event?.grade}}/10
             </div>
         </div>
     </mat-expansion-panel>

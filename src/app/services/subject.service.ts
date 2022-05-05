@@ -17,7 +17,7 @@ export async function getAll(): Promise<String> {
 // Get all subjects
 export async function getAllSubjects(): Promise<String> {
     const header = updateFetchHeader();
-    const response = await fetch(environment.api + "/module/all/ufs", { method: "GET", headers: { ...header } })
+    const response = await fetch(environment.api + "/module/all/ufs ", { method: "GET", headers: { ...header } })
         .then(res => { return res.json() })
         .then(json => { return json })
         .catch(err => { return err })
@@ -64,7 +64,7 @@ export async function createSubject(data: any): Promise<String> {
 export async function updateSubject(data: any): Promise<String> {
     const header = updateFetchHeader();
     const moduleId = data.moduleId;
-
+    
     delete data.moduleId;
 
     data = JSON.stringify(data);

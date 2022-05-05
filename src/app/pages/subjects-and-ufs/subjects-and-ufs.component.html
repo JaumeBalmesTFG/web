@@ -12,7 +12,7 @@
         <mat-card class="card subject-card">
             <mat-card-title>{{subject.name}}</mat-card-title>
             <div class="buttons">
-                <button mat-fab class="header-icon" (click)="openNewUfModal()"><mat-icon>add</mat-icon></button>
+                <button mat-fab class="header-icon" (click)="openNewUfModal(subject.moduleId)"><mat-icon>add</mat-icon></button>
                 <button mat-fab class="header-icon" (click)="openEditSubjectModal(subject)"><mat-icon>edit</mat-icon></button>
                 <button mat-fab class="header-icon" (click)="deleteSubject(subject)"><mat-icon>archive</mat-icon></button>
             </div>
