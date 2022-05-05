@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {MatDialog} from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ModalSubjectComponent } from '../../modals/modal-subject/modal-subject.component';
 import { ModalUfComponent } from '../../modals/modal-uf/modal-uf.component';
@@ -17,17 +17,23 @@ export class SubjectsAndUfsComponent implements OnInit {
         private router: Router,
     ) { }
 
-    subjects=[
-        {name: 'Subject 1', checkColor: '#f04e4c'},
-        {name: 'Subject 2', checkColor: '#f04e4c'},
-        {name: 'Subject 3', checkColor: '#f04e4c'}
-    ]
+    subjects: any[]=[]
 
-    ngOnInit(): void {
+    async ngOnInit(): Promise<void> {
+        let res: any = await getAll()
+        res.forEach((data: any) => {
+            let subject = {
+                name: data.name,
+                checkColor: data.color,
+                moduleId: data._id,
+                ufs: data.ufs
+            }
+            this.subjects.push(subject);
+        })
+
     }
 
     selectTab(tabSelected: any){
-        console.log(tabSelected)
         this.router.navigate([`/${tabSelected}`]);
     }
 
@@ -41,18 +47,49 @@ export class SubjectsAndUfsComponent implements OnInit {
             data: subject,
             autoFocus: false
         });
+        dialogRef.afterClosed().subscribe(async () =>{
+            let res: any = await getAll()
+            res.forEach((data: any) => {
+                let subject = {
+                    name: data.name,
+                    checkColor: data.color,
+                    moduleId: data._id,
+                    ufs: data.ufs
+                }
+                this.subjects.push(subject);
+            })
+        })
     }
-    openNewUfModal(){
+    openNewUfModal(subjectId: string){
         const dialogRef= this.dialog.open(ModalUfComponent,{
+            data: subjectId,
             autoFocus: false
+        })
+        dialogRef.afterClosed().subscribe(async () => {
+            let res: any = await getAll()
+            res.forEach((data: any) => {
+                let subject = {
+                    name: data.name,
+                    checkColor: data.color,
+                    moduleId: data._id,
+                    ufs: data.ufs
+                }
+                this.subjects.push(subject);
+            })
         })
     }
 
-    deleteSubject(subjectToDelete:any){
-        this.subjects.forEach((subject,index) => {
-            if(subject.name === subjectToDelete.name){
-                this.subjects.splice(index,1);
+    async deleteSubject(subjectToDelete:any){
+        await archiveOrDearchiveSubject(subjectToDelete)
+        let res: any = await getAll()
+        res.forEach((data: any) => {
+            let subject = {
+                name: data.name,
+                checkColor: data.color,
+                moduleId: data._id,
+                ufs: data.ufs
             }
+            this.subjects.push(subject);
         })
     }
 }
