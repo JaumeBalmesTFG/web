@@ -9,6 +9,18 @@ import { updateFetchHeader } from './reqOptions.service';
 *   hours: hours
  */
 
+// Get Truancy
+export async function getTruancy(data: any): Promise<String> {
+    const header = updateFetchHeader();
+
+    const response = await fetch(environment.api + `/truancy/${data}`, { method: "GET", headers: { ...header } })
+        .then(res => { return res.json() })
+        .then(json => { return json })
+        .catch(err => { return err })
+
+    return response;
+}
+
 // Create Truancy
 export async function createTruancy(data:any): Promise<String> {
     const header = updateFetchHeader();
@@ -41,7 +53,7 @@ export async function updateTruancy(data: any): Promise<String> {
     return response;
 }
 
-// Delete Tryabct
+// Delete Truancy
 export async function deleteTruancy(data: any): Promise<String> {
     const header = updateFetchHeader();
 
