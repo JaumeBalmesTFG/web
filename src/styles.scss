@@ -55,6 +55,20 @@ body { margin: 0; }
     padding: 0.436em 1.5em !important;
 }
 
+.fc .fc-button-primary:focus {
+    box-shadow: unset !important;
+}
+
+.fc .fc-button .fc-icon {
+    font-size: 2em !important;
+}
+
+.fc .fc-button-primary {
+    background-color: #ff9f1c !important;
+    border-color: #ff9f1c !important;
+    padding: 0.436em 1.5em !important;
+}
+
 
 .fc .fc-button-primary:focus {
     box-shadow: unset !important;
