@@ -95,7 +95,5 @@ export async function archiveOrDearchiveSubject(data: any): Promise<String> {
         .then(json => { return json })
         .catch(err => { return err })
 
-    console.log(response);
-
     return response;
 }
