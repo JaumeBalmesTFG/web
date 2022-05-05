@@ -17,6 +17,18 @@
                 <button mat-fab class="header-icon" (click)="deleteSubject(subject)"><mat-icon>archive</mat-icon></button>
             </div>
         </mat-card>
+
+        <div *ngIf="subject?.ufs.length === 0 ">
+            <div class="text-center info-container">
+                <p>You don't have any UF in this subject.</p>
+
+                <div>
+                    <button class="add-subject-btn call-to-action-btn" mat-raised-button (click)="openNewUfModal(subject.moduleId)">Create new UF</button>
+                </div>
+
+            </div>
+        </div>
+
         <app-subject-with-uf [subjectInfo]="subject" (reloadEvent)="reloadData()"></app-subject-with-uf>
     </div>
 </div>
