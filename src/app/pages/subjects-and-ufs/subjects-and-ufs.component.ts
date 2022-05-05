@@ -47,15 +47,49 @@ export class SubjectsAndUfsComponent implements OnInit {
             data: subject,
             autoFocus: false
         });
+        dialogRef.afterClosed().subscribe(async () =>{
+            let res: any = await getAll()
+            res.forEach((data: any) => {
+                let subject = {
+                    name: data.name,
+                    checkColor: data.color,
+                    moduleId: data._id,
+                    ufs: data.ufs
+                }
+                this.subjects.push(subject);
+            })
+        })
     }
     openNewUfModal(subjectId: string){
         const dialogRef= this.dialog.open(ModalUfComponent,{
             data: subjectId,
             autoFocus: false
         })
+        dialogRef.afterClosed().subscribe(async () => {
+            let res: any = await getAll()
+            res.forEach((data: any) => {
+                let subject = {
+                    name: data.name,
+                    checkColor: data.color,
+                    moduleId: data._id,
+                    ufs: data.ufs
+                }
+                this.subjects.push(subject);
+            })
+        })
     }
 
     async deleteSubject(subjectToDelete:any){
-        let res = await archiveOrDearchiveSubject(subjectToDelete)
+        await archiveOrDearchiveSubject(subjectToDelete)
+        let res: any = await getAll()
+        res.forEach((data: any) => {
+            let subject = {
+                name: data.name,
+                checkColor: data.color,
+                moduleId: data._id,
+                ufs: data.ufs
+            }
+            this.subjects.push(subject);
+        })
     }
 }
