@@ -6,7 +6,7 @@ import { ModalUfComponent } from '../../modals/modal-uf/modal-uf.component';
 import { createUf, deleteUf, getUf, updateUf } from 'src/app/services/uf.service';
 import { getAll, getAllSubjects } from 'src/app/services/subject.service';
 import { createRule, deleteRule, getAllRules, getRule, updateRule } from 'src/app/services/rule.service';
-import { createTask } from 'src/app/services/task.service';
+import { createTask, updateTask } from 'src/app/services/task.service';
 
 @Component({
     selector: 'app-subjects-and-ufs',
