@@ -11,6 +11,18 @@ import { updateFetchHeader } from './reqOptions.service';
  * dueDate:
  */
 
+// Get Task
+export async function getTask(data: any): Promise<String> {
+    const header = updateFetchHeader();
+
+    const response = await fetch(environment.api + `/task/${data}`, { method: "GET", headers: { ...header } })
+        .then(res => { return res.json() })
+        .then(json => { return json })
+        .catch(err => { return err })
+
+    return response;
+}
+
 // Create Task
 export async function createTask(data: any): Promise<String> {
     const header = updateFetchHeader();
@@ -44,10 +56,10 @@ export async function updateTask(data: any): Promise<String> {
 }
 
 // Delete UF
-export async function deleteTask(data:any): Promise<String> {
+export async function deleteTask(data: any): Promise<String> {
     const header = updateFetchHeader();
 
-    const response = await fetch(environment.api + `/task/${data}/delete`, { method: "DELETE", headers: { ...header }})
+    const response = await fetch(environment.api + `/task/${data}/delete`, { method: "DELETE", headers: { ...header } })
         .then(res => { return res.json() })
         .then(json => { return json })
         .catch(err => { return err })
