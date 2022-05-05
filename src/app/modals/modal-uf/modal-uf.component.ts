@@ -2,7 +2,8 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import {
-  createUf
+  createUf,
+  updateUf
 } from '../../services/uf.service'
 import {
   createRule
@@ -82,7 +83,7 @@ export class ModalUfComponent implements OnInit {
       this.UFForm.markAllAsTouched();
       this.errorPercentage = true;
     }
-    else if(totalPercentage === 100 && this.UFForm.valid){
+    else if(totalPercentage === 100 && this.UFForm.valid && typeof this.data === typeof 'a'){
       let parameters = {
         name: this.UFForm.get('title')?.value,
         moduleId: this.data,
@@ -100,6 +101,22 @@ export class ModalUfComponent implements OnInit {
       })
       this.dialogRef.close()
       console.log(res);
+    } else if (totalPercentage === 100 && this.UFForm.valid && typeof this.data !== typeof 'a'){
+      let parameters = {
+        name: this.UFForm.get('title')?.value,
+        moduleId: this.data,
+        hours: this.UFForm.get('totalHours')?.value,
+        truancy_percentage: this.UFForm.get('truancyPercentage')?.value,
+      }
+      let res: any = await updateUf(parameters)
+      this.UFForm.get('rulesAndPercentages')?.value.forEach((rule: any) => {
+        let parametersRule={
+          ufId: res.body._id,
+          title: rule.rule,
+          percentage: rule.percentage
+        }
+        createRule(JSON.stringify(parametersRule))
+      })
     }
   }
   edit(ruleToEdit: any){
