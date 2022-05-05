@@ -85,7 +85,8 @@ export async function archiveOrDearchiveSubject(data: any): Promise<String> {
     const moduleId = data.moduleId;
 
     delete data.moduleId;
-    data = JSON.stringify(data);
+
+    data = JSON.stringify({ archived: data.archived });
 
     const response = await fetch(environment.api + `/module/${moduleId}/archive`, {
         method: "PUT", headers: { 'Content-Type': 'application/json', ...header }, body: data
@@ -93,6 +94,8 @@ export async function archiveOrDearchiveSubject(data: any): Promise<String> {
         .then(res => { return res.json() })
         .then(json => { return json })
         .catch(err => { return err })
+
+    console.log(response);
 
     return response;
 }
