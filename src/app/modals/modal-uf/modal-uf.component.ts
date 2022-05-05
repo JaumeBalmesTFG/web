@@ -23,7 +23,7 @@ export class ModalUfComponent implements OnInit {
         @Inject(MAT_DIALOG_DATA) public data: any,
         public dialogRef: MatDialogRef<ModalUfComponent>
     ) { }
-
+    error!: string;
     close= false; 
     UFForm!: FormGroup;
     rulesAndPercentages!: FormGroup;
@@ -55,31 +55,23 @@ export class ModalUfComponent implements OnInit {
   addRule(){
     if(this.rulesAndPercentages.get('rule')?.value !== '' && this.rulesAndPercentages.get('percentage')?.value !=='' && Number(this.rulesAndPercentages.get('percentage')?.value)){
       if (this.rulesAndPercentages.get('ruleId')?.value === -1){
-        try{
-          let rule={
-            rule: this.rulesAndPercentages.get('rule')?.value,
-            percentage: Number(this.rulesAndPercentages.get('percentage')?.value)
-          };
-          this.arrayOfRules.push(rule);
-          this.rulesAndPercentages.reset();
-          this.UFForm.get('rulesAndPercentages')?.setValue(this.arrayOfRules);
-        } catch(error) {
-          return
-        }
+        let rule={
+          rule: this.rulesAndPercentages.get('rule')?.value,
+          percentage: Number(this.rulesAndPercentages.get('percentage')?.value)
+        };
+        this.arrayOfRules.push(rule);
+        this.rulesAndPercentages.reset();
+        this.UFForm.get('rulesAndPercentages')?.setValue(this.arrayOfRules);
       } else {
-        try{
-          let rule={
-            ruleId: this.rulesAndPercentages.get('ruleId')?.value,
-            ufId: this.rulesAndPercentages.get('ufId')?.value,
-            rule: this.rulesAndPercentages.get('rule')?.value,
-            percentage: Number(this.rulesAndPercentages.get('percentage')?.value)
-          };
-          this.arrayOfRules.push(rule);
-          this.rulesAndPercentages.reset();
-          this.UFForm.get('rulesAndPercentages')?.setValue(this.arrayOfRules);
-        } catch(error) {
-          return
-        }
+        let rule={
+          ruleId: this.rulesAndPercentages.get('ruleId')?.value,
+          ufId: this.rulesAndPercentages.get('ufId')?.value,
+          rule: this.rulesAndPercentages.get('rule')?.value,
+          percentage: Number(this.rulesAndPercentages.get('percentage')?.value)
+        };
+        this.arrayOfRules.push(rule);
+        this.rulesAndPercentages.reset();
+        this.UFForm.get('rulesAndPercentages')?.setValue(this.arrayOfRules);
       }
     } else {
       this.rulesAndPercentages.markAllAsTouched()
@@ -115,15 +107,20 @@ export class ModalUfComponent implements OnInit {
         truancy_percentage: this.UFForm.get('truancyPercentage')?.value,
       }
       let res: any = await createUf(JSON.stringify(parameters))
-      this.UFForm.get('rulesAndPercentages')?.value.forEach((rule: any) => {
-        let parametersRule={
-          ufId: res.body._id,
-          title: rule.rule,
-          percentage: rule.percentage
-        }
-        createRule(JSON.stringify(parametersRule))
-      })
-      this.dialogRef.close()
+      if(res.message === "ALREADY_EXISTS" || res.error){
+        this.error=res.message
+      } else {
+        this.UFForm.get('rulesAndPercentages')?.value.forEach((rule: any) => {
+          let parametersRule={
+            ufId: res.body._id,
+            title: rule.rule,
+            percentage: rule.percentage
+          }
+          createRule(JSON.stringify(parametersRule))
+        })
+        this.dialogRef.close()
+      }
+      
     } else if (totalPercentage === 100 && this.UFForm.valid && typeof this.data !== typeof 'a'){
       let parameters = {
         name: this.UFForm.get('title')?.value,
@@ -133,26 +130,30 @@ export class ModalUfComponent implements OnInit {
         truancy_percentage: this.UFForm.get('truancyPercentage')?.value,
       }
       let res: any = await updateUf(parameters)
-      this.UFForm.get('rulesAndPercentages')?.value.forEach((rule: any) => {
-        if(rule.ruleId===null){
-          let parametersRule={
-            ufId: this.data._id,
-            title: rule.rule,
-            percentage: rule.percentage
+      
+      if(res.message === "ALREADY_EXISTS" || res.error){
+        this.error=res.error
+      } else {
+        this.UFForm.get('rulesAndPercentages')?.value.forEach((rule: any) => {
+          if(rule.ruleId===null){
+            let parametersRule={
+              ufId: this.data._id,
+              title: rule.rule,
+              percentage: rule.percentage
+            }
+            createRule(JSON.stringify(parametersRule))
+          } else {
+            let parametersRule={
+              ruleId: rule.ruleId,
+              ufId: rule.ufId,
+              title: rule.rule,
+              percentage: rule.percentage
+            }
+            updateRule(parametersRule)
           }
-          createRule(JSON.stringify(parametersRule))
-        } else {
-          let parametersRule={
-            ruleId: rule.ruleId,
-            ufId: rule.ufId,
-            title: rule.rule,
-            percentage: rule.percentage
-          }
-          
-          updateRule(parametersRule)
-        }
-      })
-      this.dialogRef.close()
+        })
+        this.dialogRef.close()
+      }
     }
   }
   edit(ruleToEdit: any){
