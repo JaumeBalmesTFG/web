@@ -42,3 +42,15 @@ export async function updateTask(data: any): Promise<String> {
 
     return response;
 }
+
+// Delete UF
+export async function deleteTask(data:any): Promise<String> {
+    const header = updateFetchHeader();
+
+    const response = await fetch(environment.api + `/task/${data}/delete`, { method: "DELETE", headers: { ...header }})
+        .then(res => { return res.json() })
+        .then(json => { return json })
+        .catch(err => { return err })
+
+    return response;
+}
