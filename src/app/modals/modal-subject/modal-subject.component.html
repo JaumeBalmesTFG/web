@@ -23,4 +23,7 @@
         <button class="submit-button" (click)="createNewSubject()">Save</button>
         <button mat-dialog-close class="cancel-button">Cancel</button>
     </div>
+    <div class="error" *ngIf="error">
+        {{error}}
+    </div>
 </div>

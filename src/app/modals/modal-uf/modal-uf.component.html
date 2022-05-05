@@ -87,4 +87,7 @@
         <button class="submit-button" mat-raised-button (click)="addUf()">Save</button>
         <button mat-raised-button  mat-dialog-close class="cancel-button">Cancel</button>
     </div>
+    <div class="error" *ngIf="error">
+        {{error}}
+    </div>
 </form>
