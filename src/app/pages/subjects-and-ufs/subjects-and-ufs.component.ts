@@ -7,7 +7,7 @@ import { createUf, deleteUf, getUf, updateUf } from 'src/app/services/uf.service
 import { getAll, getAllSubjects } from 'src/app/services/subject.service';
 import { createRule, deleteRule, getAllRules, getRule, updateRule } from 'src/app/services/rule.service';
 import { createTask, deleteTask, getTask, updateTask } from 'src/app/services/task.service';
-import { createTruancy } from 'src/app/services/truancy.service';
+import { createTruancy, updateTruancy } from 'src/app/services/truancy.service';
 
 @Component({
     selector: 'app-subjects-and-ufs',
