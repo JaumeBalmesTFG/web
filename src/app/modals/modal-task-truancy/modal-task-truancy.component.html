@@ -1,6 +1,6 @@
-<mat-tab-group>
-    <mat-tab label="Task">
-        <mat-card>
+<div class="modal-container">
+    <mat-tab-group>
+        <mat-tab label="Task">
             <mat-card-title>New UF</mat-card-title>
             <form [formGroup]="formTask">
                 <h1>Subject</h1>
@@ -22,10 +22,8 @@
                 <button class="submit-button" mat-raised-button (click)="createNewTask()">Save</button>
                 <button mat-raised-button mat-dialog-close class="cancel-button">Cancel</button>
             </div>
-        </mat-card>
-    </mat-tab>
-    <mat-tab label="Truancy">
-        <mat-card>
+        </mat-tab>
+        <mat-tab label="Truancy">
             <mat-card-title>New Truancy</mat-card-title>
             <form [formGroup]="formTruancy">
                 <h1>Subject</h1>
@@ -46,6 +44,7 @@
                 <button class="submit-button" mat-raised-button (click)="createNewTruancy()">Save</button>
                 <button mat-raised-button mat-dialog-close class="cancel-button">Cancel</button>
             </div>
-        </mat-card>
-    </mat-tab>
-</mat-tab-group>
+        </mat-tab>
+    </mat-tab-group>
+</div>
+

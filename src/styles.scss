@@ -49,10 +49,14 @@ body { margin: 0; }
   overflow-y: auto;
 }
 
+
+/* Calendar */
+
 .fc .fc-button-primary {
     background-color: #ff9f1c !important;
     border-color: #ff9f1c !important;
-    padding: 0.436em 1.5em !important;
+    padding: 0.436em 0.4em !important;
+    border-radius: 50px !important;
 }
 
 .fc .fc-button-primary:focus {
@@ -63,18 +67,17 @@ body { margin: 0; }
     font-size: 2em !important;
 }
 
-.fc .fc-button-primary {
-    background-color: #ff9f1c !important;
-    border-color: #ff9f1c !important;
-    padding: 0.436em 1.5em !important;
+.fc .fc-toolbar-title {
+    font-size: 35px !important;
 }
 
+/* Modals */
 
-.fc .fc-button-primary:focus {
-    box-shadow: unset !important;
+.mat-tab-label .mat-tab-label-content {
+    color: #cccccc;
+    font-size: 18px;
 }
 
-.fc .fc-button .fc-icon {
-    font-size: 2em !important;
+.mat-dialog-container {
+    color: black !important;
 }
-
