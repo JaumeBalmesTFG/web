@@ -20,17 +20,7 @@ export class SubjectsAndUfsComponent implements OnInit {
     subjects: any[]=[]
 
     async ngOnInit(): Promise<void> {
-        let res: any = await getAll()
-        res.forEach((data: any) => {
-            let subject = {
-                name: data.name,
-                checkColor: data.color,
-                moduleId: data._id,
-                ufs: data.ufs
-            }
-            this.subjects.push(subject);
-        })
-
+        this.reloadData()
     }
 
     selectTab(tabSelected: any){
@@ -41,6 +31,9 @@ export class SubjectsAndUfsComponent implements OnInit {
         const dialogRef = this.dialog.open(ModalSubjectComponent,{
             autoFocus: false,
         });
+        dialogRef.afterClosed().subscribe(async () =>{
+            this.reloadData()
+        })
     }
     openEditSubjectModal(subject:any){
         const dialogRef = this.dialog.open(ModalSubjectComponent, {
@@ -48,16 +41,7 @@ export class SubjectsAndUfsComponent implements OnInit {
             autoFocus: false
         });
         dialogRef.afterClosed().subscribe(async () =>{
-            let res: any = await getAll()
-            res.forEach((data: any) => {
-                let subject = {
-                    name: data.name,
-                    checkColor: data.color,
-                    moduleId: data._id,
-                    ufs: data.ufs
-                }
-                this.subjects.push(subject);
-            })
+            this.reloadData()
         })
     }
     openNewUfModal(subjectId: string){
@@ -66,22 +50,18 @@ export class SubjectsAndUfsComponent implements OnInit {
             autoFocus: false
         })
         dialogRef.afterClosed().subscribe(async () => {
-            let res: any = await getAll()
-            res.forEach((data: any) => {
-                let subject = {
-                    name: data.name,
-                    checkColor: data.color,
-                    moduleId: data._id,
-                    ufs: data.ufs
-                }
-                this.subjects.push(subject);
-            })
+            this.reloadData()
         })
     }
 
     async deleteSubject(subjectToDelete:any){
         await archiveOrDearchiveSubject(subjectToDelete)
+        this.reloadData()
+    }
+
+    async reloadData(){
         let res: any = await getAll()
+        this.subjects=[]
         res.forEach((data: any) => {
             let subject = {
                 name: data.name,
