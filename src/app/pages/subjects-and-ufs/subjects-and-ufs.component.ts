@@ -1,12 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {MatDialog} from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ModalSubjectComponent } from '../../modals/modal-subject/modal-subject.component';
 import { ModalUfComponent } from '../../modals/modal-uf/modal-uf.component';
-import { createUf, deleteUf, getUf, updateUf } from 'src/app/services/uf.service';
-import { getAll, getAllSubjects, archiveOrDearchiveSubject } from 'src/app/services/subject.service';
-import { createRule, deleteRule, getAllRules, getRule, updateRule } from 'src/app/services/rule.service';
-import { createTask, deleteTask, getTask, updateTask } from 'src/app/services/task.service';
+import { getAll, archiveOrDearchiveSubject } from 'src/app/services/subject.service';
 
 @Component({
     selector: 'app-subjects-and-ufs',
@@ -33,7 +30,7 @@ export class SubjectsAndUfsComponent implements OnInit {
             }
             this.subjects.push(subject);
         })
-        
+
     }
 
     selectTab(tabSelected: any){
