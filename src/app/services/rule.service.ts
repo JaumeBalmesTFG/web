@@ -5,7 +5,7 @@ import { updateFetchHeader } from './reqOptions.service';
 /** RULE SCHEMA
  * ufId
  * title
- * percentage
+ * percentage   
  */
 
 // Create Rule
