@@ -1,6 +1,6 @@
-<mat-card>
+<div class="modal-container">
     <mat-card-title>Edit Truancy</mat-card-title>
-    <form [formGroup]="formTruancy">
+    <form [formGroup]="formTruancy" class="form">
         <h1>Subject</h1>
         <mat-select formControlName="subject" (selectionChange)="selectSubject($event.value)" value="{{data.subject}}">
             <mat-option *ngFor="let subject of dataSubjects" [value]="subject.name">{{subject.name}}</mat-option>
@@ -19,4 +19,4 @@
         <button mat-raised-button mat-dialog-close class="cancel-button">Delete</button>
         <button mat-raised-button mat-dialog-close class="cancel-button">Cancel</button>
     </div>
-</mat-card>
+</div>
