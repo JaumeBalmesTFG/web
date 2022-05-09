@@ -82,14 +82,9 @@ export async function updateSubject(data: any): Promise<String> {
 // Archive/Dearchive Subject
 export async function archiveOrDearchiveSubject(data: any): Promise<String> {
     const header = updateFetchHeader();
-    const moduleId = data.moduleId;
 
-    delete data.moduleId;
-
-    data = JSON.stringify({ archived: data.archived });
-
-    const response = await fetch(environment.api + `/module/${moduleId}/archive`, {
-        method: "PUT", headers: { 'Content-Type': 'application/json', ...header }, body: data
+    const response = await fetch(environment.api + `/module/${data.moduleId}/archive`, {
+        method: "PUT", headers: { 'Content-Type': 'application/json', ...header }
     })
         .then(res => { return res.json() })
         .then(json => { return json })
