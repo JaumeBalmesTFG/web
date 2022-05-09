@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { getAll } from 'src/app/services/subject.service';
 
 @Component({
     selector: 'app-modal-task-truancy',
@@ -14,34 +15,37 @@ export class ModalTaskTruancyComponent implements OnInit {
         @Inject(MAT_DIALOG_DATA) public data: string,
         public dialogRef: MatDialogRef<ModalTaskTruancyComponent>
     ) { }
+
     close=false;
     formTask!:FormGroup;
     formTruancy!:FormGroup;
 
-    dataSubjects=[
-        {name: 'Subject 1', UFs:[{value: 'uf 1', events: ['examen','practicas']}, {value: 'uf 3', events: ['examen','practicas']}, {value: 'uf 4', events: ['examen','practicas']}]},
-        {name: 'Subject 2', UFs:[{value: 'uf 1', events: ['examen','practicas']}, {value: 'uf 2', events: ['examen','practicas']}, {value: 'uf 4', events: ['examen','practicas']}]}
-    ]
+    subjects:any=[]
     subjectSelected:any
     UFSelected:any
     subjectSelectedTruancy:any
-    ngOnInit(): void {
+
+    async ngOnInit(): Promise<void> {
         this.formTask = this.formBuilder.group({
             subject:['',Validators.required],
             UF:['',Validators.required],
             title:['',Validators.required],
             type:['',Validators.required]
-        })
+        });
+
         this.formTruancy = this.formBuilder.group({
             subject:['',Validators.required],
             UF:['',Validators.required],
             hours:['',Validators.required],
             reason:['']
-        })
+        });
     }
 
     selectSubject(subject:any){
-        this.dataSubjects.forEach(subjectData =>{
+
+        if(this.subjects.length === 0){ return; }
+
+        this.subjects.forEach((subjectData: { name: any; }) =>{
             if (subject===subjectData.name){
                 this.subjectSelected = subjectData
             }
@@ -49,7 +53,7 @@ export class ModalTaskTruancyComponent implements OnInit {
     }
 
     selectSubjectTruancy(subject:any){
-        this.dataSubjects.forEach(subjectData =>{
+        this.subjects.forEach((subjectData: { name: any; }) =>{
             if (subject===subjectData.name){
                 this.subjectSelectedTruancy = subjectData
             }

@@ -5,7 +5,7 @@
             <form [formGroup]="formTask">
                 <h1>Subject</h1>
                 <mat-select formControlName="subject" (selectionChange)="selectSubject($event.value)">
-                    <mat-option *ngFor="let subject of dataSubjects" [value]="subject.name">{{subject.name}}</mat-option>
+                    <mat-option *ngFor="let subject of subjects" [value]="subject.name">{{subject.name}}</mat-option>
                 </mat-select>
                 <h1 *ngIf="formTask.get('subject')?.value!==''">UF</h1>
                 <mat-select formControlName="UF" *ngIf="formTask.get('subject')?.value!==''" (selectionChange)="selectUF($event.value)">
@@ -28,7 +28,7 @@
             <form [formGroup]="formTruancy">
                 <h1>Subject</h1>
                 <mat-select formControlName="subject" (selectionChange)="selectSubjectTruancy($event.value)">
-                    <mat-option *ngFor="let subject of dataSubjects" [value]="subject.name">{{subject.name}}</mat-option>
+                    <mat-option *ngFor="let subject of subjects" [value]="subject.name">{{subject.name}}</mat-option>
                 </mat-select>
                 <h1 *ngIf="formTruancy.get('subject')?.value!==''">UF</h1>
                 <mat-select formControlName="UF" *ngIf="formTruancy.get('subject')?.value!==''" >
