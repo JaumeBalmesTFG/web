@@ -4,11 +4,11 @@
             <form [formGroup]="formTask" class='form'>
                 <h1>Subject</h1>
                 <mat-select formControlName="subject" (selectionChange)="selectSubject($event.value)">
-                    <mat-option *ngFor="let subject of subjects" [value]="subject.name">{{subject.name}}</mat-option>
+                    <mat-option *ngFor="let subject of subjects" [value]="subject._id">{{subject.name}}</mat-option>
                 </mat-select>
                 <h1 *ngIf="formTask.get('subject')?.value!==''">UF</h1>
                 <mat-select formControlName="UF" *ngIf="formTask.get('subject')?.value!==''" (selectionChange)="selectUF($event.value)">
-                    <mat-option *ngFor="let UF of subjectSelected.UFs" [value]="UF.value">{{UF.value}}</mat-option>
+                    <mat-option *ngFor="let uf of ufs" [value]="uf.value">{{uf.value}}</mat-option>
                 </mat-select>
                 <h1 *ngIf="formTask.get('UF')?.value!==''">Type</h1>
                 <mat-select formControlName="type" *ngIf="formTask.get('UF')?.value!==''">

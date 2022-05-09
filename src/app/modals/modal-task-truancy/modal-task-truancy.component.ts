@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { getAll } from 'src/app/services/subject.service';
+import { getAll, getAllSubjects } from 'src/app/services/subject.service';
 
 @Component({
     selector: 'app-modal-task-truancy',
@@ -16,52 +16,53 @@ export class ModalTaskTruancyComponent implements OnInit {
         public dialogRef: MatDialogRef<ModalTaskTruancyComponent>
     ) { }
 
-    close=false;
-    formTask!:FormGroup;
-    formTruancy!:FormGroup;
+    close = false;
+    formTask!: FormGroup;
+    formTruancy!: FormGroup;
 
-    subjects:any=[]
-    subjectSelected:any
-    UFSelected:any
-    subjectSelectedTruancy:any
+    subjects: any = []
+    ufs:any = []
+    subjectSelected: any
+    UFSelected: any
+    subjectSelectedTruancy: any
 
-    async ngOnInit(): Promise<void> {
+    ngOnInit() {
         this.formTask = this.formBuilder.group({
-            subject:['',Validators.required],
-            UF:['',Validators.required],
-            title:['',Validators.required],
-            type:['',Validators.required]
+            subject: ['', Validators.required],
+            UF: ['', Validators.required],
+            title: ['', Validators.required],
+            type: ['', Validators.required]
         });
 
         this.formTruancy = this.formBuilder.group({
-            subject:['',Validators.required],
-            UF:['',Validators.required],
-            hours:['',Validators.required],
-            reason:['']
+            subject: ['', Validators.required],
+            UF: ['', Validators.required],
+            hours: ['', Validators.required],
+            reason: ['']
         });
+
+        this.callSubjects();
     }
 
-    selectSubject(subject:any){
-
-        if(this.subjects.length === 0){ return; }
-
-        this.subjects.forEach((subjectData: { name: any; }) =>{
-            if (subject===subjectData.name){
-                this.subjectSelected = subjectData
-            }
-        })
+    async callSubjects(): Promise<void> {
+        let res: any = await getAllSubjects();
+        this.subjects = res.body;
     }
 
-    selectSubjectTruancy(subject:any){
-        this.subjects.forEach((subjectData: { name: any; }) =>{
-            if (subject===subjectData.name){
+    selectSubject(subject: any) {
+        this.subjectSelected = subject;
+    }
+
+    selectSubjectTruancy(subject: any) {
+        this.subjects.forEach((subjectData: { name: any; }) => {
+            if (subject === subjectData.name) {
                 this.subjectSelectedTruancy = subjectData
             }
         })
     }
 
-    createNewTask(){
-        if(this.formTask.valid){
+    createNewTask() {
+        if (this.formTask.valid) {
             this.dialogRef.close()
             console.log(this.formTask.value, this.data);
         }
@@ -70,8 +71,8 @@ export class ModalTaskTruancyComponent implements OnInit {
 
         }
     }
-    createNewTruancy(){
-        if(this.formTruancy.valid){
+    createNewTruancy() {
+        if (this.formTruancy.valid) {
             this.dialogRef.close()
             console.log(this.formTruancy.value, this.data);
         }
@@ -79,11 +80,11 @@ export class ModalTaskTruancyComponent implements OnInit {
             console.log("incorrect form");
         }
     }
-    selectUF(UFSelected:any){
+    selectUF(UFSelected: any) {
         console.log(UFSelected);
 
-        this.subjectSelected.UFs.forEach((UF:any) =>{
-            if (UFSelected===UF.value){
+        this.subjectSelected.UFs.forEach((UF: any) => {
+            if (UFSelected === UF.value) {
                 this.UFSelected = UF
             }
         })
