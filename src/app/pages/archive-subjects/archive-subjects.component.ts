@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { archiveOrDearchiveSubject, getAllArchivedSubjects } from 'src/app/services/subject.service';
 import { isLocalStorageToken } from '../../services/auth.service';
-import { Router } from '@angular/router';
 @Component({
     selector: 'app-archive-subjects',
     templateUrl: './archive-subjects.component.html',
@@ -10,9 +8,7 @@ import { Router } from '@angular/router';
 })
 export class ArchiveSubjectsComponent implements OnInit {
 
-    constructor(
-        private router: Router
-    ) { }
+    constructor() { }
 
     subjects: any = [];
 
