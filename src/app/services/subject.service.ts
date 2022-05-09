@@ -6,14 +6,11 @@ import { updateFetchHeader } from './reqOptions.service';
 export async function getAll(): Promise<String> {
     const header = updateFetchHeader();
     const response = await fetch(environment.api + "/module/all", { method: "GET", headers: { ...header } })
-        .then(res => { 
-            console.log(res);
-            
+        .then(res => {
             return res.json() })
-        .then(json => { 
-            console.log(json);
+        .then(json => {
             return json })
-        .catch(err => { 
+        .catch(err => {
             console.log(err);
             return err })
 
@@ -71,7 +68,7 @@ export async function createSubject(data: any): Promise<String> {
 export async function updateSubject(data: any): Promise<String> {
     const header = updateFetchHeader();
     const moduleId = data.moduleId;
-    
+
     delete data.moduleId;
 
     data = JSON.stringify(data);
