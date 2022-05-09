@@ -5,6 +5,7 @@ import { CalendarOptions } from '@fullcalendar/angular';
 import { ModalTaskEditComponent } from '../../modals/modal-task-edit/modal-task-edit.component';
 import { ModalTaskTruancyComponent } from '../../modals/modal-task-truancy/modal-task-truancy.component';
 import { ModalTruancyEditComponent } from '../../modals/modal-truancy-edit/modal-truancy-edit.component';
+import { isLocalStorageToken } from '../../services/auth.service';
 @Component({
     selector: 'app-calendar',
     templateUrl: './calendar.component.html',
@@ -32,6 +33,9 @@ export class CalendarComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        if(!isLocalStorageToken()){
+            this.router.navigate([`/login`]);
+        }
     }
 
     selectTab(tabSelected: any){
