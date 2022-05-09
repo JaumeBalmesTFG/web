@@ -1,6 +1,6 @@
 <div class="title">
-    <h1 *ngIf="data===null">New UF</h1>
-    <h1 *ngIf="data!==null">Edit UF</h1>
+    <h1 *ngIf="new">New UF</h1>
+    <h1 *ngIf="!new">Edit UF</h1>
     <mat-icon mat-dialog-close class="close">close</mat-icon>
 </div>
 <form [formGroup]="UFForm" class="form-subject">

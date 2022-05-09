@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { ModalSubjectComponent } from '../../modals/modal-subject/modal-subject.component';
 import { ModalUfComponent } from '../../modals/modal-uf/modal-uf.component';
 import { getAll, archiveOrDearchiveSubject } from 'src/app/services/subject.service';
-
+import { isLocalStorageToken } from '../../services/auth.service';
 @Component({
     selector: 'app-subjects-and-ufs',
     templateUrl: './subjects-and-ufs.component.html',
@@ -20,6 +20,9 @@ export class SubjectsAndUfsComponent implements OnInit {
     subjects: any[]=[]
 
     async ngOnInit(): Promise<void> {
+        if(!isLocalStorageToken()){
+            this.router.navigate([`/login`]);
+        }
         this.reloadData()
     }
 

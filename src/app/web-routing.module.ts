@@ -12,7 +12,7 @@ const routes: Routes = [
     {path:'calendar', component: CalendarComponent},
     {path:'subjectsAndUfs', component: SubjectsAndUfsComponent},
     {path:'showGrades', component: ShowGradesComponent},
-    { path: 'archived', component: ArchiveSubjectsComponent},
+    {path:'archived', component: ArchiveSubjectsComponent},
     {path:'',redirectTo: '/calendar', pathMatch: 'full'}
 ]
 

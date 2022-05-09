@@ -4,8 +4,10 @@ import { Router } from '@angular/router';
 import {
     auth,
     register,
-    login
+    login,
+    isLocalStorageToken
 } from '../services/auth.service';
+import { getAll } from '../services/subject.service';
 
 @Component({
     selector: 'app-login',
@@ -25,7 +27,15 @@ export class LoginComponent implements OnInit {
     formRegister!: FormGroup
     login = false;
     register = false;
-    ngOnInit(): void {
+    async ngOnInit(): Promise<void> {
+        if(isLocalStorageToken()){
+            let subjects = await getAll();
+                if(subjects.length === 0){
+                    this.router.navigate([`/subjectsAndUfs`]);
+                } else {
+                    this.router.navigate([`/calendar`]);
+                }
+        }
         this.formEmail = this.formBuilder.group({
             email:['',[Validators.required,Validators.email]]
         })
@@ -77,7 +87,12 @@ export class LoginComponent implements OnInit {
             let res: any = await login(JSON.stringify(parameters));
             // If the login is succesful we redirect the user to calendar
             if (res.message==='LOGIN_SUCCESSFUL') {
-                this.router.navigate([`/calendar`]);
+                let subjects = await getAll();
+                if(subjects.length === 0){
+                    this.router.navigate([`/subjectsAndUfs`]);
+                } else {
+                    this.router.navigate([`/calendar`]);
+                }
                 // Otherwise we send them the error
             } else {
                 this.error = res.message;
@@ -99,8 +114,13 @@ export class LoginComponent implements OnInit {
             let res: any = await register(JSON.stringify(parameters));
             //We redirect the user to the main app if the information is correct
             if(res.message==="USER_CREATED"){
-                this.router.navigate([`/calendar`]);
-                //Otherwise we show them the errors
+                let subjects = await getAll();
+                if(subjects.length === 0){
+                    this.router.navigate([`/subjectsAndUfs`]);
+                } else {
+                    this.router.navigate([`/calendar`]);
+                }
+            //Otherwise we show them the errors
             } else {
                 this.error = res.message
             }
