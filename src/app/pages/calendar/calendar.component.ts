@@ -44,7 +44,8 @@ export class CalendarComponent implements OnInit {
         console.log(date);
 
         const dialogRef = this.dialog.open(ModalTaskTruancyComponent,{
-            data: date.dateStr
+            data: date.dateStr,
+            autoFocus: false
         });
     }
     clickEvent(arg:any){
@@ -52,12 +53,14 @@ export class CalendarComponent implements OnInit {
         console.log(arg.event._def.extendedProps.info);
         if(arg.event._def.extendedProps.info == 'task'){
             const dialogRef = this.dialog.open(ModalTaskEditComponent,{
-                data: arg.event._def.extendedProps.data
+                data: arg.event._def.extendedProps.data,
+                autoFocus: false
             });
         }
         else if(arg.event._def.extendedProps.info == 'truancy'){
             const dialogRef = this.dialog.open(ModalTruancyEditComponent,{
-                data: arg.event._def.extendedProps.data
+                data: arg.event._def.extendedProps.data,
+                autoFocus: false
             });
         }
     }
