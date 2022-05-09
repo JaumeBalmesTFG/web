@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { isLocalStorageToken } from '../../services/auth.service';
 @Component({
     selector: 'app-show-grades',
     templateUrl: './show-grades.component.html',
@@ -17,6 +17,9 @@ export class ShowGradesComponent implements OnInit {
         {name: 'Subject 3', color: 'yellow'}
     ]
     ngOnInit(): void {
+        if(!isLocalStorageToken()){
+            this.router.navigate([`/login`]);
+        }
     }
 
     selectTab(tabSelected: any){

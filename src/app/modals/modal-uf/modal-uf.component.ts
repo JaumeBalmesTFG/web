@@ -28,7 +28,7 @@ export class ModalUfComponent implements OnInit {
     UFForm!: FormGroup;
     rulesAndPercentages!: FormGroup;
     arrayOfRules: any=[]
-
+    new = true;
     ngOnInit(): void {
         this.UFForm = this.formBuilder.group({
             title:['', Validators.required],
@@ -43,6 +43,7 @@ export class ModalUfComponent implements OnInit {
             percentage:['',[Validators.required, Validators.pattern("^[0-9]*$")]]
         })
         if(typeof this.data !== typeof 'a'){
+          this.new=false;
           this.arrayOfRules= JSON.parse(JSON.stringify(this.data.rules));
           this.UFForm.patchValue({
               title: this.data.title,
