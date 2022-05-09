@@ -1,8 +1,7 @@
 <div class="modal-container">
     <mat-tab-group>
         <mat-tab label="Task">
-            <mat-card-title>New UF</mat-card-title>
-            <form [formGroup]="formTask">
+            <form [formGroup]="formTask" class='form'>
                 <h1>Subject</h1>
                 <mat-select formControlName="subject" (selectionChange)="selectSubject($event.value)">
                     <mat-option *ngFor="let subject of dataSubjects" [value]="subject.name">{{subject.name}}</mat-option>
@@ -24,8 +23,7 @@
             </div>
         </mat-tab>
         <mat-tab label="Truancy">
-            <mat-card-title>New Truancy</mat-card-title>
-            <form [formGroup]="formTruancy">
+            <form [formGroup]="formTruancy" class="form">
                 <h1>Subject</h1>
                 <mat-select formControlName="subject" (selectionChange)="selectSubjectTruancy($event.value)">
                     <mat-option *ngFor="let subject of dataSubjects" [value]="subject.name">{{subject.name}}</mat-option>
