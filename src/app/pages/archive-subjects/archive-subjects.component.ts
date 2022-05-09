@@ -9,7 +9,7 @@ import { archiveOrDearchiveSubject, getAllArchivedSubjects } from 'src/app/servi
 })
 export class ArchiveSubjectsComponent implements OnInit {
 
-    constructor(private router: Router) { }
+    constructor() { }
 
     subjects: any = [];
 
