@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { isLocalStorageToken } from '../../services/auth.service';
+import {getAll} from "../../services/subject.service";
 @Component({
     selector: 'app-show-grades',
     templateUrl: './show-grades.component.html',
@@ -11,15 +12,28 @@ export class ShowGradesComponent implements OnInit {
     constructor(
         private router: Router,
     ) { }
-    subjects=[
-        {name: 'Subject 1', checkColor: 'red'},
-        {name: 'Subject 2', color: 'green'},
-        {name: 'Subject 3', color: 'yellow'}
-    ]
-    ngOnInit(): void {
-        if(!isLocalStorageToken()){
+
+    subjectsInfo: any[] = [];
+
+    async ngOnInit() {
+
+        if (!isLocalStorageToken()) {
             this.router.navigate([`/login`]);
         }
+
+        await this.getData();
+
+    }
+
+    async getData() {
+
+        const response: any = await getAll();
+        response.forEach((data: any) => {
+            this.subjectsInfo.push(data);
+        });
+
+        console.log(this.subjectsInfo);
+
     }
 
     selectTab(tabSelected: any){

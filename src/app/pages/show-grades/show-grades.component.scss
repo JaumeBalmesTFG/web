@@ -1,20 +1,198 @@
 .container{
-    margin-left: 100px;
-    margin-right: 100px;
-    color: gray !important;
+    max-width: 800px;
+    margin: 50px auto;
+}
+
+.mb-30 {
+    margin-bottom: 30px;
+}
+
+.mb-40 {
+    margin-bottom: 40px;
+}
+
+.mt-25 {
+    margin-top: 25px;
+}
+
+.mat-expansion-panel {
     background-color: white;
-}
-.card{
-    background-color: white !important;
-    color: gray !important;
+    box-shadow: unset;
 }
 
-.mat-expansion-panel-header-title{
-    color: gray !important;
+.mat-expansion-panel-header {
+    border-radius: 5px;
+    margin: 10px;
 }
 
-.subject-container{
-    background-color: white !important;
-    margin-bottom: 3%;
-    margin-top: 1%;
+.mat-expansion-panel-header:hover {
+    box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);
+}
+
+.mat-expansion-panel-header.mat-expanded {
+    box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);
+}
+
+.mat-expansion-panel-header {
+    height: 80px;
+}
+
+.mat-expansion-panel-header-title {
+    color: gray;
+}
+
+.subject .mat-expansion-panel-header-title {
+    font-size: 29px;
+    padding: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+}
+
+.uf .mat-expansion-panel-header-title {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.mat-expansion-panel-header {
+    padding: 0 30px;
+}
+
+.mat-expansion-panel-spacing {
+    margin: 0;
+}
+
+.uf-title-icon, .task-title-icon {
+    width: 45px;
+    height: 45px;
+    background: #2ec4b6;
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.uf-icon-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.uf-mark {
+    color: black;
+    justify-content: flex-end;
+}
+
+.uf-mark strong {
+    font-weight: 900;
+    font-size: 15px;
+}
+
+.mat-expansion-panel-header-description {
+    margin-right: 30px;
+}
+
+.progress-bar-container .title {
+    display: flex;
+    justify-content: space-between;
+    color: black;
+    margin: 10px auto;
+    font-size: 16px;
+}
+
+.progress-bar-container .title .truancies {
+    color: gray;
+    font-weight: 900;
+}
+
+.mat-progress-bar {
+    height: 10px;
+    border-radius: 5px;
+}
+
+.task-card {
+    box-shadow: unset;
+    margin-bottom: 20px;
+}
+
+.task-card .mat-card-title {
+    font-size: 18px;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.task-card-title {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.mat-card-title {
+    margin-bottom: 0;
+}
+
+.mark {
+    font-size: 16px;
+    color: black;
+    margin-right: 14px;
+}
+
+.mat-divider {
+    background-color: gray;
+}
+
+.subject-header .mat-card-title {
+    margin: 0;
+}
+
+.subject-header mat-card {
+    min-height: 35px;
+    margin: 0;
+}
+
+.subject-card {
+    margin-bottom: 25px;
+    border-bottom: 4px solid #cbf3f0;
+    cursor: default;
+    border-radius: 0;
+}
+
+.subject-card .mat-card-title {
+    font-size: 29px;
+    font-weight: 400;
+    padding: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.subject-card {
+    min-height: 35px;
+}
+
+.mat-card:not([class*=mat-elevation-z]) {
+    box-shadow: unset;
+}
+
+.danger-card .task-title-icon {
+    background: #ff9f1c;
+}
+
+.danger-card:hover {
+    box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 700px) {
+    .mat-expansion-panel-header {
+        padding: 0 15px;
+    }
+
 }
