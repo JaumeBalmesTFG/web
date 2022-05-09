@@ -26,6 +26,7 @@ export class CalendarComponent implements OnInit {
             center: 'title',
             right: 'next',
         },
+        height: 630,
         dateClick: this.handleDateClick.bind(this),
         datesSet: this.handleDatesSet.bind(this),
         events:[],
