@@ -62,6 +62,7 @@ export class ModalTaskTruancyComponent implements OnInit {
             console.log(this.formTask.value, this.data);
         }
         else {
+            this.formTask.markAllAsTouched();
             console.log("incorrect form");
 
         }
@@ -72,6 +73,7 @@ export class ModalTaskTruancyComponent implements OnInit {
             console.log(this.formTruancy.value, this.data);
         }
         else {
+            this.formTruancy.markAllAsTouched();
             console.log("incorrect form");
         }
     }

@@ -6,16 +6,36 @@
                 <mat-select formControlName="subject" (selectionChange)="selectSubject($event.value)">
                     <mat-option *ngFor="let subject of dataSubjects" [value]="subject.name">{{subject.name}}</mat-option>
                 </mat-select>
+                <div *ngIf="formTask.get('subject')?.invalid && formTask.get('subject')?.touched" class="error">
+                    <div *ngIf="formTask.get('subject')?.errors?.['required']">
+                        Subject is required
+                    </div>
+                </div>
                 <h1 *ngIf="formTask.get('subject')?.value!==''">UF</h1>
                 <mat-select formControlName="UF" *ngIf="formTask.get('subject')?.value!==''" (selectionChange)="selectUF($event.value)">
                     <mat-option *ngFor="let UF of subjectSelected.UFs" [value]="UF.value">{{UF.value}}</mat-option>
                 </mat-select>
+                <div *ngIf="formTask.get('UF')?.invalid && formTask.get('subject')?.value!=='' && formTask.get('UF')?.touched" class="error">
+                    <div *ngIf="formTask.get('UF')?.errors?.['required']">
+                        UF is required
+                    </div>
+                </div>
                 <h1 *ngIf="formTask.get('UF')?.value!==''">Type</h1>
                 <mat-select formControlName="type" *ngIf="formTask.get('UF')?.value!==''">
                     <mat-option *ngFor="let type of UFSelected.events" [value]="type">{{type}}</mat-option>
                 </mat-select>
+                <div *ngIf="formTask.get('type')?.invalid && formTask.get('UF')?.value!=='' && formTask.get('type')?.touched" class="error">
+                    <div *ngIf="formTask.get('type')?.errors?.['required']">
+                        Type is required
+                    </div>
+                </div>
                 <h1>Title</h1>
                 <input formControlName="title" type="text">
+                <div *ngIf="formTask.get('title')?.invalid && formTask.get('title')?.touched" class="error">
+                    <div *ngIf="formTask.get('title')?.errors?.['required']">
+                        Title is required
+                    </div>
+                </div>
             </form>
             <div class="end-buttons">
                 <button class="submit-button" mat-raised-button (click)="createNewTask()">Save</button>
@@ -28,13 +48,27 @@
                 <mat-select formControlName="subject" (selectionChange)="selectSubjectTruancy($event.value)">
                     <mat-option *ngFor="let subject of dataSubjects" [value]="subject.name">{{subject.name}}</mat-option>
                 </mat-select>
+                <div *ngIf="formTruancy.get('subject')?.invalid && formTruancy.get('subject')?.touched" class="error">
+                    <div *ngIf="formTruancy.get('subject')?.errors?.['required']">
+                        Subject is required
+                    </div>
+                </div>
                 <h1 *ngIf="formTruancy.get('subject')?.value!==''">UF</h1>
                 <mat-select formControlName="UF" *ngIf="formTruancy.get('subject')?.value!==''" >
                     <mat-option *ngFor="let UF of subjectSelectedTruancy.UFs" [value]="UF.value">{{UF.value}}</mat-option>
                 </mat-select>
-
+                <div *ngIf="formTruancy.get('UF')?.invalid && formTruancy.get('subject')?.value!=='' && formTruancy.get('UF')?.touched" class="error">
+                    <div *ngIf="formTruancy.get('UF')?.errors?.['required']">
+                        UF is required
+                    </div>
+                </div>
                 <h1>Hours</h1>
                 <input formControlName="hours" type="number" min="0">
+                <div *ngIf="formTruancy.get('hours')?.invalid && formTruancy.get('hours')?.touched" class="error">
+                    <div *ngIf="formTruancy.get('hours')?.errors?.['required']">
+                        Hours is required
+                    </div>
+                </div>
                 <h1>Reasons</h1>
                 <input formControlName="reason" type="text">
             </form>

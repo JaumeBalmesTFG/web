@@ -6,9 +6,9 @@ import { ModalTruancyEditComponent } from '../../modals/modal-truancy-edit/modal
 
 @NgModule({
     declarations: [
-        ModalTaskTruancyComponent,
-        ModalTaskEditComponent,
-        ModalTruancyEditComponent
+        // ModalTaskTruancyComponent,
+        // ModalTaskEditComponent,
+        // ModalTruancyEditComponent
     ],
     imports: [
         CommonModule
