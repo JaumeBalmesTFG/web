@@ -6,16 +6,15 @@ import { updateFetchHeader } from './reqOptions.service';
 export async function getAll(): Promise<String> {
     const header = updateFetchHeader();
     const response = await fetch(environment.api + "/module/all", { method: "GET", headers: { ...header } })
-        .then(res => { 
-            console.log(res);
-            
-            return res.json() })
-        .then(json => { 
-            console.log(json);
-            return json })
-        .catch(err => { 
-            console.log(err);
-            return err })
+        .then(res => {
+            return res.json();
+        })
+        .then(json => {
+            return json;
+        })
+        .catch(err => {
+            return err;
+        })
 
     return response;
 }
@@ -33,7 +32,7 @@ export async function getAllSubjects(): Promise<String> {
 }
 
 // Get One Subject
-export async function getOneSubject(data:any): Promise<String> {
+export async function getOneSubject(data: any): Promise<String> {
     const header = updateFetchHeader();
     const response = await fetch(environment.api + `/module/${data.moduleId}`, { method: "GET", headers: { ...header } })
         .then(res => { return res.json() })
@@ -71,7 +70,7 @@ export async function createSubject(data: any): Promise<String> {
 export async function updateSubject(data: any): Promise<String> {
     const header = updateFetchHeader();
     const moduleId = data.moduleId;
-    
+
     delete data.moduleId;
 
     data = JSON.stringify(data);
@@ -93,6 +92,17 @@ export async function archiveOrDearchiveSubject(data: any): Promise<String> {
     const response = await fetch(environment.api + `/module/${data.moduleId}/archive`, {
         method: "PUT", headers: { 'Content-Type': 'application/json', ...header }
     })
+        .then(res => { return res.json() })
+        .then(json => { return json })
+        .catch(err => { return err })
+
+    return response;
+}
+
+// Get all ufs from one module
+export async function getUfsFromOneModule(data: any): Promise<String> {
+    const header = updateFetchHeader();
+    const response = await fetch(environment.api + `/module/${data}/ufs`, { method: "GET", headers: { ...header } })
         .then(res => { return res.json() })
         .then(json => { return json })
         .catch(err => { return err })
