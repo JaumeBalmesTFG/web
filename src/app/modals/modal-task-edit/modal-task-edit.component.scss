@@ -1,4 +1,7 @@
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 button{
     margin-right: 5px;
     margin-left:5px;
@@ -11,7 +14,11 @@ button{
 .submit-button{
     width: 89px;
     height: 40px;
+<<<<<<< Updated upstream
     margin: 33px 0 0 17px;
+=======
+    margin: 33px 10px 0 17px;
+>>>>>>> Stashed changes
     font-size: 16px;
     color: white;
     border-radius: 4px;
@@ -176,6 +183,7 @@ h2{
     margin-bottom: 15px;
 }
 label{
+<<<<<<< Updated upstream
     margin-left: 20px;
 }
 ::ng-deep .mat-slide-toggle .mat-slide-toggle-bar{
@@ -183,6 +191,13 @@ label{
 }
 ::ng-deep .mat-checked .mat-slide-toggle-bar{
     background-color: #ff9f1c !important;
+=======
+    margin: left 15px;
+}
+
+::ng-deep .mat-checked{
+    background-color: #ff9f1c;
+>>>>>>> Stashed changes
 }
 
 .subtitle {
