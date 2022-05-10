@@ -20,7 +20,7 @@
                         UF is required
                     </div>
                 </div>
-                <h1 *ngIf="formTask.get('UF')?.value!==''">Type</h1>
+                <h1 *ngIf="formTask.get('UF')?.value!==''">Rule</h1>
                 <mat-select formControlName="type" *ngIf="formTask.get('UF')?.value!==''">
                     <mat-option *ngFor="let type of UFSelected.events" [value]="type">{{type}}</mat-option>
                 </mat-select>
