@@ -7,14 +7,12 @@ export async function getAll(): Promise<String> {
     const header = updateFetchHeader();
     const response = await fetch(environment.api + "/module/all", { method: "GET", headers: { ...header } })
         .then(res => {
-            return res.json()
-        })
+            return res.json() })
         .then(json => {
-            return json
-        })
+            return json })
         .catch(err => {
-            return err
-        })
+            console.log(err);
+            return err })
 
     return response;
 }
@@ -92,6 +90,17 @@ export async function archiveOrDearchiveSubject(data: any): Promise<String> {
     const response = await fetch(environment.api + `/module/${data.moduleId}/archive`, {
         method: "PUT", headers: { 'Content-Type': 'application/json', ...header }
     })
+        .then(res => { return res.json() })
+        .then(json => { return json })
+        .catch(err => { return err })
+
+    return response;
+}
+
+// Get all ufs from one module
+export async function getUfsFromOneModule(data: any): Promise<String> {
+    const header = updateFetchHeader();
+    const response = await fetch(environment.api + `/module/${data}/ufs`, { method: "GET", headers: { ...header } })
         .then(res => { return res.json() })
         .then(json => { return json })
         .catch(err => { return err })

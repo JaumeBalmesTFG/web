@@ -35,8 +35,8 @@ body { margin: 0; }
 }
 
 .box-shadow {
-  box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);
-  border-radius: 5px;
+    box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);
+    border-radius: 5px;
 }
 
 .subject-container .mat-card .buttons .mat-fab .mat-button-wrapper {
@@ -80,4 +80,26 @@ body { margin: 0; }
 
 .mat-dialog-container {
     color: black !important;
+}
+
+/* Grades page */
+
+.mat-expansion-indicator::after {
+    color: black;
+}
+
+.mat-expansion-indicator::after {
+    height: 15px;
+    width: 15px;
+    border-width: 0 4px 4px 0 !important;
+    color: #FF9F1C;
+    vertical-align: super !important;
+}
+
+.mat-progress-bar-buffer {
+    background-color: #cbf3f0;
+}
+
+.mat-progress-bar-fill::after {
+    background-color: #2ec4b6;
 }
