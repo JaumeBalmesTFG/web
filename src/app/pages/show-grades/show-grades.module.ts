@@ -4,7 +4,7 @@ import { SubjectWithUfAndTaskComponent } from '../../child-components/subject-wi
 
 @NgModule({
     declarations: [
-        SubjectWithUfAndTaskComponent
+        // SubjectWithUfAndTaskComponent
     ],
     imports: [
         CommonModule

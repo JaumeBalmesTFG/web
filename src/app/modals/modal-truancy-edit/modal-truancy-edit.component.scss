@@ -62,8 +62,18 @@ button{
     color: #5f6368;
     font-size: 16px;
     font-weight: 500;
+    margin-top:15px;
     margin-left: 45px;
     margin-right: 45px;
+}
+.form-title{
+    color: #4f5357;
+    width:611px !important;
+    margin-left: 45px;
+    margin-right: 45px;
+    font-weight: 300;
+    padding-bottom: 12px !important;
+    border-bottom: 1px solid #ccc !important;
 }
 input{
     width:95%;

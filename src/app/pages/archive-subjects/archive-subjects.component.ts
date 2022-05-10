@@ -2,19 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { archiveOrDearchiveSubject, getAllArchivedSubjects } from 'src/app/services/subject.service';
 import { isLocalStorageToken } from '../../services/auth.service';
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-// import { Router } from '@angular/router';
-=======
->>>>>>> 52935c495e7ed525d76dfc61b4be01a2eb2f989d
-=======
-
->>>>>>> Stashed changes
 @Component({
     selector: 'app-archive-subjects',
     templateUrl: './archive-subjects.component.html',
     styleUrls: ['./archive-subjects.component.scss'],
 })
+
 
 export class ArchiveSubjectsComponent implements OnInit {
 
