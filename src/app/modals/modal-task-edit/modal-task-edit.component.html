@@ -5,16 +5,36 @@
         <mat-select formControlName="subject" (selectionChange)="selectSubject($event.value)" value="{{data.subject}}">
             <mat-option *ngFor="let subject of dataSubjects" [value]="subject.name">{{subject.name}}</mat-option>
         </mat-select>
+        <div *ngIf="formTask.get('subject')?.invalid && formTask.get('subject')?.touched" class="error">
+            <div *ngIf="formTask.get('subject')?.errors?.['required']">
+                Subject is required
+            </div>
+        </div>
         <h1 *ngIf="formTask.get('subject')?.value!==''">UF</h1>
         <mat-select formControlName="UF" *ngIf="formTask.get('subject')?.value!==''" (selectionChange)="selectUF($event.value)">
             <mat-option *ngFor="let UF of subjectSelected.UFs" [value]="UF.value">{{UF.value}}</mat-option>
         </mat-select>
-        <h1 *ngIf="formTask.get('UF')?.value!==''">Type</h1>
+        <div *ngIf="formTask.get('UF')?.invalid && formTask.get('UF')?.touched" class="error">
+            <div *ngIf="formTask.get('UF')?.errors?.['required']">
+                UF is required
+            </div>
+        </div>
+        <h1 *ngIf="formTask.get('UF')?.value!==''">Rule</h1>
         <mat-select formControlName="type" *ngIf="formTask.get('UF')?.value!==''">
             <mat-option *ngFor="let type of UFSelected.events" [value]="type">{{type}}</mat-option>
         </mat-select>
+        <div *ngIf="formTask.get('type')?.invalid && formTask.get('type')?.touched" class="error">
+            <div *ngIf="formTask.get('type')?.errors?.['required']">
+                Rule is required
+            </div>
+        </div>
         <h1>Title</h1>
-        <input formControlName="title" type="text"> 
+        <input formControlName="title" type="text">
+        <div *ngIf="formTask.get('title')?.invalid && formTask.get('title')?.touched" class="error">
+            <div *ngIf="formTask.get('title')?.errors?.['required']">
+                Title is required
+            </div>
+        </div>
         <mat-slide-toggle id="gradeCheckbox" (change)="finishedTask()"></mat-slide-toggle>
         <label for="gradeCheckbox">Task finished?</label>
         <h1 *ngIf="!disabled">Mark</h1>
