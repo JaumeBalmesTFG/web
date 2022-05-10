@@ -1,9 +1,8 @@
-import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Calendar } from '@fullcalendar/angular';
 import { getAllRules } from 'src/app/services/rule.service';
-import { getAll, getAllSubjects, getUfsFromOneModule } from 'src/app/services/subject.service';
+import { getAllSubjects, getUfsFromOneModule } from 'src/app/services/subject.service';
 import { createTask } from 'src/app/services/task.service';
 import { createTruancy } from 'src/app/services/truancy.service';
 
