@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { getAllRules } from 'src/app/services/rule.service';
-import { getAll, getAllSubjects, getUfsFromOneModule } from 'src/app/services/subject.service';
+import { getAllSubjects, getUfsFromOneModule } from 'src/app/services/subject.service';
 import { createTask } from 'src/app/services/task.service';
 import { createTruancy } from 'src/app/services/truancy.service';
 
@@ -96,7 +96,7 @@ export class ModalTaskTruancyComponent implements OnInit {
         this.task_data.dueDate = this.data;
         if (this.formTask.valid) {
             await createTask(JSON.stringify(this.task_data));
-            this.dialogRef.close();
+            this.dialogRef.close(true);
         }
         else {
             this.formTask.markAllAsTouched();
@@ -110,7 +110,7 @@ export class ModalTaskTruancyComponent implements OnInit {
 
         if (this.formTruancy.valid) {
             await createTruancy(JSON.stringify(this.truancy_data));
-            this.dialogRef.close()
+            this.dialogRef.close(true);
         }
         else {
             this.formTruancy.markAllAsTouched();

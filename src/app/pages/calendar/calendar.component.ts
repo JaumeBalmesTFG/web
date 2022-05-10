@@ -29,18 +29,16 @@ export class CalendarComponent implements OnInit {
         },
         height: 630,
         dateClick: this.handleDateClick.bind(this),
-        datesSet: this.handleDatesSet.bind(this),
         events:[],
         eventClick: this.clickEvent.bind(this)
     }
 
-    async ngOnInit(): Promise<void> {
+    ngOnInit() {
         if(!isLocalStorageToken()){
             this.router.navigate([`/login`]);
         }
 
-        let res: any = await getCalendar();
-        this.calendarOptions.events = res.body;
+        this.refetchEvents();
     }
 
     selectTab(tabSelected: any){
@@ -54,6 +52,11 @@ export class CalendarComponent implements OnInit {
         const dialogRef = this.dialog.open(ModalTaskTruancyComponent,{
             data: date.dateStr,
             autoFocus: false
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+            if(!result){ return; }
+            this.refetchEvents();
         });
     }
     clickEvent(arg:any){
@@ -72,10 +75,9 @@ export class CalendarComponent implements OnInit {
             });
         }
     }
-    handleDatesSet(arg:any){
-        this.calendarOptions.events = [
-            { title: 'event 1', date: '2022-04-14', info: 'task', data: {subject: "Subject 1", UF: "uf 1", title: 'event 1', type: 'examen', date: '2022-04-14'} },
-            { title: 'event 2', date: '2022-04-03', info: 'truancy', data: {subject: "Subject 1", UF: "uf 1", hours: 2, date: '2022-04-03'} }
-        ]
+
+    async refetchEvents(){
+        let res: any = await getCalendar();
+        this.calendarOptions.events = res.body;
     }
 }
