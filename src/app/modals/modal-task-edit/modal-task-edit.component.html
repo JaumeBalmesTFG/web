@@ -1,11 +1,6 @@
 <div class="modal-container">
-<<<<<<< Updated upstream
     <h1 class="title">Edit Task</h1>
     <form [formGroup]="formTask" class="form">
-=======
-    <h1>Edit UF</h1>
-    <form [formGroup]="formTask">
->>>>>>> Stashed changes
         <h1>Subject</h1>
         <mat-select formControlName="subject" (selectionChange)="selectSubject($event.value)" value="{{data.subject}}">
             <mat-option *ngFor="let subject of dataSubjects" [value]="subject.name">{{subject.name}}</mat-option>
@@ -35,14 +30,11 @@
         </div>
         <h1>Title</h1>
         <input formControlName="title" type="text">
-<<<<<<< Updated upstream
         <div *ngIf="formTask.get('title')?.invalid && formTask.get('title')?.touched" class="error">
             <div *ngIf="formTask.get('title')?.errors?.['required']">
                 Title is required
             </div>
         </div>
-=======
->>>>>>> Stashed changes
         <mat-slide-toggle id="gradeCheckbox" (change)="finishedTask()"></mat-slide-toggle>
         <label for="gradeCheckbox">Task finished?</label>
         <h1 *ngIf="!disabled">Mark</h1>
