@@ -1,5 +1,5 @@
 <div class="modal-container">
-    <h1 class="form-title">Edit Truancy</h1>
+    <h1 class="title">Edit Truancy</h1>
     <form [formGroup]="formTruancy" class="form">
         <h1>Subject</h1>
         <mat-select formControlName="subject" (selectionChange)="selectSubject($event.value)" value="{{data.subject}}">
