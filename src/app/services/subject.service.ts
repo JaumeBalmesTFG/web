@@ -30,7 +30,7 @@ export async function getAllSubjects(): Promise<String> {
 }
 
 // Get One Subject
-export async function getOneSubject(data:any): Promise<String> {
+export async function getOneSubject(data: any): Promise<String> {
     const header = updateFetchHeader();
     const response = await fetch(environment.api + `/module/${data.moduleId}`, { method: "GET", headers: { ...header } })
         .then(res => { return res.json() })

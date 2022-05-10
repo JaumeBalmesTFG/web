@@ -38,6 +38,9 @@ export class CalendarComponent implements OnInit {
         if(!isLocalStorageToken()){
             this.router.navigate([`/login`]);
         }
+
+        let res: any = await getCalendar();
+        this.calendarOptions.events = res.body;
     }
 
     selectTab(tabSelected: any){
