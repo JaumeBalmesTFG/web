@@ -11,7 +11,7 @@
                     <mat-option *ngFor="let uf of ufs" [value]="uf._id">{{uf.name}}</mat-option>
                 </mat-select>
                 <h2 *ngIf="formTask.get('UF')?.value!==''">Type</h2>
-                <mat-select formControlName="type" *ngIf="formTask.get('UF')?.value!==''" (selectionChange)="selectRule($event.value)">
+                <mat-select formControlName="rule" *ngIf="formTask.get('UF')?.value!==''" (selectionChange)="selectRule($event.value)">
                     <mat-option *ngFor="let rule of rules" [value]="rule._id">{{rule.title}}</mat-option>
                 </mat-select>
                 <h2>Title</h2>
@@ -28,17 +28,17 @@
             <form [formGroup]="formTruancy" class="form">
                 <h2>Subject</h2>
                 <mat-select formControlName="subject" (selectionChange)="selectSubjectTruancy($event.value)">
-                    <mat-option *ngFor="let subject of subjects" [value]="subject.name">{{subject.name}}</mat-option>
+                    <mat-option *ngFor="let subject of subjects" [value]="subject._id">{{subject.name}}</mat-option>
                 </mat-select>
                 <h2 *ngIf="formTruancy.get('subject')?.value!==''">UF</h2>
-                <mat-select formControlName="UF" *ngIf="formTruancy.get('subject')?.value!==''" >
-                    <mat-option *ngFor="let UF of subjectSelectedTruancy.UFs" [value]="UF.value">{{UF.value}}</mat-option>
+                <mat-select formControlName="UF" *ngIf="formTruancy.get('subject')?.value!==''" (selectionChange)="selectUFTruancy($event.value)">
+                    <mat-option *ngFor="let uf of ufs" [value]="uf._id">{{uf.name}}</mat-option>
                 </mat-select>
 
                 <h2>Hours</h2>
-                <input formControlName="hours" type="number" min="0">
+                <input formControlName="hours" type="number" min="0" (change)="getHours()">
                 <h2>Reasons</h2>
-                <input formControlName="reason" type="text">
+                <input formControlName="reason" type="text" (change)="getReason()">
             </form>
             <div class="end-buttons">
                 <button class="submit-button" mat-raised-button (click)="createNewTruancy()">Save</button>

@@ -4,6 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { getAllRules } from 'src/app/services/rule.service';
 import { getAll, getAllSubjects, getUfsFromOneModule } from 'src/app/services/subject.service';
 import { createTask } from 'src/app/services/task.service';
+import { createTruancy } from 'src/app/services/truancy.service';
 
 @Component({
     selector: 'app-modal-task-truancy',
@@ -33,6 +34,16 @@ export class ModalTaskTruancyComponent implements OnInit {
         description: '',
         dueDate: ''
     }
+
+    truancy_data:any = {
+        moduleId: '',
+        ufId: '',
+        hours: '',
+        reason: '',
+        date: ''
+    }
+
+
     subjectSelected: any
     UFSelected: any
     subjectSelectedTruancy: any
@@ -42,7 +53,7 @@ export class ModalTaskTruancyComponent implements OnInit {
             subject: ['', Validators.required],
             UF: ['', Validators.required],
             title: ['', Validators.required],
-            type: ['', Validators.required],
+            rule: ['', Validators.required],
             description: ['', Validators.required],
         });
 
@@ -61,8 +72,8 @@ export class ModalTaskTruancyComponent implements OnInit {
         this.subjects = res.body;
     }
 
-    async callUfs(): Promise<void> {
-        let res: any = await getUfsFromOneModule(this.task_data.moduleId);
+    async callUfs(data: string): Promise<void> {
+        let res: any = await getUfsFromOneModule(data);
         this.ufs = res.body;
     }
 
@@ -73,31 +84,32 @@ export class ModalTaskTruancyComponent implements OnInit {
 
     selectSubject(subject: any) {
         this.task_data.moduleId = subject;
-        this.callUfs();
+        this.callUfs(this.task_data.moduleId);
     }
 
     selectSubjectTruancy(subject: any) {
-        this.subjects.forEach((subjectData: { name: any; }) => {
-            if (subject === subjectData.name) {
-                this.subjectSelectedTruancy = subjectData
-            }
-        })
+        this.truancy_data.moduleId = subject;
+        this.callUfs(this.truancy_data.moduleId);
     }
 
     async createNewTask() {
         this.task_data.dueDate = this.data;
         if (this.formTask.valid) {
-            console.log(await createTask(JSON.stringify(this.task_data)));
+            await createTask(JSON.stringify(this.task_data));
             this.dialogRef.close();
         }
         else {
             console.log("incorrect form");
         }
     }
-    createNewTruancy() {
+
+    async createNewTruancy() {
+
+        this.truancy_data.date = this.data;
+
         if (this.formTruancy.valid) {
+            await createTruancy(JSON.stringify(this.truancy_data));
             this.dialogRef.close()
-            console.log(this.formTruancy.value, this.data);
         }
         else {
             console.log("incorrect form");
@@ -107,6 +119,10 @@ export class ModalTaskTruancyComponent implements OnInit {
     selectUF(UFSelected: any) {
         this.task_data.ufId = UFSelected;
         this.callRules();
+    }
+
+    selectUFTruancy(UFSelected: any) {
+        this.truancy_data.ufId = UFSelected;
     }
 
     selectRule(ruleSelected: any) {
@@ -119,5 +135,13 @@ export class ModalTaskTruancyComponent implements OnInit {
 
     getDescription(){
         this.task_data.description = this.formTask.get('description')!.value;
+    }
+
+    getHours(){
+        this.truancy_data.hours = this.formTruancy.get('hours')!.value;
+    }
+
+    getReason(){
+        this.truancy_data.reason = this.formTruancy.get('reason')!.value;
     }
 }
