@@ -32,8 +32,6 @@ export class ShowGradesComponent implements OnInit {
             this.subjectsInfo.push(data);
         });
 
-        console.log(this.subjectsInfo);
-
     }
 
     selectTab(tabSelected: any){
