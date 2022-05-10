@@ -7,14 +7,12 @@ export async function getAll(): Promise<String> {
     const header = updateFetchHeader();
     const response = await fetch(environment.api + "/module/all", { method: "GET", headers: { ...header } })
         .then(res => {
-            return res.json();
-        })
+            return res.json() })
         .then(json => {
-            return json;
-        })
+            return json })
         .catch(err => {
-            return err;
-        })
+            console.log(err);
+            return err })
 
     return response;
 }
@@ -32,7 +30,7 @@ export async function getAllSubjects(): Promise<String> {
 }
 
 // Get One Subject
-export async function getOneSubject(data: any): Promise<String> {
+export async function getOneSubject(data:any): Promise<String> {
     const header = updateFetchHeader();
     const response = await fetch(environment.api + `/module/${data.moduleId}`, { method: "GET", headers: { ...header } })
         .then(res => { return res.json() })
