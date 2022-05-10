@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { CalendarOptions } from '@fullcalendar/angular';
+import { getCalendar } from 'src/app/services/calendar.service';
 import { ModalTaskEditComponent } from '../../modals/modal-task-edit/modal-task-edit.component';
 import { ModalTaskTruancyComponent } from '../../modals/modal-task-truancy/modal-task-truancy.component';
 import { ModalTruancyEditComponent } from '../../modals/modal-truancy-edit/modal-truancy-edit.component';
@@ -33,7 +34,7 @@ export class CalendarComponent implements OnInit {
         eventClick: this.clickEvent.bind(this)
     }
 
-    ngOnInit(): void {
+    async ngOnInit(): Promise<void> {
         if(!isLocalStorageToken()){
             this.router.navigate([`/login`]);
         }
