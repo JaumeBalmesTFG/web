@@ -19,7 +19,9 @@ export class ModalTaskEditComponent implements OnInit {
 
     disabled=true;
     formTask!:FormGroup;
-    subjects: any =[
+    dataSubjects=[
+        {name: '', UFs:[{value: 'uf 1', events: ['examen','practicas']}, {value: 'uf 3', events: ['examen','practicas']}, {value: 'uf 4', events: ['examen','practicas']}]},
+        {name: '', UFs:[{value: 'uf 1', events: ['examen','practicas']}, {value: 'uf 2', events: ['examen','practicas']}, {value: 'uf 4', events: ['examen','practicas']}]}
     ]
     subjectSelected:any
     ngOnInit(): void {
@@ -27,7 +29,7 @@ export class ModalTaskEditComponent implements OnInit {
             subject:['', Validators.required],
             UF:['',Validators.required],
             title:['',Validators.required],
-            rule:['',Validators.required],
+            type:['',Validators.required],
             grade:[{value: 0, disabled: true}]
         })
         this.formTask.patchValue({
@@ -41,6 +43,11 @@ export class ModalTaskEditComponent implements OnInit {
     }
 
     selectSubject(subject:any){
+        this.dataSubjects.forEach(subjectData =>{
+            if (subject===subjectData.name){
+                this.subjectSelected = subjectData
+            }
+        })
     }
     editTask(){
         if(this.formTask.valid){
