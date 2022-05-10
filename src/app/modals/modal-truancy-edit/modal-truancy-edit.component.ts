@@ -35,10 +35,15 @@ export class ModalTruancyEditComponent implements OnInit {
             hours: this.data.hours,
             reason: this.data.reason
         })
-        this.selectSubject(this.data.subject)
+        this.dataSubjects.forEach(subjectData =>{
+            if (this.data.subject===subjectData.name){
+                this.subjectSelected = subjectData
+            }
+        })
     }
 
     selectSubject(subject:any){
+        this.formTruancy.get('UF')?.reset()
         this.dataSubjects.forEach(subjectData =>{
             if (subject===subjectData.name){
                 this.subjectSelected = subjectData
@@ -52,6 +57,7 @@ export class ModalTruancyEditComponent implements OnInit {
             console.log(this.formTruancy.value);
         }
         else {
+            this.formTruancy.markAllAsTouched()
             console.log("incorrect form");
         }
     }

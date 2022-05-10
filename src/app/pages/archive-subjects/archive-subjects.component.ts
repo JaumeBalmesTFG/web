@@ -5,8 +5,10 @@ import { isLocalStorageToken } from '../../services/auth.service';
 @Component({
     selector: 'app-archive-subjects',
     templateUrl: './archive-subjects.component.html',
-    styleUrls: ['./archive-subjects.component.scss']
+    styleUrls: ['./archive-subjects.component.scss'],
 })
+
+
 export class ArchiveSubjectsComponent implements OnInit {
 
     constructor(
