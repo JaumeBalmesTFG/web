@@ -33,6 +33,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import { ModalDeleteComponent } from './modals/modal-delete/modal-delete.component';
 import { ArchiveSubjectsComponent } from './pages/archive-subjects/archive-subjects.component';
 import {MatDividerModule} from "@angular/material/divider";
+import {MatSlideToggleModule} from '@angular/material/slide-toggle'; 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     dayGridPlugin,
     interactionPlugin
@@ -74,6 +75,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
         MatSelectModule,
         MatProgressBarModule,
         MatExpansionModule,
+        MatSlideToggleModule,
         MatDividerModule
     ],
     providers: [],
