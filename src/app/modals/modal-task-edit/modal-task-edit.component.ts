@@ -20,8 +20,8 @@ export class ModalTaskEditComponent implements OnInit {
     disabled=true;
     formTask!:FormGroup;
     dataSubjects=[
-        {name: '', UFs:[{value: 'uf 1', events: ['examen','practicas']}, {value: 'uf 3', events: ['examen','practicas']}, {value: 'uf 4', events: ['examen','practicas']}]},
-        {name: '', UFs:[{value: 'uf 1', events: ['examen','practicas']}, {value: 'uf 2', events: ['examen','practicas']}, {value: 'uf 4', events: ['examen','practicas']}]}
+        {name: 'Subject 1', UFs:[{value: 'uf 1', events: ['examen','practicas']}, {value: 'uf 3', events: ['examen','practicas']}, {value: 'uf 4', events: ['examen','practicas']}]},
+        {name: 'Subject 2', UFs:[{value: 'uf 1', events: ['examen','practicas']}, {value: 'uf 2', events: ['examen','practicas']}, {value: 'uf 4', events: ['examen','practicas']}]}
     ]
     subjectSelected:any
     ngOnInit(): void {
