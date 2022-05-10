@@ -96,3 +96,14 @@ export async function archiveOrDearchiveSubject(data: any): Promise<String> {
 
     return response;
 }
+
+// Get all ufs from one module
+export async function getUfsFromOneModule(data: any): Promise<String> {
+    const header = updateFetchHeader();
+    const response = await fetch(environment.api + `/module/${data}/ufs`, { method: "GET", headers: { ...header } })
+        .then(res => { return res.json() })
+        .then(json => { return json })
+        .catch(err => { return err })
+
+    return response;
+}
