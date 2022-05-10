@@ -1,7 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { getAll, getAllSubjects } from 'src/app/services/subject.service';
+import { getAllRules } from 'src/app/services/rule.service';
+import { getAll, getAllSubjects, getUfsFromOneModule } from 'src/app/services/subject.service';
+import { createTask } from 'src/app/services/task.service';
 
 @Component({
     selector: 'app-modal-task-truancy',
@@ -22,6 +24,15 @@ export class ModalTaskTruancyComponent implements OnInit {
 
     subjects: any = []
     ufs:any = []
+    rules:any = []
+    task_data:any = {
+        moduleId: '',
+        ufId: '',
+        ruleId: '',
+        name: '',
+        description: '',
+        dueDate: ''
+    }
     subjectSelected: any
     UFSelected: any
     subjectSelectedTruancy: any
@@ -31,7 +42,8 @@ export class ModalTaskTruancyComponent implements OnInit {
             subject: ['', Validators.required],
             UF: ['', Validators.required],
             title: ['', Validators.required],
-            type: ['', Validators.required]
+            type: ['', Validators.required],
+            description: ['', Validators.required],
         });
 
         this.formTruancy = this.formBuilder.group({
@@ -49,8 +61,19 @@ export class ModalTaskTruancyComponent implements OnInit {
         this.subjects = res.body;
     }
 
+    async callUfs(): Promise<void> {
+        let res: any = await getUfsFromOneModule(this.task_data.moduleId);
+        this.ufs = res.body;
+    }
+
+    async callRules(): Promise<void> {
+        let res: any = await getAllRules(this.task_data.ufId);
+        this.rules = res.body;
+    }
+
     selectSubject(subject: any) {
-        this.subjectSelected = subject;
+        this.task_data.moduleId = subject;
+        this.callUfs();
     }
 
     selectSubjectTruancy(subject: any) {
@@ -61,14 +84,14 @@ export class ModalTaskTruancyComponent implements OnInit {
         })
     }
 
-    createNewTask() {
+    async createNewTask() {
+        this.task_data.dueDate = this.data;
         if (this.formTask.valid) {
-            this.dialogRef.close()
-            console.log(this.formTask.value, this.data);
+            console.log(await createTask(JSON.stringify(this.task_data)));
+            this.dialogRef.close();
         }
         else {
             console.log("incorrect form");
-
         }
     }
     createNewTruancy() {
@@ -80,13 +103,21 @@ export class ModalTaskTruancyComponent implements OnInit {
             console.log("incorrect form");
         }
     }
+    
     selectUF(UFSelected: any) {
-        console.log(UFSelected);
+        this.task_data.ufId = UFSelected;
+        this.callRules();
+    }
 
-        this.subjectSelected.UFs.forEach((UF: any) => {
-            if (UFSelected === UF.value) {
-                this.UFSelected = UF
-            }
-        })
+    selectRule(ruleSelected: any) {
+        this.task_data.ruleId = ruleSelected;
+    }
+
+    getTitle(){
+        this.task_data.name = this.formTask.get('title')!.value;
+    }
+
+    getDescription(){
+        this.task_data.description = this.formTask.get('description')!.value;
     }
 }
