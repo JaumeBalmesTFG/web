@@ -1,6 +1,6 @@
-<mat-card>
-    <mat-card-title>Edit UF</mat-card-title>
-    <form [formGroup]="formTask">
+<div class="modal-container">
+    <h1 class="title">Edit Task</h1>
+    <form [formGroup]="formTask" class="form">
         <h1>Subject</h1>
         <mat-select formControlName="subject" (selectionChange)="selectSubject($event.value)" value="{{data.subject}}">
             <mat-option *ngFor="let subject of dataSubjects" [value]="subject.name">{{subject.name}}</mat-option>
@@ -14,16 +14,15 @@
             <mat-option *ngFor="let type of UFSelected.events" [value]="type">{{type}}</mat-option>
         </mat-select>
         <h1>Title</h1>
-        <input formControlName="title" type="text">
-        <div></div>
-        <input type="checkbox" id="gradeCheckbox" (change)="finishedTask()">
+        <input formControlName="title" type="text"> 
+        <mat-slide-toggle id="gradeCheckbox" (change)="finishedTask()"></mat-slide-toggle>
         <label for="gradeCheckbox">Task finished?</label>
-        <h1>Grade</h1>
-        <input formControlName="grade" type="number" min="0" max="10" id="Grade">
+        <h1 *ngIf="!disabled">Mark</h1>
+        <input formControlName="grade" type="number" min="0" max="10" id="Grade" *ngIf="!disabled">
     </form>
     <div class="end-buttons">
         <button class="submit-button" mat-raised-button (click)="editTask()">Save</button>
         <button mat-raised-button mat-dialog-close class="cancel-button">Delete</button>
         <button mat-raised-button mat-dialog-close class="cancel-button">Cancel</button>
     </div>
-</mat-card>
+</div>

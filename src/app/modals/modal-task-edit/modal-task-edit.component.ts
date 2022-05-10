@@ -30,7 +30,7 @@ export class ModalTaskEditComponent implements OnInit {
             UF:['',Validators.required],
             title:['',Validators.required],
             type:['',Validators.required],
-            grade:[{value: 0, disabled: true}]
+            grade:[{value: null, disabled: true}]
         })
         this.formTask.patchValue({
             subject: this.data.subject,
@@ -51,11 +51,17 @@ export class ModalTaskEditComponent implements OnInit {
     }
     editTask(){
         if(this.formTask.valid){
-            this.dialogRef.close()
-            console.log(this.formTask.value);
+            if(this.disabled){
+                this.dialogRef.close()
+            } else if(this.formTask.get('grade')?.value || this.formTask.get('grade')?.value===0){
+                this.dialogRef.close()
+            } else {
+                this.formTask.markAllAsTouched()
+            }
         }
         else {
             console.log("incorrect form");
+            this.formTask.markAllAsTouched();
         }
     }
 
@@ -72,8 +78,10 @@ export class ModalTaskEditComponent implements OnInit {
     finishedTask(){
         if(this.disabled===true){
             this.formTask.get('grade')?.enable();
+            this.formTask.get('grade')?.patchValue(0);
         } else {
             this.formTask.get('grade')?.disable();
+            this.formTask.get('grade')?.reset();
         }
         this.disabled=!this.disabled;
     }
