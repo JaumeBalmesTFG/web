@@ -11,7 +11,7 @@
                         Subject is required
                     </div>
                 </div>
-                <h1 *ngIf="formTask.get('subject')?.value!==''">UF</h1>
+                <h2 *ngIf="formTask.get('subject')?.value!==''">UF</h2>
                 <mat-select formControlName="UF" *ngIf="formTask.get('subject')?.value!==''" (selectionChange)="selectUF($event.value)">
                     <mat-option *ngFor="let uf of ufs" [value]="uf._id">{{uf.name}}</mat-option>
                 </mat-select>
@@ -20,19 +20,26 @@
                         UF is required
                     </div>
                 </div>
-                <h1 *ngIf="formTask.get('UF')?.value!==''">Type</h1>
-                <mat-select formControlName="type" *ngIf="formTask.get('UF')?.value!==''">
-                    <mat-option *ngFor="let type of UFSelected.events" [value]="type">{{type}}</mat-option>
+                <h2 *ngIf="formTask.get('UF')?.value!==''">Rule</h2>
+                <mat-select formControlName="rule" *ngIf="formTask.get('UF')?.value!==''" (selectionChange)="selectRule($event.value)">
+                    <mat-option *ngFor="let rule of rules" [value]="rule._id">{{rule.title}}</mat-option>
                 </mat-select>
-                <div *ngIf="formTask.get('type')?.invalid && formTask.get('UF')?.value!=='' && formTask.get('type')?.touched" class="error">
-                    <div *ngIf="formTask.get('type')?.errors?.['required']">
+                <div *ngIf="formTask.get('rule')?.invalid && formTask.get('UF')?.value!=='' && formTask.get('rule')?.touched" class="error">
+                    <div *ngIf="formTask.get('rule')?.errors?.['required']">
                         Rule is required
                     </div>
                 </div>
-                <h1>Title</h1>
-                <input formControlName="title" type="text">
+                <h2>Title</h2>
+                <input formControlName="title" type="text" (change)="getTitle();">
                 <div *ngIf="formTask.get('title')?.invalid && formTask.get('title')?.touched" class="error">
                     <div *ngIf="formTask.get('title')?.errors?.['required']">
+                        Title is required
+                    </div>
+                </div>
+                <h2>Description</h2>
+                <input formControlName="description" type="text" (change)="getDescription();">
+                <div *ngIf="formTask.get('description')?.invalid && formTask.get('description')?.touched" class="error">
+                    <div *ngIf="formTask.get('description')?.errors?.['required']">
                         Title is required
                     </div>
                 </div>
@@ -53,7 +60,7 @@
                         Subject is required
                     </div>
                 </div>
-                <h1 *ngIf="formTruancy.get('subject')?.value!==''">UF</h1>
+                <h2 *ngIf="formTruancy.get('subject')?.value!==''">UF</h2>
                 <mat-select formControlName="UF" *ngIf="formTruancy.get('subject')?.value!==''" >
                     <mat-option *ngFor="let UF of subjectSelectedTruancy.UFs" [value]="UF.value">{{UF.value}}</mat-option>
                 </mat-select>
@@ -62,14 +69,14 @@
                         UF is required
                     </div>
                 </div>
-                <h1>Hours</h1>
+                <h2>Hours</h2>
                 <input formControlName="hours" type="number" min="0">
                 <div *ngIf="formTruancy.get('hours')?.invalid && formTruancy.get('hours')?.touched" class="error">
                     <div *ngIf="formTruancy.get('hours')?.errors?.['required']">
                         Hours is required
                     </div>
                 </div>
-                <h1>Reasons</h1>
+                <h2>Reasons</h2>
                 <input formControlName="reason" type="text">
             </form>
             <div class="end-buttons">
