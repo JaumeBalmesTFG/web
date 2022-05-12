@@ -1,48 +1,50 @@
 <div class="modal-container">
-    <h1 class="title">Edit Task</h1>
+    <h2 class="title">Edit Task</h2>
     <form [formGroup]="formTask" class="form">
-        <h1>Subject</h1>
-        <mat-select formControlName="subject" (selectionChange)="selectSubject($event.value)" value="{{data.subject}}">
-            <mat-option *ngFor="let subject of dataSubjects" [value]="subject.name">{{subject.name}}</mat-option>
+        <h2>Subject</h2>
+        <mat-select formControlName="moduleId" [(ngModel)]="selectOptionSubject" (selectionChange)="selectModule($event.value)">
+            <mat-option *ngFor="let subject of subjects" [value]="subject._id">{{subject.name}}</mat-option>
         </mat-select>
         <div *ngIf="formTask.get('subject')?.invalid && formTask.get('subject')?.touched" class="error">
             <div *ngIf="formTask.get('subject')?.errors?.['required']">
                 Subject is required
             </div>
         </div>
-        <h1 *ngIf="formTask.get('subject')?.value!==''">UF</h1>
-        <mat-select formControlName="UF" *ngIf="formTask.get('subject')?.value!==''" (selectionChange)="selectUF($event.value)">
-            <mat-option *ngFor="let UF of subjectSelected.UFs" [value]="UF.value">{{UF.value}}</mat-option>
+        <h2 *ngIf="formTask.get('subject')?.value!==''">UF</h2>
+        <mat-select formControlName="ufId" *ngIf="formTask.get('subject')?.value!==''" [(ngModel)]="selectOptionUf" (selectionChange)="selectUf($event.value)">
+            <mat-option *ngFor="let uf of ufs" [value]="uf._id">{{uf.name}}</mat-option>
         </mat-select>
-        <div *ngIf="formTask.get('UF')?.invalid && formTask.get('UF')?.touched" class="error">
+        <div *ngIf="formTask.get('UF')?.invalid && formTask.get('subject')?.value!=='' && formTask.get('UF')?.touched" class="error">
             <div *ngIf="formTask.get('UF')?.errors?.['required']">
                 UF is required
             </div>
         </div>
-        <h1 *ngIf="formTask.get('UF')?.value!==''">Rule</h1>
-        <mat-select formControlName="type" *ngIf="formTask.get('UF')?.value!==''">
-            <mat-option *ngFor="let type of UFSelected.events" [value]="type">{{type}}</mat-option>
+        <h2 *ngIf="formTask.get('subject')?.value!==''">Rule</h2>
+        <mat-select formControlName="ruleId" *ngIf="formTask.get('UF')?.value!==''" [(ngModel)]="selectOptionRule">
+            <mat-option *ngFor="let rule of rules" [value]="rule._id">{{rule.title}}</mat-option>
         </mat-select>
-        <div *ngIf="formTask.get('type')?.invalid && formTask.get('type')?.touched" class="error">
-            <div *ngIf="formTask.get('type')?.errors?.['required']">
+        <div *ngIf="formTask.get('rule')?.invalid && formTask.get('UF')?.value!=='' && formTask.get('rule')?.touched" class="error">
+            <div *ngIf="formTask.get('rule')?.errors?.['required']">
                 Rule is required
             </div>
         </div>
-        <h1>Title</h1>
-        <input formControlName="title" type="text">
-        <div *ngIf="formTask.get('title')?.invalid && formTask.get('title')?.touched" class="error">
-            <div *ngIf="formTask.get('title')?.errors?.['required']">
+        <h2>Title</h2>
+        <input formControlName="name" type="text">
+        <div *ngIf="formTask.get('name')?.invalid && formTask.get('name')?.touched" class="error">
+            <div *ngIf="formTask.get('name')?.errors?.['required']">
                 Title is required
             </div>
         </div>
-        <mat-slide-toggle id="gradeCheckbox" (change)="finishedTask()"></mat-slide-toggle>
+        <h2>Description</h2>
+        <input formControlName="description" type="text">
+        <mat-slide-toggle id="gradeCheckbox" formControlName="done" (change)="finishedTask()"></mat-slide-toggle>
         <label for="gradeCheckbox">Task finished?</label>
-        <h1 *ngIf="!disabled">Mark</h1>
+        <h2 *ngIf="!disabled">Mark</h2>
         <input formControlName="grade" type="number" min="0" max="10" id="Grade" *ngIf="!disabled">
     </form>
     <div class="end-buttons">
         <button class="submit-button" mat-raised-button (click)="editTask()">Save</button>
-        <button mat-raised-button mat-dialog-close class="cancel-button">Delete</button>
+        <button mat-raised-button mat-dialog-close class="cancel-button" (click)="deleteTask()">Delete</button>
         <button mat-raised-button mat-dialog-close class="cancel-button">Cancel</button>
     </div>
 </div>

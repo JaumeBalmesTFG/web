@@ -1,6 +1,6 @@
 <div [formGroup]="subjectForm" class="form-subject">
-    <h1 *ngIf="data===null">New Subject</h1>
-    <h1 *ngIf="data!==null">Edit Subject</h1>
+    <h2 *ngIf="data===null">New Subject</h2>
+    <h2 *ngIf="data!==null">Edit Subject</h2>
     <div>Name</div>
     <input matInput formControlName="name">
     <div *ngIf="subjectForm.get('name')?.invalid && subjectForm.get('name')?.touched" class="error">
