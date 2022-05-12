@@ -1,6 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { getAllRules, getRule } from 'src/app/services/rule.service';
+import { getAll, getAllSubjects, getUfsFromOneModule } from 'src/app/services/subject.service';
+import { deleteTask, getTask, updateTask } from 'src/app/services/task.service';
 
 @Component({
     selector: 'app-modal-task-edit',
@@ -8,81 +11,133 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
     styleUrls: ['./modal-task-edit.component.scss']
 })
 export class ModalTaskEditComponent implements OnInit {
-    UFSelected: any;
-
+    selectOptionSubject: null | string = '';
+    selectOptionUf: null | string = '';
+    selectOptionRule: null | string = '';
 
     constructor(
         private formBuilder: FormBuilder,
-        @Inject(MAT_DIALOG_DATA) public data: {subject: string, UF: string, title: string, type: string, date: string},
+        @Inject(MAT_DIALOG_DATA) public data: { elementId: string, moduleId: string, ufId: string, ruleId: string, date: string },
         public dialogRef: MatDialogRef<ModalTaskEditComponent>
     ) { }
 
-    disabled=true;
-    formTask!:FormGroup;
-    dataSubjects=[
-        {name: 'Subject 1', UFs:[{value: 'uf 1', events: ['examen','practicas']}, {value: 'uf 3', events: ['examen','practicas']}, {value: 'uf 4', events: ['examen','practicas']}]},
-        {name: 'Subject 2', UFs:[{value: 'uf 1', events: ['examen','practicas']}, {value: 'uf 2', events: ['examen','practicas']}, {value: 'uf 4', events: ['examen','practicas']}]}
-    ]
-    subjectSelected:any
+    disabled = true;
+    formTask!: FormGroup;
+    subjects: any = []
+    ufs: any = []
+    rules: any = []
     ngOnInit(): void {
         this.formTask = this.formBuilder.group({
-            subject:['', Validators.required],
-            UF:['',Validators.required],
-            title:['',Validators.required],
-            type:['',Validators.required],
-            grade:[{value: null, disabled: true}]
+            moduleId: ['', Validators.required],
+            ufId: ['', Validators.required],
+            ruleId: ['', Validators.required],
+            dueDate: ['', Validators.required],
+            description: [''],
+            done: ['', Validators.required],
+            name: ['', Validators.required],
+            grade: [{ value: null, disabled: true }]
         })
+
+        this.fetchTaskAndSetValues();
+    }
+
+    async loadSubjects(data: any) {
+
+        this.subjects = data;
+
+        for (let i = 0; i < data.length; i++) {
+            if (data[i]._id === this.data.moduleId) {
+                this.selectOptionSubject = data[i]._id;
+                this.ufs = data[i].ufs;
+
+                for (let j = 0; j < data[i].ufs.length; j++) {
+                    if (data[i].ufs[j]._id === this.data.ufId) {
+                        this.selectOptionUf = data[i].ufs[j]._id;
+                        this.rules = data[i].ufs[j].rules;
+                    }
+                }
+            }
+        }
+
+        let resRules: any = await getAllRules(this.data.ufId);
+        for (let k = 0; k < resRules.body.length; k++) {
+            if (resRules.body[k]._id === this.data.ruleId) {
+                this.selectOptionRule = resRules.body[k]._id;
+                this.rules = resRules.body;
+                break;
+            }
+        }
+    }
+
+    async fetchTaskAndSetValues() {
+        let res: any = await getTask(this.data.elementId);
+        let resAll: any = await getAll();
+
+        this.loadSubjects(resAll);
+
         this.formTask.patchValue({
-            subject: this.data.subject,
-            UF: this.data.UF,
-            title: this.data.title,
-            type: this.data.type
+            dueDate: this.data.date,
+            description: res.body.description,
+            name: res.body.name,
+            done: res.body.done,
+            grade: res.body.done ? res.body.grade.$numberDecimal : 0,
         });
-        this.selectSubject(this.data.subject)
-        this.selectUF(this.data.UF)
-    }
 
-    selectSubject(subject:any){
-        this.dataSubjects.forEach(subjectData =>{
-            if (subject===subjectData.name){
-                this.subjectSelected = subjectData
-            }
-        })
-    }
-    editTask(){
-        if(this.formTask.valid){
-            if(this.disabled){
-                this.dialogRef.close()
-            } else if(this.formTask.get('grade')?.value || this.formTask.get('grade')?.value===0){
-                this.dialogRef.close()
-            } else {
-                this.formTask.markAllAsTouched()
-            }
-        }
-        else {
-            console.log("incorrect form");
-            this.formTask.markAllAsTouched();
-        }
-    }
-
-    selectUF(UFSelected:any){
-        console.log(UFSelected);
-
-        this.subjectSelected.UFs.forEach((UF:any) =>{
-            if (UFSelected===UF.value){
-                this.UFSelected = UF
-            }
-        })
-    }
-
-    finishedTask(){
-        if(this.disabled===true){
+        if (res.body.done) {
+            this.disabled = false;
             this.formTask.get('grade')?.enable();
-            this.formTask.get('grade')?.patchValue(0);
         } else {
             this.formTask.get('grade')?.disable();
-            this.formTask.get('grade')?.reset();
         }
-        this.disabled=!this.disabled;
+
+    }
+
+    async editTask() {
+        
+        if (!this.formTask.valid) { return; }
+
+        const newData = {
+            taskId: this.data.elementId,
+            ...this.formTask.value
+        };
+
+        await updateTask(newData);
+        this.dialogRef.close(true);
+    }
+
+    finishedTask() {
+        if (this.disabled === true) {
+            this.formTask.get('grade')?.enable();
+        } else {
+            this.formTask.get('grade')?.disable();
+        }
+
+        this.formTask.get('grade')?.patchValue(0);
+        this.disabled = !this.disabled;
+    }
+
+    async selectModule(moduleId: any) {
+        this.selectOptionSubject = moduleId;
+        this.selectOptionUf = '';
+        this.selectOptionRule = '';
+
+        for (let i = 0; i < this.subjects.length; i++) {
+            if(this.subjects[i]._id === moduleId){
+                this.ufs = this.subjects[i].ufs;
+            }
+        }
+
+        this.rules = [];
+    }
+
+    async selectUf(ufId: any) {
+        this.selectOptionUf = ufId;
+        let res: any = await getAllRules(ufId);
+        this.rules = res.body;
+    }
+
+    async deleteTask(){
+        await deleteTask(this.data.elementId);
+        this.dialogRef.close(true);
     }
 }

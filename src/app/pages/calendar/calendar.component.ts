@@ -47,8 +47,6 @@ export class CalendarComponent implements OnInit {
     }
 
     handleDateClick(date:any){
-        console.log(date);
-
         const dialogRef = this.dialog.open(ModalTaskTruancyComponent,{
             data: date.dateStr,
             autoFocus: false
@@ -60,18 +58,26 @@ export class CalendarComponent implements OnInit {
         });
     }
     clickEvent(arg:any){
-        console.log('hola', arg.event._def.extendedProps);
-        console.log(arg.event._def.extendedProps.info);
-        if(arg.event._def.extendedProps.info == 'task'){
+        if(arg.event._def.extendedProps.elementType == 'task'){
             const dialogRef = this.dialog.open(ModalTaskEditComponent,{
-                data: arg.event._def.extendedProps.data,
+                data: {...arg.event._def.extendedProps, date: arg.event.start},
                 autoFocus: false
             });
+
+            dialogRef.afterClosed().subscribe(result => {
+                if(!result){ return; }
+                this.refetchEvents();
+            });
         }
-        else if(arg.event._def.extendedProps.info == 'truancy'){
+        else if(arg.event._def.extendedProps.elementType == 'truancy'){
             const dialogRef = this.dialog.open(ModalTruancyEditComponent,{
-                data: arg.event._def.extendedProps.data,
+                data: arg.event._def.extendedProps,
                 autoFocus: false
+            });
+
+            dialogRef.afterClosed().subscribe(result => {
+                if(!result){ return; }
+                this.refetchEvents();
             });
         }
     }

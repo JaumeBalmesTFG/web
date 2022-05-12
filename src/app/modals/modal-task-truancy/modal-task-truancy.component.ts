@@ -43,7 +43,6 @@ export class ModalTaskTruancyComponent implements OnInit {
         date: ''
     }
 
-
     subjectSelected: any
     UFSelected: any
     subjectSelectedTruancy: any
