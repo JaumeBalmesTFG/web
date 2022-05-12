@@ -60,7 +60,6 @@ export class CalendarComponent implements OnInit {
         });
     }
     clickEvent(arg:any){
-        console.log('hola', arg.event._def.extendedProps);
         console.log(arg.event._def.extendedProps.info);
         if(arg.event._def.extendedProps.info == 'task'){
             const dialogRef = this.dialog.open(ModalTaskEditComponent,{
