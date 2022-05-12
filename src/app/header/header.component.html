@@ -1,5 +1,15 @@
-<mat-toolbar>
-    <a *ngFor="let tab of tabs" (click)="selectTab(tab)">
-        <span class="title">{{ tab.description }}</span>
-    </a>
+<mat-toolbar [class.mat-elevation-z8]="true">
+    <h1 class="title">K-lendar</h1>
+    <div>
+        <mat-tab-group (selectedTabChange)=selectTab($event) [(selectedIndex)]="index" class="header-tab">
+            <mat-tab *ngFor="let tab of tabs" label="{{tab.description}}" class="tab"></mat-tab>
+        </mat-tab-group>
+    </div>
+    <div class="user">
+        <div class="user-data">
+            <div class="name">Anna Nicolas</div>
+            <div class="email">test@test.com</div>
+        </div>
+        <span class="icon-user"><mat-icon class="icon" [ngStyle]="{'color':'#2ec4b6'}">account_circle</mat-icon></span>
+    </div>
 </mat-toolbar>
