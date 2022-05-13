@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 
-* {
+*, .mat-typography h2, .mat-toolbar h1 {
   font-family: 'Open Sans', sans-serif;
 }
 
@@ -9,6 +9,16 @@ html, body {
 }
 
 body { margin: 0; }
+
+
+/* Header */
+.mat-elevation-z8 {
+    box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);
+}
+
+.mat-toolbar-single-row {
+    height: 70px;
+}
 
 .cancel-button {
   border-color: #FF9F1C;
@@ -32,6 +42,7 @@ body { margin: 0; }
 .end-buttons {
   display: flex;
   justify-content: end;
+    flex-wrap: wrap;
 }
 
 .box-shadow {
@@ -102,4 +113,9 @@ body { margin: 0; }
 
 .mat-progress-bar-fill::after {
     background-color: #2ec4b6;
+}
+
+/* Calendar page */
+.fc-h-event .fc-event-title-container:hover {
+    cursor: pointer;
 }
