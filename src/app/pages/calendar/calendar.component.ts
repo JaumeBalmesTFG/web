@@ -71,7 +71,7 @@ export class CalendarComponent implements OnInit {
         }
         else if(arg.event._def.extendedProps.elementType == 'truancy'){
             const dialogRef = this.dialog.open(ModalTruancyEditComponent,{
-                data: arg.event._def.extendedProps,
+                data: {...arg.event._def.extendedProps, date: arg.event.start},
                 autoFocus: false
             });
 
