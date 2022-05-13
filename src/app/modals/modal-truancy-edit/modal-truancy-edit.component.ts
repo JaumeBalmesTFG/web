@@ -1,6 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { getAll } from 'src/app/services/subject.service';
+import { deleteTruancy, getTruancy, updateTruancy } from 'src/app/services/truancy.service';
 
 @Component({
     selector: 'app-modal-truancy-edit',
@@ -11,55 +13,85 @@ export class ModalTruancyEditComponent implements OnInit {
 
     constructor(
         private formBuilder: FormBuilder,
-        @Inject(MAT_DIALOG_DATA) public data: {subject: string, UF: string, hours: Number, reason: string, date: string},
+        @Inject(MAT_DIALOG_DATA) public data: {moduleId: string, ufId: string, elementId: string, hours: Number, reason: string, date: string},
         public dialogRef: MatDialogRef<ModalTruancyEditComponent>
     ) { }
 
+    selectOptionSubject: null | string = '';
+    selectOptionUf: null | string = '';
+    subjects: any = []
+    ufs: any = []
+
     formTruancy!:FormGroup;
-    dataSubjects=[
-        {name: 'Subject 1', UFs:['uf 1', 'uf 2', 'uf 4']},
-        {name: 'Subject 2', UFs:['uf 1', 'uf 3', 'uf 4']}
-    ]
-    subjectSelected:any
+
 
     ngOnInit(): void {
         this.formTruancy = this.formBuilder.group({
-            subject:['',Validators.required],
-            UF:['',Validators.required],
+            moduleId: ['', Validators.required],
+            ufId: ['', Validators.required],
             hours:['',Validators.required],
-            reason:['']
+            reason:[''],
+            date:['']
         })
+
+        this.fetchTruancyAndSetValues();
+    }
+
+    async loadSubjects(data: any) {
+
+        this.subjects = data;
+
+        for (let i = 0; i < data.length; i++) {
+            if (data[i]._id === this.data.moduleId) {
+                this.selectOptionSubject = data[i]._id;
+                this.ufs = data[i].ufs;
+
+                for (let j = 0; j < data[i].ufs.length; j++) {
+                    if (data[i].ufs[j]._id === this.data.ufId) {
+                        this.selectOptionUf = data[i].ufs[j]._id;
+                    }
+                }
+            }
+        }
+    }
+
+    async fetchTruancyAndSetValues() {
+        let res: any = await getTruancy(this.data.elementId);
+        let resAll: any = await getAll();
+
+        this.loadSubjects(resAll);
+
         this.formTruancy.patchValue({
-            subject: this.data.subject,
-            UF: this.data.UF,
-            hours: this.data.hours,
-            reason: this.data.reason
-        })
-        this.dataSubjects.forEach(subjectData =>{
-            if (this.data.subject===subjectData.name){
-                this.subjectSelected = subjectData
-            }
-        })
+            date: this.data.date,
+            hours: res.body.hours,
+            reason: res.body.reason
+        });
     }
 
-    selectSubject(subject:any){
-        this.formTruancy.get('UF')?.reset()
-        this.dataSubjects.forEach(subjectData =>{
-            if (subject===subjectData.name){
-                this.subjectSelected = subjectData
-            }
-        })
-    }
+    async selectModule(moduleId: any) {
+        this.selectOptionSubject = moduleId;
+        this.selectOptionUf = '';
 
-    editTruancy(){
-        if(this.formTruancy.valid){
-            this.dialogRef.close()
-            console.log(this.formTruancy.value);
-        }
-        else {
-            this.formTruancy.markAllAsTouched()
-            console.log("incorrect form");
+        for (let i = 0; i < this.subjects.length; i++) {
+            if(this.subjects[i]._id === moduleId){
+                this.ufs = this.subjects[i].ufs;
+            }
         }
     }
 
+    async selectUf(ufId: any) {
+        this.selectOptionUf = ufId;
+    }
+    
+    async editTruancy(){
+        if(!this.formTruancy.valid){ return; }
+
+        await updateTruancy({truancyId: this.data.elementId, ...this.formTruancy.value});
+        this.dialogRef.close(true);
+    }
+
+    async deleteTruancy(){
+        await deleteTruancy(this.data.elementId);
+        this.dialogRef.close(true);
+    }
 }
