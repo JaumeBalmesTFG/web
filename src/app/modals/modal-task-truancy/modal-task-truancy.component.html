@@ -2,82 +2,108 @@
     <mat-tab-group class="task-truancy-tabs">
         <mat-tab label="Task">
             <form [formGroup]="formTask" class='form'>
-                <h2>Subject</h2>
-                <mat-select formControlName="subject" (selectionChange)="selectSubject($event.value)">
-                    <mat-option *ngFor="let subject of subjects" [value]="subject._id">{{subject.name}}</mat-option>
-                </mat-select>
-                <div *ngIf="formTask.get('subject')?.invalid && formTask.get('subject')?.touched" class="error">
-                    <div *ngIf="formTask.get('subject')?.errors?.['required']">
-                        Subject is required
+                <div class="mt-15">
+                    <div>Subject</div>
+                    <mat-select formControlName="subject" (selectionChange)="selectSubject($event.value)">
+                        <mat-option *ngFor="let subject of subjects" [value]="subject._id">{{subject.name}}</mat-option>
+                    </mat-select>
+                    <div *ngIf="formTask.get('subject')?.invalid && formTask.get('subject')?.touched" class="error">
+                        <div *ngIf="formTask.get('subject')?.errors?.['required']">
+                            Subject is required
+                        </div>
                     </div>
                 </div>
-                <h2 *ngIf="formTask.get('subject')?.value!==''">UF</h2>
-                <mat-select formControlName="UF" *ngIf="formTask.get('subject')?.value!==''" (selectionChange)="selectUF($event.value)">
-                    <mat-option *ngFor="let uf of ufs" [value]="uf._id">{{uf.name}}</mat-option>
-                </mat-select>
-                <div *ngIf="formTask.get('UF')?.invalid && formTask.get('subject')?.value!=='' && formTask.get('UF')?.touched" class="error">
-                    <div *ngIf="formTask.get('UF')?.errors?.['required']">
-                        UF is required
+
+                <div class="mt-15">
+                    <div *ngIf="formTask.get('subject')?.value!==''">UF</div>
+                    <mat-select formControlName="UF" *ngIf="formTask.get('subject')?.value!==''" (selectionChange)="selectUF($event.value)">
+                        <mat-option *ngFor="let uf of ufs" [value]="uf._id">{{uf.name}}</mat-option>
+                    </mat-select>
+                    <div *ngIf="formTask.get('UF')?.invalid && formTask.get('subject')?.value!=='' && formTask.get('UF')?.touched" class="error">
+                        <div *ngIf="formTask.get('UF')?.errors?.['required']">
+                            UF is required
+                        </div>
                     </div>
                 </div>
-                <h2 *ngIf="formTask.get('UF')?.value!==''">Rule</h2>
-                <mat-select formControlName="rule" *ngIf="formTask.get('UF')?.value!==''" (selectionChange)="selectRule($event.value)">
-                    <mat-option *ngFor="let rule of rules" [value]="rule._id">{{rule.title}}</mat-option>
-                </mat-select>
-                <div *ngIf="formTask.get('rule')?.invalid && formTask.get('UF')?.value!=='' && formTask.get('rule')?.touched" class="error">
-                    <div *ngIf="formTask.get('rule')?.errors?.['required']">
-                        Rule is required
+
+                <div class="mt-15">
+                    <div *ngIf="formTask.get('UF')?.value!==''">Rule</div>
+                    <mat-select formControlName="rule" *ngIf="formTask.get('UF')?.value!==''" (selectionChange)="selectRule($event.value)">
+                        <mat-option *ngFor="let rule of rules" [value]="rule._id">{{rule.title}}</mat-option>
+                    </mat-select>
+                    <div *ngIf="formTask.get('rule')?.invalid && formTask.get('UF')?.value!=='' && formTask.get('rule')?.touched" class="error">
+                        <div *ngIf="formTask.get('rule')?.errors?.['required']">
+                            Rule is required
+                        </div>
                     </div>
                 </div>
-                <h2>Title</h2>
-                <input formControlName="title" type="text" (change)="getTitle();">
-                <div *ngIf="formTask.get('title')?.invalid && formTask.get('title')?.touched" class="error">
-                    <div *ngIf="formTask.get('title')?.errors?.['required']">
-                        Title is required
+
+                <div class="mt-15">
+                    <div>Title</div>
+                    <input formControlName="title" type="text" (change)="getTitle();">
+                    <div *ngIf="formTask.get('title')?.invalid && formTask.get('title')?.touched" class="error">
+                        <div *ngIf="formTask.get('title')?.errors?.['required']">
+                            Title is required
+                        </div>
                     </div>
                 </div>
-                <h2>Description</h2>
-                <input formControlName="description" type="text" (change)="getDescription();">
-                <div *ngIf="formTask.get('description')?.invalid && formTask.get('description')?.touched" class="error">
-                    <div *ngIf="formTask.get('description')?.errors?.['required']">
-                        Title is required
-                    </div>
+
+                <div class="mt-15">
+                    <div>Description</div>
+                    <input formControlName="description" type="text" (change)="getDescription();">
                 </div>
+
+
             </form>
             <div class="end-buttons">
                 <button class="submit-button" mat-raised-button (click)="createNewTask()">Save</button>
                 <button mat-raised-button mat-dialog-close class="cancel-button">Cancel</button>
             </div>
         </mat-tab>
+
         <mat-tab label="Truancy">
+
             <form [formGroup]="formTruancy" class="form">
-                <h2>Subject</h2>
-                <mat-select formControlName="subject" (selectionChange)="selectSubjectTruancy($event.value)">
-                    <mat-option *ngFor="let subject of subjects" [value]="subject._id">{{subject.name}}</mat-option>
-                </mat-select>
-                <div *ngIf="formTruancy.get('subject')?.invalid && formTruancy.get('subject')?.touched" class="error">
-                    <div *ngIf="formTruancy.get('subject')?.errors?.['required']">
-                        Subject is required
+
+                <div class="mt-15">
+                    <div>Subject</div>
+                    <mat-select formControlName="subject" (selectionChange)="selectSubjectTruancy($event.value)">
+                        <mat-option *ngFor="let subject of subjects" [value]="subject._id">{{subject.name}}</mat-option>
+                    </mat-select>
+                    <div *ngIf="formTruancy.get('subject')?.invalid && formTruancy.get('subject')?.touched" class="error">
+                        <div *ngIf="formTruancy.get('subject')?.errors?.['required']">
+                            Subject is required
+                        </div>
                     </div>
                 </div>
-                <h2 *ngIf="formTruancy.get('subject')?.value!==''">UF</h2>
-                <mat-select formControlName="UF" *ngIf="formTruancy.get('subject')?.value!==''" (selectionChange)="selectUFTruancy($event.value)">
-                    <mat-option *ngFor="let uf of ufs" [value]="uf._id">{{uf.name}}</mat-option>
-                </mat-select>
-                <div *ngIf="formTruancy.get('UF')?.invalid && formTruancy.get('subject')?.value!=='' && formTruancy.get('UF')?.touched" class="error">
-                    <div *ngIf="formTruancy.get('UF')?.errors?.['required']">
-                        UF is required
+
+                <div class="mt-15">
+                    <div *ngIf="formTruancy.get('subject')?.value!==''">UF</div>
+                    <mat-select formControlName="UF" *ngIf="formTruancy.get('subject')?.value!==''" (selectionChange)="selectUFTruancy($event.value)">
+                        <mat-option *ngFor="let uf of ufs" [value]="uf._id">{{uf.name}}</mat-option>
+                    </mat-select>
+                    <div *ngIf="formTruancy.get('UF')?.invalid && formTruancy.get('subject')?.value!=='' && formTruancy.get('UF')?.touched" class="error">
+                        <div *ngIf="formTruancy.get('UF')?.errors?.['required']">
+                            UF is required
+                        </div>
                     </div>
                 </div>
-                <h2>Hours</h2>
-                <input formControlName="hours" type="number" min="0" (change)="getHours();">
-                <div *ngIf="formTruancy.get('hours')?.invalid && formTruancy.get('hours')?.touched" class="error">
-                    <div *ngIf="formTruancy.get('hours')?.errors?.['required']">
-                        Hours is required
+
+                <div class="mt-15">
+                    <div>Hours</div>
+                    <input formControlName="hours" type="number" min="0" (change)="getHours();">
+                    <div *ngIf="formTruancy.get('hours')?.invalid && formTruancy.get('hours')?.touched" class="error">
+                        <div *ngIf="formTruancy.get('hours')?.errors?.['required']">
+                            Hours is required
+                        </div>
                     </div>
                 </div>
-                <h2>Reasons</h2>
-                <input formControlName="reason" type="text" (change)="getReason();" >
+
+                <div class="mt-15">
+                    <div>Reasons</div>
+                    <input formControlName="reason" type="text" (change)="getReason();" >
+                </div>
+
             </form>
             <div class="end-buttons">
                 <button class="submit-button" mat-raised-button (click)="createNewTruancy()">Save</button>

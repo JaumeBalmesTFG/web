@@ -53,7 +53,7 @@ export class ModalTaskTruancyComponent implements OnInit {
             UF: ['', Validators.required],
             title: ['', Validators.required],
             rule: ['', Validators.required],
-            description: ['', Validators.required],
+            description: [''],
         });
 
         this.formTruancy = this.formBuilder.group({
@@ -116,7 +116,7 @@ export class ModalTaskTruancyComponent implements OnInit {
             console.log("incorrect form");
         }
     }
-    
+
     selectUF(UFSelected: any) {
         this.task_data.ufId = UFSelected;
         this.callRules();
