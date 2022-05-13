@@ -1,7 +1,6 @@
 <app-header (activeTab)="selectTab($event)" [index]="2"></app-header>
 
 <div class="container">
-
     <div class="mb-40">
         <div class="subject-header box-shadow">
             <mat-card class="card">
@@ -9,87 +8,47 @@
             </mat-card>
         </div>
     </div>
-
     <mat-accordion>
-
         <mat-expansion-panel *ngFor="let subject of subjectsInfo">
-
             <mat-expansion-panel-header class="subject">
                 <mat-panel-title>
                     {{ subject.name }}
                 </mat-panel-title>
             </mat-expansion-panel-header>
-
-
             <div *ngFor="let uf of subject.ufs">
-
                 <mat-expansion-panel>
                     <mat-expansion-panel-header class="uf">
-
                         <mat-panel-title>
-
                             <div class="uf-icon-container">
-
                                 <div class="uf-title-icon">
                                     <mat-icon>book</mat-icon>
                                 </div>
-                                {{ uf.name }}
+                                {{uf.name}}
                             </div>
-
                         </mat-panel-title>
-
                         <mat-panel-description class="uf-mark">
-
                             <strong *ngIf="uf.globalUfGrade !== '0.00' ">{{ uf.globalUfGrade }} /10</strong>
                             <strong *ngIf="uf.globalUfGrade === '0.00' ">N/A</strong>
-
                         </mat-panel-description>
-
                     </mat-expansion-panel-header>
-
                     <div class="uf-task-container">
-
                         <div class="progress-bar-container mb-30 mt-25">
-
                             <div class="title">
-
                                 <div class="truancies">Truancies:</div>
-                                <div><strong>10%</strong> /{{ uf.truancy_percentage }}%</div>
-
+                                <div><strong>{{uf.totalTruancies.toFixed(2)}}%</strong> /{{ uf.truancy_percentage }}%</div>
                             </div>
-
-                            <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
-
+                            <mat-progress-bar mode="determinate" value="{{((uf.totalTruancies/uf.truancy_percentage)*100)}}"></mat-progress-bar>
                         </div>
-
-                        <mat-card class="card task-card">
-
-                            <mat-card-title class="task-card-title">
-                                <div class="task-title-icon"><mat-icon>assignment</mat-icon></div>
-                                Hola hola test
+                        <mat-card class="card task-card" *ngFor="let task of uf.tasks">
+                            <mat-card-title class="task-card-title" [ngStyle]="{'cursor': task.grade ? '' : 'pointer'}" (click)="openTask(task)">
+                                <div class="task-title-icon" [ngStyle]="{'background': task.grade ? '#2ec4b6' : '#ff9f1c'}"><mat-icon>{{task.grade ? "assignment" : "priority_high"}}</mat-icon></div>
+                                {{task.name}}
                             </mat-card-title>
-
                             <div class="mark">
-                                10/10
+                                {{task.grade ? task.grade.$numberDecimal : 0}}/10
                             </div>
-
                         </mat-card>
-
-                        <mat-card class="card task-card danger-card">
-
-                            <mat-card-title class="task-card-title">
-                                <div class="task-title-icon"><mat-icon>priority_high</mat-icon></div>
-                                Hola hola test
-                            </mat-card-title>
-
-                            <div class="mark">
-                                N/A
-                            </div>
-
-                        </mat-card>
-
                         <mat-divider></mat-divider>
-
                     </div>
                 </mat-expansion-panel>
             </div>

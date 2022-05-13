@@ -37,7 +37,8 @@ export class ModalTaskEditComponent implements OnInit {
             name: ['', Validators.required],
             grade: [{ value: null, disabled: true }]
         })
-
+        console.log(this.data);
+        
         this.fetchTaskAndSetValues();
     }
 
