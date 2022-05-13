@@ -36,9 +36,8 @@ export class ModalTaskEditComponent implements OnInit {
             done: ['', Validators.required],
             name: ['', Validators.required],
             grade: [{ value: null, disabled: true }]
-        })
-        console.log(this.data);
-        
+        });
+
         this.fetchTaskAndSetValues();
     }
 
@@ -94,7 +93,7 @@ export class ModalTaskEditComponent implements OnInit {
     }
 
     async editTask() {
-        
+
         if (!this.formTask.valid) { return; }
 
         const newData = {
