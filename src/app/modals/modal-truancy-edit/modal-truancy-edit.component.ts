@@ -54,11 +54,9 @@ export class ModalTruancyEditComponent implements OnInit {
     editTruancy(){
         if(this.formTruancy.valid){
             this.dialogRef.close()
-            console.log(this.formTruancy.value);
         }
         else {
             this.formTruancy.markAllAsTouched()
-            console.log("incorrect form");
         }
     }
 
