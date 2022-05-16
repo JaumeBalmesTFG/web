@@ -42,7 +42,6 @@ export class CalendarComponent implements OnInit {
     }
 
     selectTab(tabSelected: any){
-        console.log(tabSelected)
         this.router.navigate([`/${tabSelected}`]);
     }
 

@@ -99,7 +99,6 @@ export class ModalTaskTruancyComponent implements OnInit {
         }
         else {
             this.formTask.markAllAsTouched();
-            console.log("incorrect form");
         }
     }
 
@@ -113,7 +112,6 @@ export class ModalTaskTruancyComponent implements OnInit {
         }
         else {
             this.formTruancy.markAllAsTouched();
-            console.log("incorrect form");
         }
     }
 

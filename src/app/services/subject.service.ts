@@ -11,7 +11,6 @@ export async function getAll(): Promise<String> {
         .then(json => {
             return json })
         .catch(err => {
-            console.log(err);
             return err })
 
     return response;
