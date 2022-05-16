@@ -2,7 +2,11 @@
 <div class="container subject-header box-shadow">
   <mat-card class="card">
       <mat-card-title>Manage subjects</mat-card-title>
-      <button class="add-subject-btn" mat-raised-button (click)="openNewSubjectModal()">New Subject</button>
+
+      <div class="button-container">
+          <button class="add-subject-btn" mat-raised-button (click)="openNewSubjectModal()">New Subject</button>
+          <button class="add-subject-btn" mat-button routerLink="/archived">Archived Subjects</button>
+      </div>
   </mat-card>
 </div>
 
