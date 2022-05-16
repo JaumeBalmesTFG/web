@@ -85,13 +85,12 @@ export class LoginComponent implements OnInit {
                 password: this.formLogin.get('password')?.value
             }
             let res: any = await login(JSON.stringify(parameters));
-            console.log(res);
-            
+
             // If the login is succesful we redirect the user to calendar
             if (res.message==='LOGIN_SUCCESSFUL') {
                 let subjects = await getAll();
                 localStorage.setItem('nameLastName', res.body.body.firstName + ' ' + res.body.body.lastName)
-                localStorage.setItem('email', res.body.body.email) 
+                localStorage.setItem('email', res.body.body.email)
                 if(subjects.length === 0){
                     this.router.navigate([`/subjectsAndUfs`]);
                 } else {
@@ -118,10 +117,9 @@ export class LoginComponent implements OnInit {
             let res: any = await register(JSON.stringify(parameters));
             //We redirect the user to the main app if the information is correct
             if(res.message==="USER_CREATED"){
-                console.log(res);
-                
+
                 localStorage.setItem('nameLastName', res.body.firstName + ' ' + res.body.lastName)
-                localStorage.setItem('email', res.body.email) 
+                localStorage.setItem('email', res.body.email)
                 let subjects = await getAll();
                 if(subjects.length === 0){
                     this.router.navigate([`/subjectsAndUfs`]);
