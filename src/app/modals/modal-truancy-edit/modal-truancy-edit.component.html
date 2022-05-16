@@ -24,6 +24,9 @@
                     UF is required
                 </div>
             </div>
+            <div *ngIf="this.emptyUfs && formTruancy.get('subject')?.value!==''">
+                UFs not found in this module, create one and try again.
+            </div>
         </div>
 
         <div class="mt-15">

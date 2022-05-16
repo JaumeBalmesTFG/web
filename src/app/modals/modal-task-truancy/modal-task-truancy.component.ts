@@ -19,6 +19,8 @@ export class ModalTaskTruancyComponent implements OnInit {
         public dialogRef: MatDialogRef<ModalTaskTruancyComponent>
     ) { }
 
+    emptySubjects = false;
+    emptyUfs = false;
     close = false;
     formTask!: FormGroup;
     formTruancy!: FormGroup;
@@ -69,11 +71,22 @@ export class ModalTaskTruancyComponent implements OnInit {
     async callSubjects(): Promise<void> {
         let res: any = await getAllSubjects();
         this.subjects = res.body;
+
+        if(res.body.length === 0){
+            this.emptySubjects = true;
+        }
     }
 
     async callUfs(data: string): Promise<void> {
         let res: any = await getUfsFromOneModule(data);
         this.ufs = res.body;
+
+        if(this.ufs.length === 0){
+            this.emptyUfs = true;
+            return;
+        }
+
+        this.emptyUfs = false;
     }
 
     async callRules(): Promise<void> {
@@ -92,7 +105,9 @@ export class ModalTaskTruancyComponent implements OnInit {
     }
 
     async createNewTask() {
+        
         this.task_data.dueDate = this.data;
+
         if (this.formTask.valid) {
             await createTask(JSON.stringify(this.task_data));
             this.dialogRef.close(true);
