@@ -83,7 +83,10 @@ export class ModalTaskTruancyComponent implements OnInit {
 
         if(this.ufs.length === 0){
             this.emptyUfs = true;
+            return;
         }
+
+        this.emptyUfs = false;
     }
 
     async callRules(): Promise<void> {

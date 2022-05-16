@@ -21,6 +21,8 @@ export class ModalTaskEditComponent implements OnInit {
         public dialogRef: MatDialogRef<ModalTaskEditComponent>
     ) { }
 
+    emptyUfs = false;
+
     disabled = true;
     formTask!: FormGroup;
     subjects: any = []
@@ -128,6 +130,13 @@ export class ModalTaskEditComponent implements OnInit {
         }
 
         this.rules = [];
+
+        if(this.ufs.length === 0){
+            this.emptyUfs = true;
+            return;
+        }
+
+        this.emptyUfs = false;
     }
 
     async selectUf(ufId: any) {

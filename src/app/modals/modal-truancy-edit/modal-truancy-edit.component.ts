@@ -17,6 +17,7 @@ export class ModalTruancyEditComponent implements OnInit {
         public dialogRef: MatDialogRef<ModalTruancyEditComponent>
     ) { }
 
+    emptyUfs = false;
     selectOptionSubject: null | string = '';
     selectOptionUf: null | string = '';
     subjects: any = []
@@ -77,6 +78,13 @@ export class ModalTruancyEditComponent implements OnInit {
                 this.ufs = this.subjects[i].ufs;
             }
         }
+
+        if(this.ufs.length === 0){
+            this.emptyUfs = true;
+            return;
+        }
+
+        this.emptyUfs = false;
     }
 
     async selectUf(ufId: any) {
