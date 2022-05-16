@@ -1,5 +1,5 @@
 <mat-toolbar [class.mat-elevation-z8]="true">
-    <h1 class="title">K-lendar</h1>
+    <h1 class="title" (click)="redirect()">K-lendar</h1>
     <div>
         <mat-tab-group (selectedTabChange)=selectTab($event) [(selectedIndex)]="index" class="header-tab">
             <mat-tab *ngFor="let tab of tabs" label="{{tab.description}}" class="tab"></mat-tab>
@@ -7,8 +7,8 @@
     </div>
     <div class="user" [matMenuTriggerFor]="menu">
         <div class="user-data">
-            <div class="name">Anna Nicolas</div>
-            <div class="email">test@test.com</div>
+            <div class="name">{{nameLastName}}</div>
+            <div class="email">{{email}}</div>
         </div>
         <span class="icon-user"><mat-icon class="icon" [ngStyle]="{'color':'#2ec4b6'}">account_circle</mat-icon></span>
     </div>
