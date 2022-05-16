@@ -3,6 +3,7 @@ import { ModalUfComponent } from '../../modals/modal-uf/modal-uf.component';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {ModalDeleteComponent} from "../../modals/modal-delete/modal-delete.component";
 import { getAllRules } from "../../services/rule.service"
+import {getUf} from "../../services/uf.service"
 @Component({
     selector: 'app-subject-with-uf',
     templateUrl: './subject-with-uf.component.html',
@@ -17,7 +18,6 @@ export class SubjectWithUfComponent implements OnInit {
     constructor(
         private dialog: MatDialog
     ) { }
-
     ngOnInit(): void {
         this.subjectInfo.ufs.forEach((data: any)=>{
             let uf: any = {
@@ -53,13 +53,18 @@ export class SubjectWithUfComponent implements OnInit {
         })
     }
 
-    DeleteUF(ufToDelete:any){
-        const dialogRef = this.dialog.open(ModalDeleteComponent, {
-            data: ufToDelete
-        });
-        dialogRef.afterClosed().subscribe(()=>{
-            this.reload()
-        })
+    async DeleteUF(ufSelected:any){
+        let ufToDelete = this.subjectInfo.ufs.find( (uf: any) => uf._id === ufSelected._id);
+        if(ufToDelete.tasks.length < 1 && ufToDelete.truancies.length < 1){
+            const dialogRef = this.dialog.open(ModalDeleteComponent, {
+                data: ufToDelete
+            });
+            dialogRef.afterClosed().subscribe(()=>{
+                this.reload()
+            })
+        } else {
+            
+        }
     }
     reload(){
         this.reloadEvent.emit();
