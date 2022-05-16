@@ -11,6 +11,8 @@ export class HeaderComponent implements OnInit {
 
     @Output() activeTab: any = new EventEmitter<any>();
     @Input() index!:number;
+    nameLastName!: string | null;
+    email!: string|null;
     constructor(
         private router: Router,
     ) { }
@@ -21,13 +23,21 @@ export class HeaderComponent implements OnInit {
     ]
 
     ngOnInit(): void {
+        this.nameLastName = localStorage.getItem('nameLastName')
+        this.email = localStorage.getItem('email')
     }
     selectTab(tab: any){
         this.activeTab.emit(this.tabs[tab.index].value);
     }
 
     logout(){
-        localStorage.removeItem('token')
+        localStorage.removeItem('token');
+        localStorage.removeItem('email');
+        localStorage.removeItem('nameLastName');
         this.router.navigate(['login'])
+    }
+
+    redirect(){
+        this.router.navigate(['calendar'])
     }
 }
