@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { CalendarOptions } from '@fullcalendar/angular';
+import {CalendarOptions, EventDropArg} from '@fullcalendar/angular';
 import { getCalendar } from 'src/app/services/calendar.service';
 import { ModalTaskEditComponent } from '../../modals/modal-task-edit/modal-task-edit.component';
 import { ModalTaskTruancyComponent } from '../../modals/modal-task-truancy/modal-task-truancy.component';
@@ -30,7 +30,9 @@ export class CalendarComponent implements OnInit {
         height: 630,
         dateClick: this.handleDateClick.bind(this),
         events:[],
-        eventClick: this.clickEvent.bind(this)
+        eventClick: this.clickEvent.bind(this),
+        editable: true,
+        eventDrop: this.dropEvent.bind(this)
     }
 
     ngOnInit() {
@@ -79,6 +81,32 @@ export class CalendarComponent implements OnInit {
                 this.refetchEvents();
             });
         }
+    }
+
+    dropEvent(data: EventDropArg) {
+
+        // Here only you have to update the event executing the service
+
+        const elementType = data.event._def.extendedProps['elementType'];
+
+        if (elementType == "task") {
+
+            // Get the new task event
+            const event = data.event._def;
+            console.log(event);
+
+            // Update the task
+
+        } else if (elementType == "truancy") {
+
+            // Get the new truancy event
+            const event = data.event._def;
+            console.log(event);
+
+            // Update the truancy
+
+        }
+
     }
 
     async refetchEvents(){
