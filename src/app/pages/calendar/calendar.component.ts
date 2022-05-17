@@ -9,6 +9,7 @@ import { ModalTruancyEditComponent } from '../../modals/modal-truancy-edit/modal
 import { isLocalStorageToken } from '../../services/auth.service';
 import { ToastrService } from "ngx-toastr";
 import { updateTruancy } from 'src/app/services/truancy.service';
+import { updateTask } from 'src/app/services/task.service';
 @Component({
     selector: 'app-calendar',
     templateUrl: './calendar.component.html',
@@ -102,9 +103,27 @@ export class CalendarComponent implements OnInit {
         if (elementType == "task") {
 
             // Get the new task event
-            const event = data.event._def;
-
+            const event = data.event._def.extendedProps;
+            
             // Update the task
+            const newData = {
+                taskId: event['elementId'],
+                moduleId: event['moduleId'],
+                ufId: event['ufId'],
+                ruleId: event['ruleId'],
+                name: event['elementName'],
+                dueDate: date
+            }
+
+            const res: any = await updateTask(newData);
+
+            if (res.message === "OK") {
+                // Function options .success/error/warning/info/show
+                this.toastr.success('Task Date Updated', 'Success', {
+                    closeButton: true,
+                    progressBar: true
+                });
+            }
 
         } else if (elementType == "truancy") {
 
