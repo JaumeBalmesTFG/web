@@ -7,6 +7,7 @@ import { ModalTaskEditComponent } from '../../modals/modal-task-edit/modal-task-
 import { ModalTaskTruancyComponent } from '../../modals/modal-task-truancy/modal-task-truancy.component';
 import { ModalTruancyEditComponent } from '../../modals/modal-truancy-edit/modal-truancy-edit.component';
 import { isLocalStorageToken } from '../../services/auth.service';
+import {ToastrService} from "ngx-toastr";
 @Component({
     selector: 'app-calendar',
     templateUrl: './calendar.component.html',
@@ -17,6 +18,7 @@ export class CalendarComponent implements OnInit {
     constructor(
         private dialog: MatDialog,
         private router: Router,
+        private toastr: ToastrService
     ) { }
 
 
@@ -55,6 +57,13 @@ export class CalendarComponent implements OnInit {
 
         dialogRef.afterClosed().subscribe(result => {
             if(!result){ return; }
+
+            // Function options .success/error/warning/info/show
+            this.toastr.success('Whatever successfully created!', 'Success', {
+                closeButton: true,
+                progressBar: true
+            });
+
             this.refetchEvents();
         });
     }

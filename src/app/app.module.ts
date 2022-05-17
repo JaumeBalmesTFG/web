@@ -11,7 +11,6 @@ import { SubjectWithUfComponent } from './child-components/subject-with-uf/subje
 import { ModalUfComponent } from './modals/modal-uf/modal-uf.component';
 import { ModalSubjectComponent } from './modals/modal-subject/modal-subject.component';
 import { WebRoutingModule } from './web-routing.module';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import {MatDialogModule} from '@angular/material/dialog';
@@ -34,7 +33,10 @@ import { ModalDeleteComponent } from './modals/modal-delete/modal-delete.compone
 import { ArchiveSubjectsComponent } from './pages/archive-subjects/archive-subjects.component';
 import {MatDividerModule} from "@angular/material/divider";
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-import {MatMenuModule} from '@angular/material/menu'; 
+import {MatMenuModule} from '@angular/material/menu';
+import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     dayGridPlugin,
@@ -79,7 +81,9 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
         MatExpansionModule,
         MatSlideToggleModule,
         MatDividerModule,
-        MatMenuModule
+        MatMenuModule,
+        CommonModule,
+        ToastrModule.forRoot()
     ],
     providers: [],
     bootstrap: [AppComponent]
