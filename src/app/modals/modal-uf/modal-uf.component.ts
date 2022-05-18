@@ -119,7 +119,7 @@ export class ModalUfComponent implements OnInit {
           }
           createRule(JSON.stringify(parametersRule))
         })
-        this.dialogRef.close()
+        this.dialogRef.close('Created')
       }
       
     } else if (totalPercentage === 100 && this.UFForm.valid && typeof this.data !== typeof 'a'){
@@ -153,7 +153,7 @@ export class ModalUfComponent implements OnInit {
             updateRule(parametersRule)
           }
         })
-        this.dialogRef.close()
+        this.dialogRef.close('Edited')
       }
     }
   }

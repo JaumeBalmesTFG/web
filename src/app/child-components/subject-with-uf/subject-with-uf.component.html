@@ -6,7 +6,7 @@
         </mat-card-title>
         <div class="buttons">
             <button mat-mini-fab class="uf-icon" (click)="openEditUfModal(uf)"><mat-icon>edit</mat-icon></button>
-            <button mat-mini-fab class="uf-icon" (click)="DeleteUF(uf)"><mat-icon>delete</mat-icon></button>
+            <button mat-mini-fab class="uf-icon" (click)="DeleteUF(uf)" [ngStyle]="{'background-color': uf.tasks?.length>0 || uf.truancies?.length>0 ? '#b0bec5' : '#FF9F1C'}"><mat-icon>delete</mat-icon></button>
         </div>
     </mat-card>
 </div>
