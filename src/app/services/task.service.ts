@@ -1,6 +1,6 @@
 // Task Functions
-import { environment } from 'src/environments/environment.prod';
-import { updateFetchHeader } from './reqOptions.service';
+import {environment} from 'src/environments/environment.prod';
+import {updateFetchHeader} from './reqOptions.service';
 
 /** TASK SCHEMA
  * ufId:
@@ -15,10 +15,16 @@ import { updateFetchHeader } from './reqOptions.service';
 export async function getTask(data: any): Promise<String> {
     const header = updateFetchHeader();
 
-    const response = await fetch(environment.api + `/task/${data}`, { method: "GET", headers: { ...header } })
-        .then(res => { return res.json() })
-        .then(json => { return json })
-        .catch(err => { return err })
+    const response = await fetch(environment.api + `/task/${data}`, {method: "GET", headers: {...header}})
+        .then(res => {
+            return res.json()
+        })
+        .then(json => {
+            return json
+        })
+        .catch(err => {
+            return err
+        })
 
     return response;
 }
@@ -27,11 +33,17 @@ export async function getTask(data: any): Promise<String> {
 export async function createTask(data: any): Promise<String> {
     const header = updateFetchHeader();
     const response = await fetch(environment.api + "/task/create", {
-        method: "POST", headers: { 'Content-Type': 'application/json', ...header }, body: data
+        method: "POST", headers: {'Content-Type': 'application/json', ...header}, body: data
     })
-        .then(res => { return res.json() })
-        .then(json => { return json })
-        .catch(err => { return err })
+        .then(res => {
+            return res.json()
+        })
+        .then(json => {
+            return json
+        })
+        .catch(err => {
+            return err
+        })
 
     return response;
 }
@@ -46,11 +58,17 @@ export async function updateTask(data: any): Promise<String> {
     data = JSON.stringify(data);
 
     const response = await fetch(environment.api + `/task/${taskId}/edit`, {
-        method: "PUT", headers: { 'Content-Type': 'application/json', ...header }, body: data
+        method: "PUT", headers: {'Content-Type': 'application/json', ...header}, body: data
     })
-        .then(res => { return res.json() })
-        .then(json => { return json })
-        .catch(err => { return err })
+        .then(res => {
+            return res.json()
+        })
+        .then(json => {
+            return json
+        })
+        .catch(err => {
+            return err
+        })
 
     return response;
 }
@@ -59,10 +77,16 @@ export async function updateTask(data: any): Promise<String> {
 export async function deleteTask(data: any): Promise<String> {
     const header = updateFetchHeader();
 
-    const response = await fetch(environment.api + `/task/${data}/delete`, { method: "DELETE", headers: { ...header } })
-        .then(res => { return res.json() })
-        .then(json => { return json })
-        .catch(err => { return err })
+    const response = await fetch(environment.api + `/task/${data}/delete`, {method: "DELETE", headers: {...header}})
+        .then(res => {
+            return res.json()
+        })
+        .then(json => {
+            return json
+        })
+        .catch(err => {
+            return err
+        })
 
     return response;
 }

@@ -1,10 +1,10 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { getAllRules } from 'src/app/services/rule.service';
-import { getAllSubjects, getUfsFromOneModule } from 'src/app/services/subject.service';
-import { createTask } from 'src/app/services/task.service';
-import { createTruancy } from 'src/app/services/truancy.service';
+import {Component, Inject, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {getAllRules} from 'src/app/services/rule.service';
+import {getAllSubjects, getUfsFromOneModule} from 'src/app/services/subject.service';
+import {createTask} from 'src/app/services/task.service';
+import {createTruancy} from 'src/app/services/truancy.service';
 
 @Component({
     selector: 'app-modal-task-truancy',
@@ -17,7 +17,8 @@ export class ModalTaskTruancyComponent implements OnInit {
         private formBuilder: FormBuilder,
         @Inject(MAT_DIALOG_DATA) public data: string,
         public dialogRef: MatDialogRef<ModalTaskTruancyComponent>
-    ) { }
+    ) {
+    }
 
     emptySubjects = false;
     emptyUfs = false;
@@ -26,9 +27,9 @@ export class ModalTaskTruancyComponent implements OnInit {
     formTruancy!: FormGroup;
 
     subjects: any = []
-    ufs:any = []
-    rules:any = []
-    task_data:any = {
+    ufs: any = []
+    rules: any = []
+    task_data: any = {
         moduleId: '',
         ufId: '',
         ruleId: '',
@@ -37,7 +38,7 @@ export class ModalTaskTruancyComponent implements OnInit {
         dueDate: ''
     }
 
-    truancy_data:any = {
+    truancy_data: any = {
         moduleId: '',
         ufId: '',
         hours: '',
@@ -72,7 +73,7 @@ export class ModalTaskTruancyComponent implements OnInit {
         let res: any = await getAllSubjects();
         this.subjects = res.body;
 
-        if(res.body.length === 0){
+        if (res.body.length === 0) {
             this.emptySubjects = true;
         }
     }
@@ -81,7 +82,7 @@ export class ModalTaskTruancyComponent implements OnInit {
         let res: any = await getUfsFromOneModule(data);
         this.ufs = res.body;
 
-        if(this.ufs.length === 0){
+        if (this.ufs.length === 0) {
             this.emptyUfs = true;
             return;
         }
@@ -111,8 +112,7 @@ export class ModalTaskTruancyComponent implements OnInit {
         if (this.formTask.valid) {
             await createTask(JSON.stringify(this.task_data));
             this.dialogRef.close('task');
-        }
-        else {
+        } else {
             this.formTask.markAllAsTouched();
         }
     }
@@ -124,8 +124,7 @@ export class ModalTaskTruancyComponent implements OnInit {
         if (this.formTruancy.valid) {
             await createTruancy(JSON.stringify(this.truancy_data));
             this.dialogRef.close('truancy');
-        }
-        else {
+        } else {
             this.formTruancy.markAllAsTouched();
         }
     }
@@ -164,15 +163,15 @@ export class ModalTaskTruancyComponent implements OnInit {
         this.task_data.ruleId = ruleSelected;
     }
 
-    getTitle(){
+    getTitle() {
         this.task_data.name = this.formTask.get('title')!.value;
     }
 
-    getDescription(){
+    getDescription() {
         this.task_data.description = this.formTask.get('description')!.value;
     }
 
-    getReason(){
+    getReason() {
         this.truancy_data.reason = this.formTruancy.get('reason')!.value;
     }
 }

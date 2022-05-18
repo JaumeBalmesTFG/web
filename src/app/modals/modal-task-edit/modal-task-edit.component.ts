@@ -1,9 +1,9 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { getAllRules } from 'src/app/services/rule.service';
-import { getAll } from 'src/app/services/subject.service';
-import { deleteTask, getTask, updateTask } from 'src/app/services/task.service';
+import {Component, Inject, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {getAllRules} from 'src/app/services/rule.service';
+import {getAll} from 'src/app/services/subject.service';
+import {deleteTask, getTask, updateTask} from 'src/app/services/task.service';
 
 @Component({
     selector: 'app-modal-task-edit',
@@ -19,7 +19,8 @@ export class ModalTaskEditComponent implements OnInit {
         private formBuilder: FormBuilder,
         @Inject(MAT_DIALOG_DATA) public data: { elementId: string, moduleId: string, ufId: string, ruleId: string, date: string },
         public dialogRef: MatDialogRef<ModalTaskEditComponent>
-    ) { }
+    ) {
+    }
 
     emptyUfs = false;
 
@@ -28,6 +29,7 @@ export class ModalTaskEditComponent implements OnInit {
     subjects: any = []
     ufs: any = []
     rules: any = []
+
     ngOnInit(): void {
         this.formTask = this.formBuilder.group({
             moduleId: ['', Validators.required],
@@ -37,7 +39,7 @@ export class ModalTaskEditComponent implements OnInit {
             description: [''],
             done: ['', Validators.required],
             name: ['', Validators.required],
-            grade: [{ value: null, disabled: true }]
+            grade: [{value: null, disabled: true}]
         });
 
         this.fetchTaskAndSetValues();
@@ -96,7 +98,9 @@ export class ModalTaskEditComponent implements OnInit {
 
     async editTask() {
 
-        if (!this.formTask.valid) { return; }
+        if (!this.formTask.valid) {
+            return;
+        }
 
         const newData = {
             taskId: this.data.elementId,
@@ -124,14 +128,14 @@ export class ModalTaskEditComponent implements OnInit {
         this.selectOptionRule = '';
 
         for (let i = 0; i < this.subjects.length; i++) {
-            if(this.subjects[i]._id === moduleId){
+            if (this.subjects[i]._id === moduleId) {
                 this.ufs = this.subjects[i].ufs;
             }
         }
 
         this.rules = [];
 
-        if(this.ufs.length === 0){
+        if (this.ufs.length === 0) {
             this.emptyUfs = true;
             return;
         }
@@ -145,7 +149,7 @@ export class ModalTaskEditComponent implements OnInit {
         this.rules = res.body;
     }
 
-    async deleteTask(){
+    async deleteTask() {
         await deleteTask(this.data.elementId);
         this.dialogRef.close('delete');
     }

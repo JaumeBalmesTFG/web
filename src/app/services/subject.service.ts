@@ -1,17 +1,20 @@
 // Subject Request Functions
-import { environment } from 'src/environments/environment.prod';
-import { updateFetchHeader } from './reqOptions.service';
+import {environment} from 'src/environments/environment.prod';
+import {updateFetchHeader} from './reqOptions.service';
 
 // Get all subjects, ufs, tasks, grades, rules, avg...
 export async function getAll(): Promise<String> {
     const header = updateFetchHeader();
-    const response = await fetch(environment.api + "/module/all", { method: "GET", headers: { ...header } })
+    const response = await fetch(environment.api + "/module/all", {method: "GET", headers: {...header}})
         .then(res => {
-            return res.json() })
+            return res.json()
+        })
         .then(json => {
-            return json })
+            return json
+        })
         .catch(err => {
-            return err })
+            return err
+        })
 
     return response;
 }
@@ -20,10 +23,16 @@ export async function getAll(): Promise<String> {
 // Get all subjects
 export async function getAllSubjects(): Promise<String> {
     const header = updateFetchHeader();
-    const response = await fetch(environment.api + "/module/all/ufs ", { method: "GET", headers: { ...header } })
-        .then(res => { return res.json() })
-        .then(json => { return json })
-        .catch(err => { return err })
+    const response = await fetch(environment.api + "/module/all/ufs ", {method: "GET", headers: {...header}})
+        .then(res => {
+            return res.json()
+        })
+        .then(json => {
+            return json
+        })
+        .catch(err => {
+            return err
+        })
 
     return response;
 }
@@ -31,10 +40,16 @@ export async function getAllSubjects(): Promise<String> {
 // Get One Subject
 export async function getOneSubject(data: any): Promise<String> {
     const header = updateFetchHeader();
-    const response = await fetch(environment.api + `/module/${data.moduleId}`, { method: "GET", headers: { ...header } })
-        .then(res => { return res.json() })
-        .then(json => { return json })
-        .catch(err => { return err })
+    const response = await fetch(environment.api + `/module/${data.moduleId}`, {method: "GET", headers: {...header}})
+        .then(res => {
+            return res.json()
+        })
+        .then(json => {
+            return json
+        })
+        .catch(err => {
+            return err
+        })
 
     return response;
 }
@@ -42,10 +57,16 @@ export async function getOneSubject(data: any): Promise<String> {
 // Get All Archived Subjects
 export async function getAllArchivedSubjects(): Promise<String> {
     const header = updateFetchHeader();
-    const response = await fetch(environment.api + `/module/all/archived`, { method: "GET", headers: { ...header } })
-        .then(res => { return res.json() })
-        .then(json => { return json })
-        .catch(err => { return err })
+    const response = await fetch(environment.api + `/module/all/archived`, {method: "GET", headers: {...header}})
+        .then(res => {
+            return res.json()
+        })
+        .then(json => {
+            return json
+        })
+        .catch(err => {
+            return err
+        })
 
     return response;
 }
@@ -54,11 +75,17 @@ export async function getAllArchivedSubjects(): Promise<String> {
 export async function createSubject(data: any): Promise<String> {
     const header = updateFetchHeader();
     const response = await fetch(environment.api + "/module", {
-        method: "POST", headers: { 'Content-Type': 'application/json', ...header }, body: data
+        method: "POST", headers: {'Content-Type': 'application/json', ...header}, body: data
     })
-        .then(res => { return res.json() })
-        .then(json => { return json })
-        .catch(err => { return err })
+        .then(res => {
+            return res.json()
+        })
+        .then(json => {
+            return json
+        })
+        .catch(err => {
+            return err
+        })
 
     return response;
 }
@@ -73,11 +100,17 @@ export async function updateSubject(data: any): Promise<String> {
     data = JSON.stringify(data);
 
     const response = await fetch(environment.api + `/module/${moduleId}`, {
-        method: "PUT", headers: { 'Content-Type': 'application/json', ...header }, body: data
+        method: "PUT", headers: {'Content-Type': 'application/json', ...header}, body: data
     })
-        .then(res => { return res.json() })
-        .then(json => { return json })
-        .catch(err => { return err })
+        .then(res => {
+            return res.json()
+        })
+        .then(json => {
+            return json
+        })
+        .catch(err => {
+            return err
+        })
 
     return response;
 }
@@ -87,11 +120,17 @@ export async function archiveOrDearchiveSubject(data: any): Promise<String> {
     const header = updateFetchHeader();
 
     const response = await fetch(environment.api + `/module/${data.moduleId}/archive`, {
-        method: "PUT", headers: { 'Content-Type': 'application/json', ...header }
+        method: "PUT", headers: {'Content-Type': 'application/json', ...header}
     })
-        .then(res => { return res.json() })
-        .then(json => { return json })
-        .catch(err => { return err })
+        .then(res => {
+            return res.json()
+        })
+        .then(json => {
+            return json
+        })
+        .catch(err => {
+            return err
+        })
 
     return response;
 }
@@ -99,10 +138,16 @@ export async function archiveOrDearchiveSubject(data: any): Promise<String> {
 // Get all ufs from one module
 export async function getUfsFromOneModule(data: any): Promise<String> {
     const header = updateFetchHeader();
-    const response = await fetch(environment.api + `/module/${data}/ufs`, { method: "GET", headers: { ...header } })
-        .then(res => { return res.json() })
-        .then(json => { return json })
-        .catch(err => { return err })
+    const response = await fetch(environment.api + `/module/${data}/ufs`, {method: "GET", headers: {...header}})
+        .then(res => {
+            return res.json()
+        })
+        .then(json => {
+            return json
+        })
+        .catch(err => {
+            return err
+        })
 
     return response;
 }

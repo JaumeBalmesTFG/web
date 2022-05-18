@@ -1,13 +1,13 @@
 <app-header (activeTab)="selectTab($event)" [index]="0"></app-header>
 <div class="container subject-header box-shadow">
-  <mat-card class="card">
-      <mat-card-title>Manage subjects</mat-card-title>
+    <mat-card class="card">
+        <mat-card-title>Manage subjects</mat-card-title>
 
-      <div class="button-container">
-          <button class="add-subject-btn" mat-raised-button (click)="openNewSubjectModal()">New Subject</button>
-          <button class="add-subject-btn clear-btn" mat-button routerLink="/archived">Archived Subjects</button>
-      </div>
-  </mat-card>
+        <div class="button-container">
+            <button class="add-subject-btn" mat-raised-button (click)="openNewSubjectModal()">New Subject</button>
+            <button class="add-subject-btn clear-btn" mat-button routerLink="/archived">Archived Subjects</button>
+        </div>
+    </mat-card>
 </div>
 
 <!-- Element appears when user have subjects -->
@@ -16,9 +16,15 @@
         <mat-card class="card subject-card">
             <mat-card-title>{{subject.name}}</mat-card-title>
             <div class="buttons">
-                <button mat-fab class="header-icon" (click)="openNewUfModal(subject.moduleId)"><mat-icon>add</mat-icon></button>
-                <button mat-fab class="header-icon" (click)="openEditSubjectModal(subject)"><mat-icon>edit</mat-icon></button>
-                <button mat-fab class="header-icon" (click)="deleteSubject(subject)"><mat-icon>archive</mat-icon></button>
+                <button mat-fab class="header-icon" (click)="openNewUfModal(subject.moduleId)">
+                    <mat-icon>add</mat-icon>
+                </button>
+                <button mat-fab class="header-icon" (click)="openEditSubjectModal(subject)">
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-fab class="header-icon" (click)="deleteSubject(subject)">
+                    <mat-icon>archive</mat-icon>
+                </button>
             </div>
         </mat-card>
 
@@ -27,7 +33,9 @@
                 <p>You don't have any UF in this subject.</p>
 
                 <div>
-                    <button class="add-subject-btn call-to-action-btn" mat-raised-button (click)="openNewUfModal(subject.moduleId)">Create new UF</button>
+                    <button class="add-subject-btn call-to-action-btn" mat-raised-button
+                            (click)="openNewUfModal(subject.moduleId)">Create new UF
+                    </button>
                 </div>
 
             </div>
@@ -43,7 +51,9 @@
         <p>Ups! It seems that you don't have any subject created yet! To start press the button and create one.</p>
 
         <div>
-            <button class="add-subject-btn call-to-action-btn" mat-raised-button (click)="openNewSubjectModal()">New subject</button>
+            <button class="add-subject-btn call-to-action-btn" mat-raised-button (click)="openNewSubjectModal()">New
+                subject
+            </button>
         </div>
 
     </div>

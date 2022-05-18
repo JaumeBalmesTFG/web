@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
-import { Router } from '@angular/router';
-import { ModalSubjectComponent } from '../../modals/modal-subject/modal-subject.component';
-import { ModalUfComponent } from '../../modals/modal-uf/modal-uf.component';
-import { getAll, archiveOrDearchiveSubject } from 'src/app/services/subject.service';
-import { isLocalStorageToken } from '../../services/auth.service';
-import { ToastrService } from 'ngx-toastr';
+import {Router} from '@angular/router';
+import {ModalSubjectComponent} from '../../modals/modal-subject/modal-subject.component';
+import {ModalUfComponent} from '../../modals/modal-uf/modal-uf.component';
+import {getAll, archiveOrDearchiveSubject} from 'src/app/services/subject.service';
+import {isLocalStorageToken} from '../../services/auth.service';
+import {ToastrService} from 'ngx-toastr';
+
 @Component({
     selector: 'app-subjects-and-ufs',
     templateUrl: './subjects-and-ufs.component.html',
@@ -17,27 +18,30 @@ export class SubjectsAndUfsComponent implements OnInit {
         private dialog: MatDialog,
         private router: Router,
         private toastr: ToastrService
-    ) { }
+    ) {
+    }
 
-    subjects: any[]=[]
+    subjects: any[] = []
 
     async ngOnInit(): Promise<void> {
-        if(!isLocalStorageToken()){
+        if (!isLocalStorageToken()) {
             this.router.navigate([`/login`]);
         }
         this.reloadData()
     }
 
-    selectTab(tabSelected: any){
+    selectTab(tabSelected: any) {
         this.router.navigate([`/${tabSelected}`]);
     }
 
-    openNewSubjectModal(){
-        const dialogRef = this.dialog.open(ModalSubjectComponent,{
+    openNewSubjectModal() {
+        const dialogRef = this.dialog.open(ModalSubjectComponent, {
             autoFocus: false,
         });
-        dialogRef.afterClosed().subscribe(async (result) =>{
-            if (!result) { return; }
+        dialogRef.afterClosed().subscribe(async (result) => {
+            if (!result) {
+                return;
+            }
 
             this.toastr.success('New subject created', 'Success', {
                 closeButton: true,
@@ -46,13 +50,16 @@ export class SubjectsAndUfsComponent implements OnInit {
             this.reloadData()
         })
     }
-    openEditSubjectModal(subject:any){
+
+    openEditSubjectModal(subject: any) {
         const dialogRef = this.dialog.open(ModalSubjectComponent, {
             data: subject,
             autoFocus: false
         });
-        dialogRef.afterClosed().subscribe(async (result) =>{
-            if (!result) { return; }
+        dialogRef.afterClosed().subscribe(async (result) => {
+            if (!result) {
+                return;
+            }
 
             this.toastr.success('Subject updated', 'Success', {
                 closeButton: true,
@@ -61,13 +68,16 @@ export class SubjectsAndUfsComponent implements OnInit {
             this.reloadData()
         })
     }
-    openNewUfModal(subjectId: string){
-        const dialogRef= this.dialog.open(ModalUfComponent,{
+
+    openNewUfModal(subjectId: string) {
+        const dialogRef = this.dialog.open(ModalUfComponent, {
             data: subjectId,
             autoFocus: false
         })
         dialogRef.afterClosed().subscribe(async (result) => {
-            if (!result) { return; }
+            if (!result) {
+                return;
+            }
 
             this.toastr.success('New UF created', 'Success', {
                 closeButton: true,
@@ -77,7 +87,7 @@ export class SubjectsAndUfsComponent implements OnInit {
         })
     }
 
-    async deleteSubject(subjectToDelete:any){
+    async deleteSubject(subjectToDelete: any) {
         await archiveOrDearchiveSubject(subjectToDelete)
         this.reloadData()
         this.toastr.success('Subject archived', 'Success', {
@@ -86,9 +96,9 @@ export class SubjectsAndUfsComponent implements OnInit {
         });
     }
 
-    async reloadData(){
+    async reloadData() {
         let res: any = await getAll()
-        this.subjects=[]
+        this.subjects = []
         res.forEach((data: any) => {
             let subject = {
                 name: data.name,

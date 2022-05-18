@@ -4,7 +4,8 @@
 
         <div class="mt-15">
             <div>Subject</div>
-            <mat-select formControlName="moduleId" [(ngModel)]="selectOptionSubject" (selectionChange)="selectModule($event.value)">
+            <mat-select formControlName="moduleId" [(ngModel)]="selectOptionSubject"
+                        (selectionChange)="selectModule($event.value)">
                 <mat-option *ngFor="let subject of subjects" [value]="subject._id">{{subject.name}}</mat-option>
             </mat-select>
             <div *ngIf="formTruancy.get('subject')?.invalid && formTruancy.get('subject')?.touched" class="error">
@@ -16,10 +17,13 @@
 
         <div class="mt-15">
             <div *ngIf="formTruancy.get('subject')?.value!==''">UF</div>
-            <mat-select formControlName="ufId" *ngIf="formTruancy.get('subject')?.value!==''" [(ngModel)]="selectOptionUf" (selectionChange)="selectUf($event.value)">
+            <mat-select formControlName="ufId" *ngIf="formTruancy.get('subject')?.value!==''"
+                        [(ngModel)]="selectOptionUf" (selectionChange)="selectUf($event.value)">
                 <mat-option *ngFor="let uf of ufs" [value]="uf._id">{{uf.name}}</mat-option>
             </mat-select>
-            <div *ngIf="formTruancy.get('UF')?.invalid && formTruancy.get('subject')?.value!=='' && formTruancy.get('UF')?.touched" class="error">
+            <div
+                *ngIf="formTruancy.get('UF')?.invalid && formTruancy.get('subject')?.value!=='' && formTruancy.get('UF')?.touched"
+                class="error">
                 <div *ngIf="formTruancy.get('UF')?.errors?.['required']">
                     UF is required
                 </div>
@@ -32,9 +36,13 @@
         <div class="mt-15">
             <div>Hours</div>
             <div class="input-hours-container">
-                <button mat-raised-button (click) = "changeHours('minus')" class="minus-button"><mat-icon>remove</mat-icon></button>
+                <button mat-raised-button (click)="changeHours('minus')" class="minus-button">
+                    <mat-icon>remove</mat-icon>
+                </button>
                 <input formControlName="hours" type="number" min="0" readonly>
-                <button mat-raised-button (click) = "changeHours('plus')" class="max-button"><mat-icon>add</mat-icon></button>
+                <button mat-raised-button (click)="changeHours('plus')" class="max-button">
+                    <mat-icon>add</mat-icon>
+                </button>
             </div>
 
             <div *ngIf="formTruancy.get('hours')?.invalid && formTruancy.get('hours')?.touched" class="error">

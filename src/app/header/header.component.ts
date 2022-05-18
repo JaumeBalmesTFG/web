@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Router } from '@angular/router';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-header',
@@ -9,13 +9,16 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
 
     @Output() activeTab: any = new EventEmitter<any>();
-    @Input() index!:number;
+    @Input() index!: number;
     nameLastName!: string | null;
-    email!: string|null;
+    email!: string | null;
+
     constructor(
         private router: Router,
-    ) { }
-    tabs=[
+    ) {
+    }
+
+    tabs = [
         {description: "Subjects", value: "subjects"},
         {description: "Calendar", value: "calendar"},
         {description: "Grades", value: "grades"}
@@ -25,18 +28,19 @@ export class HeaderComponent implements OnInit {
         this.nameLastName = localStorage.getItem('nameLastName')
         this.email = localStorage.getItem('email')
     }
-    selectTab(tab: any){
+
+    selectTab(tab: any) {
         this.activeTab.emit(this.tabs[tab.index].value);
     }
 
-    logout(){
+    logout() {
         localStorage.removeItem('token');
         localStorage.removeItem('email');
         localStorage.removeItem('nameLastName');
         this.router.navigate(['login'])
     }
 
-    redirect(){
+    redirect() {
         this.router.navigate(['calendar'])
     }
 }

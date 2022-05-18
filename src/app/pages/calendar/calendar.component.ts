@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
-import { CalendarOptions, EventDropArg } from '@fullcalendar/angular';
-import { getCalendar } from 'src/app/services/calendar.service';
-import { ModalTaskEditComponent } from '../../modals/modal-task-edit/modal-task-edit.component';
-import { ModalTaskTruancyComponent } from '../../modals/modal-task-truancy/modal-task-truancy.component';
-import { ModalTruancyEditComponent } from '../../modals/modal-truancy-edit/modal-truancy-edit.component';
-import { isLocalStorageToken } from '../../services/auth.service';
-import { ToastrService } from "ngx-toastr";
-import { updateTruancy } from 'src/app/services/truancy.service';
-import { updateTask } from 'src/app/services/task.service';
+import {Component, OnInit} from '@angular/core';
+import {MatDialog} from '@angular/material/dialog';
+import {Router} from '@angular/router';
+import {CalendarOptions, EventDropArg} from '@fullcalendar/angular';
+import {getCalendar} from 'src/app/services/calendar.service';
+import {ModalTaskEditComponent} from '../../modals/modal-task-edit/modal-task-edit.component';
+import {ModalTaskTruancyComponent} from '../../modals/modal-task-truancy/modal-task-truancy.component';
+import {ModalTruancyEditComponent} from '../../modals/modal-truancy-edit/modal-truancy-edit.component';
+import {isLocalStorageToken} from '../../services/auth.service';
+import {ToastrService} from "ngx-toastr";
+import {updateTruancy} from 'src/app/services/truancy.service';
+import {updateTask} from 'src/app/services/task.service';
+
 @Component({
     selector: 'app-calendar',
     templateUrl: './calendar.component.html',
@@ -21,7 +22,8 @@ export class CalendarComponent implements OnInit {
         private dialog: MatDialog,
         private router: Router,
         private toastr: ToastrService
-    ) { }
+    ) {
+    }
 
 
     calendarOptions: CalendarOptions = {
@@ -58,14 +60,16 @@ export class CalendarComponent implements OnInit {
         });
 
         dialogRef.afterClosed().subscribe(result => {
-            if (!result) { return; }
+            if (!result) {
+                return;
+            }
 
-            if(result === 'task'){
+            if (result === 'task') {
                 this.toastr.success('Task successfully created', 'Success', {
                     closeButton: true,
                     progressBar: true
                 });
-            } else if (result === 'truancy'){
+            } else if (result === 'truancy') {
                 this.toastr.success('Truancy successfully created', 'Success', {
                     closeButton: true,
                     progressBar: true
@@ -74,22 +78,25 @@ export class CalendarComponent implements OnInit {
             this.refetchEvents();
         });
     }
+
     clickEvent(arg: any) {
         if (arg.event._def.extendedProps.elementType == 'task') {
             const dialogRef = this.dialog.open(ModalTaskEditComponent, {
-                data: { ...arg.event._def.extendedProps, date: arg.event.start },
+                data: {...arg.event._def.extendedProps, date: arg.event.start},
                 autoFocus: false
             });
 
             dialogRef.afterClosed().subscribe(result => {
-                if (!result) { return; }
+                if (!result) {
+                    return;
+                }
 
-                if(result === 'edited'){
+                if (result === 'edited') {
                     this.toastr.success('Task successfully updated', 'Success', {
                         closeButton: true,
                         progressBar: true
                     });
-                } else if(result==='delete'){
+                } else if (result === 'delete') {
                     this.toastr.success('Task successfully deleted', 'Success', {
                         closeButton: true,
                         progressBar: true
@@ -97,21 +104,22 @@ export class CalendarComponent implements OnInit {
                 }
                 this.refetchEvents();
             });
-        }
-        else if (arg.event._def.extendedProps.elementType == 'truancy') {
+        } else if (arg.event._def.extendedProps.elementType == 'truancy') {
             const dialogRef = this.dialog.open(ModalTruancyEditComponent, {
-                data: { ...arg.event._def.extendedProps, date: arg.event.start },
+                data: {...arg.event._def.extendedProps, date: arg.event.start},
                 autoFocus: false
             });
 
             dialogRef.afterClosed().subscribe(result => {
-                if (!result) { return; }
-                if(result === 'edited'){
+                if (!result) {
+                    return;
+                }
+                if (result === 'edited') {
                     this.toastr.success('Truancy successfully updated', 'Success', {
                         closeButton: true,
                         progressBar: true
                     });
-                } else if(result==='delete'){
+                } else if (result === 'delete') {
                     this.toastr.success('Truancy successfully deleted', 'Success', {
                         closeButton: true,
                         progressBar: true

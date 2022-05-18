@@ -9,10 +9,11 @@
         </div>
     </div>
     <div formGroupName="checkColor">Color
-        <div  class="color-buttons">
+        <div class="color-buttons">
             <div *ngFor="let color of colors">
                 <button (click)="subjectForm.get('checkColor')?.get('option')?.setValue(color.value);"
-                type="button" class="subject-color-button" [ngStyle]="{'background-color':color.value, 'border-color': subjectForm.get('checkColor')?.get('option')?.value===color.value ? '#FF9F1C' : 'white', 'border-width': subjectForm.get('checkColor')?.get('option')?.value===color.value ? '3px' : '0px'}"></button>
+                        type="button" class="subject-color-button"
+                        [ngStyle]="{'background-color':color.value, 'border-color': subjectForm.get('checkColor')?.get('option')?.value===color.value ? '#FF9F1C' : 'white', 'border-width': subjectForm.get('checkColor')?.get('option')?.value===color.value ? '3px' : '0px'}"></button>
             </div>
         </div>
     </div>

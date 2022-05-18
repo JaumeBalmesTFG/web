@@ -4,7 +4,8 @@
 
         <div class="mt-15">
             <div>Subject</div>
-            <mat-select formControlName="moduleId" [(ngModel)]="selectOptionSubject" (selectionChange)="selectModule($event.value)">
+            <mat-select formControlName="moduleId" [(ngModel)]="selectOptionSubject"
+                        (selectionChange)="selectModule($event.value)">
                 <mat-option *ngFor="let subject of subjects" [value]="subject._id">{{subject.name}}</mat-option>
             </mat-select>
             <div *ngIf="formTask.get('subject')?.invalid && formTask.get('subject')?.touched" class="error">
@@ -16,10 +17,13 @@
 
         <div class="mt-15">
             <div *ngIf="formTask.get('subject')?.value!==''">UF</div>
-            <mat-select formControlName="ufId" *ngIf="formTask.get('subject')?.value!==''" [(ngModel)]="selectOptionUf" (selectionChange)="selectUf($event.value)">
+            <mat-select formControlName="ufId" *ngIf="formTask.get('subject')?.value!==''" [(ngModel)]="selectOptionUf"
+                        (selectionChange)="selectUf($event.value)">
                 <mat-option *ngFor="let uf of ufs" [value]="uf._id">{{uf.name}}</mat-option>
             </mat-select>
-            <div *ngIf="formTask.get('UF')?.invalid && formTask.get('subject')?.value!=='' && formTask.get('UF')?.touched" class="error">
+            <div
+                *ngIf="formTask.get('UF')?.invalid && formTask.get('subject')?.value!=='' && formTask.get('UF')?.touched"
+                class="error">
                 <div *ngIf="formTask.get('UF')?.errors?.['required']">
                     UF is required
                 </div>
@@ -34,7 +38,9 @@
             <mat-select formControlName="ruleId" *ngIf="formTask.get('UF')?.value!==''" [(ngModel)]="selectOptionRule">
                 <mat-option *ngFor="let rule of rules" [value]="rule._id">{{rule.title}}</mat-option>
             </mat-select>
-            <div *ngIf="formTask.get('rule')?.invalid && formTask.get('UF')?.value!=='' && formTask.get('rule')?.touched" class="error">
+            <div
+                *ngIf="formTask.get('rule')?.invalid && formTask.get('UF')?.value!=='' && formTask.get('rule')?.touched"
+                class="error">
                 <div *ngIf="formTask.get('rule')?.errors?.['required']">
                     Rule is required
                 </div>

@@ -56,7 +56,8 @@
                     </div>
                 </div>
                 <div class="end-buttons">
-                    <button class="submit-button call-to-action-btn" mat-raised-button (click)="enterLogin()">Login</button>
+                    <button class="submit-button call-to-action-btn" mat-raised-button (click)="enterLogin()">Login
+                    </button>
                 </div>
                 <div *ngIf="error" class="error">
                     <p>{{error}}</p>
@@ -95,7 +96,8 @@
                 <div class="input-container">
                     <div>Last name</div>
                     <input matInput formControlName="lastName">
-                    <div *ngIf="formRegister.get('lastName')?.invalid && formRegister.get('lastName')?.touched" class="error">
+                    <div *ngIf="formRegister.get('lastName')?.invalid && formRegister.get('lastName')?.touched"
+                         class="error">
                         <div *ngIf="formRegister.get('lastName')?.errors?.['required']">
                             Last name is required
                         </div>
@@ -104,14 +106,17 @@
                 <div class="input-container">
                     <div>Password</div>
                     <input matInput type="password" formControlName="password">
-                    <div *ngIf="formRegister.get('password')?.invalid && formRegister.get('password')?.touched" class="error">
+                    <div *ngIf="formRegister.get('password')?.invalid && formRegister.get('password')?.touched"
+                         class="error">
                         <div *ngIf="formRegister.get('password')?.errors?.['required']">
                             Password is required
                         </div>
                     </div>
                 </div>
                 <div class="end-buttons">
-                    <button class="submit-button call-to-action-btn" mat-raised-button (click)="enterRegister()">Register</button>
+                    <button class="submit-button call-to-action-btn" mat-raised-button (click)="enterRegister()">
+                        Register
+                    </button>
                 </div>
                 <div *ngIf="error" class="error">
                     <p>{{error}}</p>

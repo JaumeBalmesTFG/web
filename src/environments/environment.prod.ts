@@ -1,4 +1,4 @@
 export const environment = {
-  production: true,
-  api: "https://api.klendar.es"
+    production: true,
+    api: "https://api.klendar.es"
 };

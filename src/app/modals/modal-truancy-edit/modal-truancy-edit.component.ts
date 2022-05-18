@@ -1,8 +1,8 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { getAll } from 'src/app/services/subject.service';
-import { deleteTruancy, getTruancy, updateTruancy } from 'src/app/services/truancy.service';
+import {Component, Inject, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {getAll} from 'src/app/services/subject.service';
+import {deleteTruancy, getTruancy, updateTruancy} from 'src/app/services/truancy.service';
 
 @Component({
     selector: 'app-modal-truancy-edit',
@@ -13,9 +13,10 @@ export class ModalTruancyEditComponent implements OnInit {
 
     constructor(
         private formBuilder: FormBuilder,
-        @Inject(MAT_DIALOG_DATA) public data: {moduleId: string, ufId: string, elementId: string, hours: Number, reason: string, date: string},
+        @Inject(MAT_DIALOG_DATA) public data: { moduleId: string, ufId: string, elementId: string, hours: Number, reason: string, date: string },
         public dialogRef: MatDialogRef<ModalTruancyEditComponent>
-    ) { }
+    ) {
+    }
 
     emptyUfs = false;
     selectOptionSubject: null | string = '';
@@ -23,16 +24,16 @@ export class ModalTruancyEditComponent implements OnInit {
     subjects: any = []
     ufs: any = []
 
-    formTruancy!:FormGroup;
+    formTruancy!: FormGroup;
 
 
     ngOnInit(): void {
         this.formTruancy = this.formBuilder.group({
             moduleId: ['', Validators.required],
             ufId: ['', Validators.required],
-            hours:['',Validators.required],
-            reason:[''],
-            date:['']
+            hours: ['', Validators.required],
+            reason: [''],
+            date: ['']
         })
 
         this.fetchTruancyAndSetValues();
@@ -74,12 +75,12 @@ export class ModalTruancyEditComponent implements OnInit {
         this.selectOptionUf = '';
 
         for (let i = 0; i < this.subjects.length; i++) {
-            if(this.subjects[i]._id === moduleId){
+            if (this.subjects[i]._id === moduleId) {
                 this.ufs = this.subjects[i].ufs;
             }
         }
 
-        if(this.ufs.length === 0){
+        if (this.ufs.length === 0) {
             this.emptyUfs = true;
             return;
         }
@@ -91,14 +92,16 @@ export class ModalTruancyEditComponent implements OnInit {
         this.selectOptionUf = ufId;
     }
 
-    async editTruancy(){
-        if(!this.formTruancy.valid){ return; }
+    async editTruancy() {
+        if (!this.formTruancy.valid) {
+            return;
+        }
 
         await updateTruancy({truancyId: this.data.elementId, ...this.formTruancy.value});
         this.dialogRef.close('edited');
     }
 
-    async deleteTruancy(){
+    async deleteTruancy() {
         await deleteTruancy(this.data.elementId);
         this.dialogRef.close('delete');
     }

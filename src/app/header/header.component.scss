@@ -1,9 +1,10 @@
-mat-toolbar{
+mat-toolbar {
     background-color: white;
     padding: 10px;
     justify-content: space-between;
 }
-::ng-deep .header-tab.mat-tab-group.mat-primary .mat-ink-bar{
+
+::ng-deep .header-tab.mat-tab-group.mat-primary .mat-ink-bar {
     background-color: #2ec4b6;
     width: 87px !important;
     margin-left: 2%;
@@ -15,21 +16,22 @@ mat-toolbar{
     color: #2ec4b6 !important
 }
 
-::ng-deep .header-tab .mat-tab-label{
+::ng-deep .header-tab .mat-tab-label {
     padding: 0px 10px !important;
     min-width: 100px !important;
 }
 
-::ng-deep .mat-tab-label-active>.mat-tab-label-content{
+::ng-deep .mat-tab-label-active > .mat-tab-label-content {
     color: #2ec4b6 !important
 }
 
-::ng-deep .header-tab .mat-tab-label-content{
+::ng-deep .header-tab .mat-tab-label-content {
     opacity: 1 !important;
     color: #303336;
     font-weight: bold;
 }
-.title{
+
+.title {
     color: #FF9F1C;
     font-weight: bold;
     padding-left: 4%;
@@ -38,66 +40,69 @@ mat-toolbar{
     cursor: pointer
 }
 
-.user{
+.user {
     color: #5f6368;
     font-size: 12px;
-    line-height:12px;
+    line-height: 12px;
     display: flex;
     align-content: center;
     align-items: center;
     padding-right: 4%;
     cursor: pointer;
 }
-.user-data{
+
+.user-data {
     height: 25px;
     text-align: right;
 }
-.icon-user{
+
+.icon-user {
     height: 49px;
     width: 49px
 }
-.material-icons{
-   font-size: 49px;
+
+.material-icons {
+    font-size: 49px;
 }
 
-.email{
+.email {
     font-size: 14px;
     font-weight: 500;
 }
 
-.name{
+.name {
     font-size: 16px;
     padding-bottom: 5px;
 }
 
-::ng-deep .mat-menu-panel{
+::ng-deep .mat-menu-panel {
     background-color: white !important;
     max-width: 100px;
 
 }
 
-::ng-deep .mat-menucontent{
-    display:flex !important;
+::ng-deep .mat-menucontent {
+    display: flex !important;
 }
 
-.logout{
+.logout {
     padding-left: 10px;
     font-size: 20px;
     color: red;
 }
 
-@media (max-width: 560px){
-    .title{
+@media (max-width: 560px) {
+    .title {
         display: none;
     }
 }
 
-@media (max-width: 440px){
-    .name{
+@media (max-width: 440px) {
+    .name {
         display: none
     }
 
-    .email{
-        display:none
+    .email {
+        display: none
     }
 }

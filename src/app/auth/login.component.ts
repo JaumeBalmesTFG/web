@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { auth, register, login, isLocalStorageToken } from '../services/auth.service';
-import { getAll } from '../services/subject.service';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
+import {auth, register, login, isLocalStorageToken} from '../services/auth.service';
+import {getAll} from '../services/subject.service';
 
 @Component({
     selector: 'app-login',
@@ -15,34 +15,37 @@ export class LoginComponent implements OnInit {
     constructor(
         private formBuilder: FormBuilder,
         private router: Router
-    ) { }
-    wrongData=false;
+    ) {
+    }
+
+    wrongData = false;
     formEmail!: FormGroup
     formLogin!: FormGroup
     formRegister!: FormGroup
     login = false;
     register = false;
+
     async ngOnInit(): Promise<void> {
-        if(isLocalStorageToken()){
+        if (isLocalStorageToken()) {
             let subjects = await getAll();
-                if(subjects.length === 0){
-                    this.router.navigate([`/subjects`]);
-                } else {
-                    this.router.navigate([`/calendar`]);
-                }
+            if (subjects.length === 0) {
+                this.router.navigate([`/subjects`]);
+            } else {
+                this.router.navigate([`/calendar`]);
+            }
         }
         this.formEmail = this.formBuilder.group({
-            email:['',[Validators.required,Validators.email]]
+            email: ['', [Validators.required, Validators.email]]
         })
         this.formLogin = this.formBuilder.group({
-            email: [{value: '',disabled: true}, Validators.required,],
+            email: [{value: '', disabled: true}, Validators.required,],
             password: ['', Validators.required]
         })
         this.formRegister = this.formBuilder.group({
-            email:[{value: '',disabled: true},Validators.required],
-            name:['',Validators.required],
-            lastName:['',Validators.required],
-            password:['',[Validators.required]]
+            email: [{value: '', disabled: true}, Validators.required],
+            name: ['', Validators.required],
+            lastName: ['', Validators.required],
+            password: ['', [Validators.required]]
         })
     }
 
@@ -57,14 +60,14 @@ export class LoginComponent implements OnInit {
                 this.formLogin.patchValue({
                     email: this.formEmail.get('email')?.value
                 })
-                this.error=''
+                this.error = ''
                 //If the user's email doesn't exist in our DB we redirect them to register
             } else if (res.message === "REGISTER") {
                 this.register = true;
                 this.formRegister.patchValue({
                     email: this.formEmail.get('email')?.value
                 })
-                this.error=''
+                this.error = ''
             } else {
                 this.error = res.message
             }
@@ -72,21 +75,22 @@ export class LoginComponent implements OnInit {
             this.formEmail.markAllAsTouched();
         }
     }
+
     async enterLogin() {
         // Function to validate the login
         if (this.formLogin.valid) {
-            let parameters={
+            let parameters = {
                 email: this.formLogin.get('email')?.value,
                 password: this.formLogin.get('password')?.value
             }
             let res: any = await login(JSON.stringify(parameters));
 
             // If the login is succesful we redirect the user to calendar
-            if (res.message==='LOGIN_SUCCESSFUL') {
+            if (res.message === 'LOGIN_SUCCESSFUL') {
                 let subjects = await getAll();
                 localStorage.setItem('nameLastName', res.body.body.firstName + ' ' + res.body.body.lastName)
                 localStorage.setItem('email', res.body.body.email)
-                if(subjects.length === 0){
+                if (subjects.length === 0) {
                     this.router.navigate([`/subjects`]);
                 } else {
                     this.router.navigate([`/calendar`]);
@@ -94,12 +98,13 @@ export class LoginComponent implements OnInit {
                 // Otherwise we send them the error
             } else {
                 this.error = res.message;
-                this.wrongData=true;
+                this.wrongData = true;
             }
         } else {
             this.formLogin.markAllAsTouched();
         }
     }
+
     async enterRegister() {
         // Function to validate the register
         if (this.formRegister.valid) {
@@ -111,17 +116,17 @@ export class LoginComponent implements OnInit {
             }
             let res: any = await register(JSON.stringify(parameters));
             //We redirect the user to the main app if the information is correct
-            if(res.message==="USER_CREATED"){
+            if (res.message === "USER_CREATED") {
 
                 localStorage.setItem('nameLastName', res.body.firstName + ' ' + res.body.lastName)
                 localStorage.setItem('email', res.body.email)
                 let subjects = await getAll();
-                if(subjects.length === 0){
+                if (subjects.length === 0) {
                     this.router.navigate([`/subjects`]);
                 } else {
                     this.router.navigate([`/calendar`]);
                 }
-            //Otherwise we show them the errors
+                //Otherwise we show them the errors
             } else {
                 this.error = res.message
             }
@@ -129,8 +134,9 @@ export class LoginComponent implements OnInit {
             this.formRegister.markAllAsTouched();
         }
     }
-    back(){
-        this.login=false;
-        this.register=false;
+
+    back() {
+        this.login = false;
+        this.register = false;
     }
 }

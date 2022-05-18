@@ -45,18 +45,21 @@
         <div class="mt-15">
             <div>Name</div>
             <input formControlName="rule" id="name" type="text">
-            <div *ngIf="rulesAndPercentages.get('rule')?.invalid && rulesAndPercentages.get('rule')?.touched" class="error">
+            <div *ngIf="rulesAndPercentages.get('rule')?.invalid && rulesAndPercentages.get('rule')?.touched"
+                 class="error">
                 <div *ngIf="rulesAndPercentages.get('rule')?.errors?.['required']">
-                Name is required
+                    Name is required
                 </div>
             </div>
         </div>
         <div class="mt-15">
             <div>Percentage</div>
             <input formControlName="percentage" id="percentage" type="text" class="icon-percentage">
-            <div *ngIf="rulesAndPercentages.get('percentage')?.invalid && rulesAndPercentages.get('percentage')?.touched" class="error">
+            <div
+                *ngIf="rulesAndPercentages.get('percentage')?.invalid && rulesAndPercentages.get('percentage')?.touched"
+                class="error">
                 <div *ngIf="rulesAndPercentages.get('percentage')?.errors?.['required']">
-                  Percentage is required
+                    Percentage is required
                 </div>
                 <div *ngIf="rulesAndPercentages.get('percentage')?.errors?.['pattern']">
                     The value must be numeric
@@ -75,8 +78,12 @@
             <th>{{rule.rule}}</th>
             <th>{{rule.percentage}}%</th>
             <th>
-                <button mat-mini-fab class="rule-button" (click)="edit(rule)"><mat-icon>edit</mat-icon></button>
-                <button mat-mini-fab class="rule-button" (click)="deleteRule(rule)"><mat-icon>delete</mat-icon></button>
+                <button mat-mini-fab class="rule-button" (click)="edit(rule)">
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-mini-fab class="rule-button" (click)="deleteRule(rule)">
+                    <mat-icon>delete</mat-icon>
+                </button>
             </th>
         </tr>
     </table>
@@ -85,7 +92,7 @@
     </div>
     <div class="end-buttons">
         <button class="submit-button" mat-raised-button (click)="addUf()">Save</button>
-        <button mat-raised-button  mat-dialog-close class="cancel-button">Cancel</button>
+        <button mat-raised-button mat-dialog-close class="cancel-button">Cancel</button>
     </div>
     <div class="error" *ngIf="error">
         {{error}}
