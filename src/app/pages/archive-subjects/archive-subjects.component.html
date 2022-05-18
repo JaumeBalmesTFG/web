@@ -1,4 +1,4 @@
-<app-header [index]="0"></app-header>
+<app-header (activeTab)="selectTab($event)" [index]="0"></app-header>
 
 <div class="container subject-header box-shadow">
     <mat-card class="card">
@@ -6,7 +6,7 @@
         <button class="header-btn" mat-raised-button routerLink="/subjectsAndUfs"><mat-icon>chevron_left</mat-icon>Back To Subjects</button>
     </mat-card>
 </div>
-  
+
 <!-- Element appears when user have subjects -->
 <div class="container" *ngIf="subjects.length > 0">
     <div class="subject-container" *ngFor="let subject of subjects">
