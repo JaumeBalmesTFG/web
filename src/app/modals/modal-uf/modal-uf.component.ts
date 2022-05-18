@@ -1,15 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import {
-  createUf,
-  updateUf
-} from '../../services/uf.service'
-import {
-  createRule,
-  updateRule,
-  deleteRule
-} from '../../services/rule.service'
+import { createUf, updateUf } from '../../services/uf.service'
+import { createRule, updateRule, deleteRule } from '../../services/rule.service'
 @Component({
     selector: 'app-modal-uf',
     templateUrl: './modal-uf.component.html',
@@ -24,7 +17,7 @@ export class ModalUfComponent implements OnInit {
         public dialogRef: MatDialogRef<ModalUfComponent>
     ) { }
     error!: string;
-    close= false; 
+    close= false;
     UFForm!: FormGroup;
     rulesAndPercentages!: FormGroup;
     arrayOfRules: any=[]
@@ -121,7 +114,7 @@ export class ModalUfComponent implements OnInit {
         })
         this.dialogRef.close('Created')
       }
-      
+
     } else if (totalPercentage === 100 && this.UFForm.valid && typeof this.data !== typeof 'a'){
       let parameters = {
         name: this.UFForm.get('title')?.value,
@@ -131,7 +124,7 @@ export class ModalUfComponent implements OnInit {
         truancy_percentage: this.UFForm.get('truancyPercentage')?.value,
       }
       let res: any = await updateUf(parameters)
-      
+
       if(res.message === "ALREADY_EXISTS" || res.error){
         this.error=res.error
       } else {

@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ModalUfComponent } from '../../modals/modal-uf/modal-uf.component';
-import {MatDialog } from '@angular/material/dialog';
-import {ModalDeleteComponent} from "../../modals/modal-delete/modal-delete.component";
+import { MatDialog } from '@angular/material/dialog';
+import { ModalDeleteComponent } from "../../modals/modal-delete/modal-delete.component";
 import { getAllRules } from "../../services/rule.service"
 import { ToastrService } from 'ngx-toastr';
 @Component({

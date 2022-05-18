@@ -3,7 +3,7 @@ import {MatDialog} from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ModalSubjectComponent } from '../../modals/modal-subject/modal-subject.component';
 import { ModalUfComponent } from '../../modals/modal-uf/modal-uf.component';
-import { getAll, archiveOrDearchiveSubject, getAllSubjects, getUfsFromOneModule } from 'src/app/services/subject.service';
+import { getAll, archiveOrDearchiveSubject } from 'src/app/services/subject.service';
 import { isLocalStorageToken } from '../../services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 @Component({

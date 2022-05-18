@@ -1,10 +1,7 @@
-import { Component, OnInit, Input, Output, Inject } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import {
-  createSubject,
-  updateSubject
-} from '../../services/subject.service'
+import { createSubject, updateSubject } from '../../services/subject.service'
 @Component({
     selector: 'app-modal-subject',
     templateUrl: './modal-subject.component.html',
@@ -43,7 +40,7 @@ export class ModalSubjectComponent implements OnInit {
             this.subjectForm.get('checkColor')?.patchValue({
                 option: this.data.checkColor
             })
-            
+
         }
     }
 
@@ -55,7 +52,7 @@ export class ModalSubjectComponent implements OnInit {
                 name: this.subjectForm.get('name')?.value,
                 color: this.subjectForm.get('checkColor')?.value.option,
                 moduleId: this.data.moduleId
-              }  
+              }
               let res:any = await updateSubject(parameters);
               if (res.error || res.message === "ALREADY_EXISTS"){
                   this.error = res.message
@@ -78,7 +75,6 @@ export class ModalSubjectComponent implements OnInit {
             this.subjectForm.markAllAsTouched()
         }
     }
-    changeColorValue(color:any){
-    }
+    changeColorValue(color:any){}
 }
 

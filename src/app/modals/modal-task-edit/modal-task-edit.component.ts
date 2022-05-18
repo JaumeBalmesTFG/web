@@ -1,8 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { getAllRules, getRule } from 'src/app/services/rule.service';
-import { getAll, getAllSubjects, getUfsFromOneModule } from 'src/app/services/subject.service';
+import { getAllRules } from 'src/app/services/rule.service';
+import { getAll } from 'src/app/services/subject.service';
 import { deleteTask, getTask, updateTask } from 'src/app/services/task.service';
 
 @Component({

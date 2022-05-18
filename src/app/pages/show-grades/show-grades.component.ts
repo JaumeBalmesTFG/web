@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ModalTaskEditComponent } from 'src/app/modals/modal-task-edit/modal-task-edit.component';
 import { isLocalStorageToken } from '../../services/auth.service';
-import {getAll} from "../../services/subject.service";
+import { getAll } from "../../services/subject.service";
 import { getTask } from '../../services/task.service'
 @Component({
     selector: 'app-show-grades',

@@ -1,6 +1,5 @@
 import { environment } from "src/environments/environment.prod";
 
-
 // Check localstorage token
 export function isLocalStorageToken(): boolean {
     const token:any = localStorage.getItem('token');
