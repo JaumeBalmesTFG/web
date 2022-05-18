@@ -95,12 +95,12 @@ export class ModalTruancyEditComponent implements OnInit {
         if(!this.formTruancy.valid){ return; }
 
         await updateTruancy({truancyId: this.data.elementId, ...this.formTruancy.value});
-        this.dialogRef.close(true);
+        this.dialogRef.close('edited');
     }
 
     async deleteTruancy(){
         await deleteTruancy(this.data.elementId);
-        this.dialogRef.close(true);
+        this.dialogRef.close('delete');
     }
 
     changeHours(action: string) {
