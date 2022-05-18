@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { ModalTaskEditComponent } from 'src/app/modals/modal-task-edit/modal-task-edit.component';
 import { isLocalStorageToken } from '../../services/auth.service';
 import {getAll} from "../../services/subject.service";
@@ -15,6 +16,7 @@ export class ShowGradesComponent implements OnInit {
     constructor(
         private router: Router,
         private dialog: MatDialog,
+        private toastr: ToastrService
     ) { }
 
     subjectsInfo: any[] = [];
@@ -53,7 +55,19 @@ export class ShowGradesComponent implements OnInit {
                 data: sendData
             });
 
-            dialogRef.afterClosed().subscribe(()=>{
+            dialogRef.afterClosed().subscribe((result)=>{
+                if(!result){return}
+                if(result === 'edited'){
+                    this.toastr.success('Task successfully edited!', 'Success', {
+                        closeButton: true,
+                        progressBar: true
+                    });
+                } else if(result==='delete'){
+                    this.toastr.success('Task successfully deleted!', 'Success', {
+                        closeButton: true,
+                        progressBar: true
+                    });
+                }
                 this.getData();
             })
         }
