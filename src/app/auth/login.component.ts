@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
         if(isLocalStorageToken()){
             let subjects = await getAll();
                 if(subjects.length === 0){
-                    this.router.navigate([`/subjectsAndUfs`]);
+                    this.router.navigate([`/subjects`]);
                 } else {
                     this.router.navigate([`/calendar`]);
                 }
@@ -92,7 +92,7 @@ export class LoginComponent implements OnInit {
                 localStorage.setItem('nameLastName', res.body.body.firstName + ' ' + res.body.body.lastName)
                 localStorage.setItem('email', res.body.body.email)
                 if(subjects.length === 0){
-                    this.router.navigate([`/subjectsAndUfs`]);
+                    this.router.navigate([`/subjects`]);
                 } else {
                     this.router.navigate([`/calendar`]);
                 }
@@ -122,7 +122,7 @@ export class LoginComponent implements OnInit {
                 localStorage.setItem('email', res.body.email)
                 let subjects = await getAll();
                 if(subjects.length === 0){
-                    this.router.navigate([`/subjectsAndUfs`]);
+                    this.router.navigate([`/subjects`]);
                 } else {
                     this.router.navigate([`/calendar`]);
                 }

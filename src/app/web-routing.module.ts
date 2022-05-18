@@ -10,8 +10,8 @@ import {ArchiveSubjectsComponent} from "./pages/archive-subjects/archive-subject
 const routes: Routes = [
     {path:'login', component: LoginComponent},
     {path:'calendar', component: CalendarComponent},
-    {path:'subjectsAndUfs', component: SubjectsAndUfsComponent},
-    {path:'showGrades', component: ShowGradesComponent},
+    {path:'subjects', component: SubjectsAndUfsComponent},
+    {path:'grades', component: ShowGradesComponent},
     {path:'archived', component: ArchiveSubjectsComponent},
     {path:'',redirectTo: '/calendar', pathMatch: 'full'}
 ]

@@ -17,9 +17,9 @@ export class HeaderComponent implements OnInit {
         private router: Router,
     ) { }
     tabs=[
-        {description: "Subjects", value: "subjectsAndUfs"},
+        {description: "Subjects", value: "subjects"},
         {description: "Calendar", value: "calendar"},
-        {description: "Grades", value: "showGrades"}
+        {description: "Grades", value: "grades"}
     ]
 
     ngOnInit(): void {
