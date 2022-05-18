@@ -5,6 +5,7 @@ import { ModalSubjectComponent } from '../../modals/modal-subject/modal-subject.
 import { ModalUfComponent } from '../../modals/modal-uf/modal-uf.component';
 import { getAll, archiveOrDearchiveSubject, getAllSubjects, getUfsFromOneModule } from 'src/app/services/subject.service';
 import { isLocalStorageToken } from '../../services/auth.service';
+import { ToastrService } from 'ngx-toastr';
 @Component({
     selector: 'app-subjects-and-ufs',
     templateUrl: './subjects-and-ufs.component.html',
@@ -15,6 +16,7 @@ export class SubjectsAndUfsComponent implements OnInit {
     constructor(
         private dialog: MatDialog,
         private router: Router,
+        private toastr: ToastrService
     ) { }
 
     subjects: any[]=[]
@@ -34,7 +36,14 @@ export class SubjectsAndUfsComponent implements OnInit {
         const dialogRef = this.dialog.open(ModalSubjectComponent,{
             autoFocus: false,
         });
-        dialogRef.afterClosed().subscribe(async () =>{
+        dialogRef.afterClosed().subscribe(async (result) =>{
+            if (!result) { return; }
+
+            // Function options .success/error/warning/info/show
+            this.toastr.success('New Subject created!', 'Success', {
+                closeButton: true,
+                progressBar: true
+            });
             this.reloadData()
         })
     }
@@ -43,7 +52,14 @@ export class SubjectsAndUfsComponent implements OnInit {
             data: subject,
             autoFocus: false
         });
-        dialogRef.afterClosed().subscribe(async () =>{
+        dialogRef.afterClosed().subscribe(async (result) =>{
+            if (!result) { return; }
+
+            // Function options .success/error/warning/info/show
+            this.toastr.success('Subject edited', 'Success', {
+                closeButton: true,
+                progressBar: true
+            });
             this.reloadData()
         })
     }
@@ -52,7 +68,14 @@ export class SubjectsAndUfsComponent implements OnInit {
             data: subjectId,
             autoFocus: false
         })
-        dialogRef.afterClosed().subscribe(async () => {
+        dialogRef.afterClosed().subscribe(async (result) => {
+            if (!result) { return; }
+
+            // Function options .success/error/warning/info/show
+            this.toastr.success('New UF created!', 'Success', {
+                closeButton: true,
+                progressBar: true
+            });
             this.reloadData()
         })
     }
@@ -60,6 +83,10 @@ export class SubjectsAndUfsComponent implements OnInit {
     async deleteSubject(subjectToDelete:any){
         await archiveOrDearchiveSubject(subjectToDelete)
         this.reloadData()
+        this.toastr.success('Subject archived', 'Success', {
+            closeButton: true,
+            progressBar: true
+        });
     }
 
     async reloadData(){

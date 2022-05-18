@@ -52,8 +52,8 @@
     box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);
 }
 
-button{
-    background-color: #FF9F1C !important;
+::ng-deep .mat-button-base.mat-accent{
+    background-color: #FF9F1C;
 }
 
 .uf-container .card .mat-card-title {

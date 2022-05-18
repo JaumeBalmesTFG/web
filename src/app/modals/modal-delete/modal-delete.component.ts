@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA} from "@angular/material/dialog";
+import {MatDialogRef, MAT_DIALOG_DATA} from "@angular/material/dialog";
 import { deleteUf } from "../../services/uf.service";
 @Component({
     selector: 'app-modal-delete',
@@ -9,7 +9,8 @@ import { deleteUf } from "../../services/uf.service";
 export class ModalDeleteComponent implements OnInit {
 
     constructor(
-        @Inject(MAT_DIALOG_DATA) public data: any
+        @Inject(MAT_DIALOG_DATA) public data: any,
+        public dialogRef: MatDialogRef<ModalDeleteComponent>
     ) { }
 
     ngOnInit(): void {
@@ -17,5 +18,6 @@ export class ModalDeleteComponent implements OnInit {
 
     removeUf(){
         deleteUf(this.data._id)
+        this.dialogRef.close('Deleted')
     }
 }

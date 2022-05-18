@@ -60,7 +60,7 @@ export class ModalSubjectComponent implements OnInit {
               if (res.error || res.message === "ALREADY_EXISTS"){
                   this.error = res.message
               } else {
-                this.dialogRef.close()
+                this.dialogRef.close('Edited')
               }
             } else {
                 let parameters = {
@@ -71,7 +71,7 @@ export class ModalSubjectComponent implements OnInit {
                 if (res.error || res.message === "ALREADY_EXISTS"){
                     this.error = res.message
                 } else {
-                    this.dialogRef.close()
+                    this.dialogRef.close('Created')
                 }
             }
         } else {
