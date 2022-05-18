@@ -51,8 +51,15 @@
     margin-bottom: 50px;
 }
 
-button{
+
+button:not(.clear-btn) {
     background-color: #FF9F1C !important;
+}
+
+.clear-btn {
+    background-color: white;
+    color:  #FF9F1C !important;
+    border: 1px solid #FF9F1C !important;
 }
 
 .add-subject-btn {

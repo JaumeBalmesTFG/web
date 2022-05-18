@@ -34,7 +34,7 @@ export class ShowGradesComponent implements OnInit {
         response.forEach((data: any) => {
             this.subjectsInfo.push(data);
         });
-        
+
     }
 
     selectTab(tabSelected: any){
@@ -58,12 +58,12 @@ export class ShowGradesComponent implements OnInit {
             dialogRef.afterClosed().subscribe((result)=>{
                 if(!result){return}
                 if(result === 'edited'){
-                    this.toastr.success('Task successfully edited!', 'Success', {
+                    this.toastr.success('Task successfully updated', 'Success', {
                         closeButton: true,
                         progressBar: true
                     });
                 } else if(result==='delete'){
-                    this.toastr.success('Task successfully deleted!', 'Success', {
+                    this.toastr.success('Task successfully deleted', 'Success', {
                         closeButton: true,
                         progressBar: true
                     });

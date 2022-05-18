@@ -120,6 +120,15 @@ body { margin: 0; }
     cursor: pointer;
 }
 
+@media (max-width: 400px){
+
+    .mat-dialog-container {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
+
+}
+
 
 /* Toast plugin */
 

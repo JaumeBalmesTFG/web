@@ -60,14 +60,13 @@ export class CalendarComponent implements OnInit {
         dialogRef.afterClosed().subscribe(result => {
             if (!result) { return; }
 
-            // Function options .success/error/warning/info/show
             if(result === 'task'){
-                this.toastr.success('Task successfully created!', 'Success', {
+                this.toastr.success('Task successfully created', 'Success', {
                     closeButton: true,
                     progressBar: true
                 });
             } else if (result === 'truancy'){
-                this.toastr.success('Truancy successfully created!', 'Success', {
+                this.toastr.success('Truancy successfully created', 'Success', {
                     closeButton: true,
                     progressBar: true
                 });
@@ -86,12 +85,12 @@ export class CalendarComponent implements OnInit {
                 if (!result) { return; }
 
                 if(result === 'edited'){
-                    this.toastr.success('Task successfully edited!', 'Success', {
+                    this.toastr.success('Task successfully updated', 'Success', {
                         closeButton: true,
                         progressBar: true
                     });
                 } else if(result==='delete'){
-                    this.toastr.success('Task successfully deleted!', 'Success', {
+                    this.toastr.success('Task successfully deleted', 'Success', {
                         closeButton: true,
                         progressBar: true
                     });
@@ -108,12 +107,12 @@ export class CalendarComponent implements OnInit {
             dialogRef.afterClosed().subscribe(result => {
                 if (!result) { return; }
                 if(result === 'edited'){
-                    this.toastr.success('Task successfully edited!', 'Success', {
+                    this.toastr.success('Truancy successfully updated', 'Success', {
                         closeButton: true,
                         progressBar: true
                     });
                 } else if(result==='delete'){
-                    this.toastr.success('Task successfully deleted!', 'Success', {
+                    this.toastr.success('Truancy successfully deleted', 'Success', {
                         closeButton: true,
                         progressBar: true
                     });
@@ -133,7 +132,7 @@ export class CalendarComponent implements OnInit {
 
             // Get the new task event
             const event = data.event._def.extendedProps;
-            
+
             // Update the task
             const newData = {
                 taskId: event['elementId'],
@@ -147,8 +146,7 @@ export class CalendarComponent implements OnInit {
             const res: any = await updateTask(newData);
 
             if (res.message === "OK") {
-                // Function options .success/error/warning/info/show
-                this.toastr.success('Task Date Updated', 'Success', {
+                this.toastr.success('Task date updated', 'Success', {
                     closeButton: true,
                     progressBar: true
                 });
@@ -171,8 +169,7 @@ export class CalendarComponent implements OnInit {
             const res: any = await updateTruancy(newData);
 
             if (res.message === "OK") {
-                // Function options .success/error/warning/info/show
-                this.toastr.success('Truancy Date Updated', 'Success', {
+                this.toastr.success('Truancy date updated', 'Success', {
                     closeButton: true,
                     progressBar: true
                 });

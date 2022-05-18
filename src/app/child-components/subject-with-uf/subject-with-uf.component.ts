@@ -1,9 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ModalUfComponent } from '../../modals/modal-uf/modal-uf.component';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {MatDialog } from '@angular/material/dialog';
 import {ModalDeleteComponent} from "../../modals/modal-delete/modal-delete.component";
 import { getAllRules } from "../../services/rule.service"
-import {getUf} from "../../services/uf.service"
 import { ToastrService } from 'ngx-toastr';
 @Component({
     selector: 'app-subject-with-uf',
@@ -55,8 +54,7 @@ export class SubjectWithUfComponent implements OnInit {
         dialogRef.afterClosed().subscribe((result)=>{
             if (!result) { return; }
 
-            // Function options .success/error/warning/info/show
-            this.toastr.success('UF edited!', 'Success', {
+            this.toastr.success('UF updated', 'Success', {
                 closeButton: true,
                 progressBar: true
             });
@@ -73,15 +71,14 @@ export class SubjectWithUfComponent implements OnInit {
             dialogRef.afterClosed().subscribe((result)=>{
                 if (!result) { return; }
 
-            // Function options .success/error/warning/info/show
-                this.toastr.success('UF deleted!', 'Success', {
+                this.toastr.success('UF deleted', 'Success', {
                 closeButton: true,
                 progressBar: true
             });
                 this.reload()
             })
         } else {
-            this.toastr.error("Can't delete since you have Tasks or Truancies associated with this UF", "Can't delete")
+            this.toastr.info("Can't delete since you have tasks or truancies associated with this UF", "Info")
         }
     }
     reload(){

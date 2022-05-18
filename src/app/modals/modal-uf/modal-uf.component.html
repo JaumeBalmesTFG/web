@@ -29,7 +29,7 @@
 
     <div class="mt-15">
         <div>Truancy percentage</div>
-        <input formControlName="truancyPercentage" type="text">
+        <input formControlName="truancyPercentage" type="text" class="icon-percentage">
         <div *ngIf="UFForm.get('truancyPercentage')?.invalid && UFForm.get('truancyPercentage')?.touched" class="error">
             <div *ngIf="UFForm.get('truancyPercentage')?.errors?.['required']">
                 Truancy percentage is required
@@ -53,7 +53,7 @@
         </div>
         <div class="mt-15">
             <div>Percentage</div>
-            <input formControlName="percentage" id="percentage" type="text">
+            <input formControlName="percentage" id="percentage" type="text" class="icon-percentage">
             <div *ngIf="rulesAndPercentages.get('percentage')?.invalid && rulesAndPercentages.get('percentage')?.touched" class="error">
                 <div *ngIf="rulesAndPercentages.get('percentage')?.errors?.['required']">
                   Percentage is required

@@ -39,8 +39,7 @@ export class SubjectsAndUfsComponent implements OnInit {
         dialogRef.afterClosed().subscribe(async (result) =>{
             if (!result) { return; }
 
-            // Function options .success/error/warning/info/show
-            this.toastr.success('New Subject created!', 'Success', {
+            this.toastr.success('New subject created', 'Success', {
                 closeButton: true,
                 progressBar: true
             });
@@ -55,8 +54,7 @@ export class SubjectsAndUfsComponent implements OnInit {
         dialogRef.afterClosed().subscribe(async (result) =>{
             if (!result) { return; }
 
-            // Function options .success/error/warning/info/show
-            this.toastr.success('Subject edited', 'Success', {
+            this.toastr.success('Subject updated', 'Success', {
                 closeButton: true,
                 progressBar: true
             });
@@ -71,8 +69,7 @@ export class SubjectsAndUfsComponent implements OnInit {
         dialogRef.afterClosed().subscribe(async (result) => {
             if (!result) { return; }
 
-            // Function options .success/error/warning/info/show
-            this.toastr.success('New UF created!', 'Success', {
+            this.toastr.success('New UF created', 'Success', {
                 closeButton: true,
                 progressBar: true
             });
