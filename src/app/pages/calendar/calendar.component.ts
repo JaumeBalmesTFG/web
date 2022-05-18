@@ -61,11 +61,17 @@ export class CalendarComponent implements OnInit {
             if (!result) { return; }
 
             // Function options .success/error/warning/info/show
-            this.toastr.success('Whatever successfully created!', 'Success', {
-                closeButton: true,
-                progressBar: true
-            });
-
+            if(result === 'task'){
+                this.toastr.success('Task successfully created!', 'Success', {
+                    closeButton: true,
+                    progressBar: true
+                });
+            } else if (result === 'truancy'){
+                this.toastr.success('Truancy successfully created!', 'Success', {
+                    closeButton: true,
+                    progressBar: true
+                });
+            }
             this.refetchEvents();
         });
     }
@@ -78,6 +84,18 @@ export class CalendarComponent implements OnInit {
 
             dialogRef.afterClosed().subscribe(result => {
                 if (!result) { return; }
+
+                if(result === 'edited'){
+                    this.toastr.success('Task successfully edited!', 'Success', {
+                        closeButton: true,
+                        progressBar: true
+                    });
+                } else if(result==='delete'){
+                    this.toastr.success('Task successfully deleted!', 'Success', {
+                        closeButton: true,
+                        progressBar: true
+                    });
+                }
                 this.refetchEvents();
             });
         }
@@ -89,6 +107,17 @@ export class CalendarComponent implements OnInit {
 
             dialogRef.afterClosed().subscribe(result => {
                 if (!result) { return; }
+                if(result === 'edited'){
+                    this.toastr.success('Task successfully edited!', 'Success', {
+                        closeButton: true,
+                        progressBar: true
+                    });
+                } else if(result==='delete'){
+                    this.toastr.success('Task successfully deleted!', 'Success', {
+                        closeButton: true,
+                        progressBar: true
+                    });
+                }
                 this.refetchEvents();
             });
         }

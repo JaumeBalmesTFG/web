@@ -110,7 +110,7 @@ export class ModalTaskTruancyComponent implements OnInit {
 
         if (this.formTask.valid) {
             await createTask(JSON.stringify(this.task_data));
-            this.dialogRef.close(true);
+            this.dialogRef.close('task');
         }
         else {
             this.formTask.markAllAsTouched();
@@ -123,7 +123,7 @@ export class ModalTaskTruancyComponent implements OnInit {
 
         if (this.formTruancy.valid) {
             await createTruancy(JSON.stringify(this.truancy_data));
-            this.dialogRef.close(true);
+            this.dialogRef.close('truancy');
         }
         else {
             this.formTruancy.markAllAsTouched();

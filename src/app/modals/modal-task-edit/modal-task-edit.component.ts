@@ -104,7 +104,7 @@ export class ModalTaskEditComponent implements OnInit {
         };
 
         await updateTask(newData);
-        this.dialogRef.close(true);
+        this.dialogRef.close('edited');
     }
 
     finishedTask() {
@@ -147,6 +147,6 @@ export class ModalTaskEditComponent implements OnInit {
 
     async deleteTask(){
         await deleteTask(this.data.elementId);
-        this.dialogRef.close(true);
+        this.dialogRef.close('delete');
     }
 }
