@@ -24,6 +24,10 @@ export class ArchiveSubjectsComponent implements OnInit {
         }
     }
 
+    selectTab(tabSelected: any) {
+        this.router.navigate([`/${tabSelected}`]);
+    }
+
     async callAllArchivated(): Promise<any> {
         let archived: any = await getAllArchivedSubjects();
 
