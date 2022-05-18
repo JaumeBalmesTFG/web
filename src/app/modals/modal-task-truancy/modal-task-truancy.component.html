@@ -103,7 +103,11 @@
 
                 <div class="mt-15">
                     <div>Hours</div>
-                    <input formControlName="hours" type="number" min="0" (change)="getHours();">
+                    <div class="input-hours-container">
+                        <button mat-raised-button (click) = "changeHours('minus')" class="minus-button"><mat-icon>remove</mat-icon></button>
+                        <input formControlName="hours" type="number" min="0" value="0" readonly>
+                        <button mat-raised-button (click) = "changeHours('plus')" class="max-button"><mat-icon>add</mat-icon></button>
+                    </div>
                     <div *ngIf="formTruancy.get('hours')?.invalid && formTruancy.get('hours')?.touched" class="error">
                         <div *ngIf="formTruancy.get('hours')?.errors?.['required']">
                             Hours is required

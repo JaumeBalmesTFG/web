@@ -181,6 +181,25 @@ input:focus {
     border-bottom: 1px solid #ccc;
 }
 
+.input-hours-container {
+    margin-top: 10px;
+    display: flex;
+    width: 275px;
+}
+
+.input-hours-container input {
+    margin: 0;
+    text-align: center;
+}
+
+.minus-button, .max-button {
+    background-color: #ff9f1c;
+}
+
+.minus-button {
+    margin-left: 0;
+}
+
 @media (max-width: 830px){
 
     .form {
