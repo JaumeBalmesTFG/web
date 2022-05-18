@@ -105,7 +105,7 @@ export class ModalTaskTruancyComponent implements OnInit {
     }
 
     async createNewTask() {
-        
+
         this.task_data.dueDate = this.data;
 
         if (this.formTask.valid) {
@@ -130,6 +130,27 @@ export class ModalTaskTruancyComponent implements OnInit {
         }
     }
 
+    changeHours(action: string) {
+
+        let value = this.formTruancy.get('hours')!.value;
+        let new_value;
+
+        switch (action) {
+            case "minus":
+                new_value = value - 1;
+                break;
+            case "plus":
+                new_value = value + 1
+
+        }
+
+        if (new_value >= 0) {
+            this.truancy_data.hours = this.formTruancy.get('hours')!.value;
+            this.formTruancy.get('hours')!.setValue(parseInt(new_value));
+        }
+
+    }
+
     selectUF(UFSelected: any) {
         this.task_data.ufId = UFSelected;
         this.callRules();
@@ -149,10 +170,6 @@ export class ModalTaskTruancyComponent implements OnInit {
 
     getDescription(){
         this.task_data.description = this.formTask.get('description')!.value;
-    }
-
-    getHours(){
-        this.truancy_data.hours = this.formTruancy.get('hours')!.value;
     }
 
     getReason(){

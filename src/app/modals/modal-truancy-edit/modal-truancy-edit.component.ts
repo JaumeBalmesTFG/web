@@ -90,7 +90,7 @@ export class ModalTruancyEditComponent implements OnInit {
     async selectUf(ufId: any) {
         this.selectOptionUf = ufId;
     }
-    
+
     async editTruancy(){
         if(!this.formTruancy.valid){ return; }
 
@@ -101,5 +101,25 @@ export class ModalTruancyEditComponent implements OnInit {
     async deleteTruancy(){
         await deleteTruancy(this.data.elementId);
         this.dialogRef.close(true);
+    }
+
+    changeHours(action: string) {
+
+        let value = this.formTruancy.get('hours')!.value;
+        let new_value;
+
+        switch (action) {
+            case "minus":
+                new_value = value - 1;
+                break;
+            case "plus":
+                new_value = value + 1
+
+        }
+
+        if (new_value >= 0) {
+            this.formTruancy.get('hours')!.setValue(new_value);
+        }
+
     }
 }

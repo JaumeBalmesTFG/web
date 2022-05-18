@@ -100,6 +100,25 @@ mat-select{
     padding-right: 10px;
 }
 
+.input-hours-container {
+    margin-top: 10px;
+    display: flex;
+    width: 275px;
+}
+
+.input-hours-container input {
+    margin: 0;
+    text-align: center;
+}
+
+.minus-button, .max-button {
+    background-color: #ff9f1c;
+}
+
+.minus-button {
+    margin-left: 0;
+}
+
 mat-option{
     background-color: white;
     color: black;
