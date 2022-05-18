@@ -195,6 +195,14 @@
     cursor: pointer;
 }
 
+::ng-deep .above-half .mat-progress-bar-buffer {
+    background-color: #f3cecb !important;
+}
+
+::ng-deep .above-half .mat-progress-bar-fill::after {
+    background-color: #c42e2e !important;
+}
+
 @media only screen and (max-width: 700px) {
     .mat-expansion-panel-header {
         padding: 0 15px;

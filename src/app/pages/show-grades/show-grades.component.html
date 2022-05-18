@@ -37,7 +37,7 @@
                                 <div class="truancies">Truancies:</div>
                                 <div><strong>{{uf.totalTruancies.toFixed(2)}}%</strong> /{{ uf.truancy_percentage }}%</div>
                             </div>
-                            <mat-progress-bar mode="determinate" value="{{((uf.totalTruancies/uf.truancy_percentage)*100)}}"></mat-progress-bar>
+                            <mat-progress-bar mode="determinate" value="{{((uf.totalTruancies/uf.truancy_percentage)*100)}}" [ngClass]="{'above-half': (uf.totalTruancies/uf.truancy_percentage)*100 >=50}"></mat-progress-bar>
                         </div>
                         <mat-card class="card task-card {{task.grade ? '' : 'no-delivered'}}" (click)="openTask(task)" *ngFor="let task of uf.tasks">
                             <mat-card-title class="task-card-title" [ngStyle]="{'cursor': task.grade ? '' : 'pointer'}">
