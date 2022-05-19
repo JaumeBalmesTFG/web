@@ -190,6 +190,32 @@
     background: #ff9f1c;
 }
 
+.info-container p {
+    font-size: 16px;
+    margin-bottom: 25px;
+}
+
+.call-to-action-btn {
+    padding: 4px 32px;
+}
+
+.button-container {
+    display: flex;
+    gap: 15px;
+}
+
+.add-subject-btn {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: white;
+    background-color: #FF9F1C;
+}
+
+.text-center {
+    text-align: center;
+    padding: 15px;
+}
+
 .danger-card:hover {
     box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);
     cursor: pointer;

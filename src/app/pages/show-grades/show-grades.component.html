@@ -8,7 +8,7 @@
             </mat-card>
         </div>
     </div>
-    <mat-accordion>
+    <mat-accordion *ngIf="subjectsInfo.length > 0">
         <mat-expansion-panel *ngFor="let subject of subjectsInfo">
             <mat-expansion-panel-header class="subject">
                 <mat-panel-title>
@@ -61,4 +61,16 @@
             </div>
         </mat-expansion-panel>
     </mat-accordion>
+
+    <div *ngIf="subjectsInfo.length === 0" class="text-center info-container">
+        <p>You don't have subject created yet! Create one before viewing your marks.</p>
+
+        <div>
+            <button routerLink="/subjects" class="add-subject-btn call-to-action-btn" mat-raised-button>
+                Go to subject page
+            </button>
+        </div>
+
+    </div>
+
 </div>
