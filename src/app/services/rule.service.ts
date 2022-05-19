@@ -111,3 +111,21 @@ export async function deleteRule(data: any): Promise<String> {
 
     return response;
 }
+
+// Get If the rule has tasked
+export async function haveRuleTasks(data: any): Promise<String> {
+    const header = updateFetchHeader();
+
+    const response = await fetch(environment.api + `/rule/task/${data}`, {method: "GET", headers: {...header}})
+        .then(res => {
+            return res.json()
+        })
+        .then(json => {
+            return json
+        })
+        .catch(err => {
+            return err
+        })
+
+    return response;
+}
