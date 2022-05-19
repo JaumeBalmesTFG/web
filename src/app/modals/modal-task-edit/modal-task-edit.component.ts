@@ -84,7 +84,7 @@ export class ModalTaskEditComponent implements OnInit {
             description: res.body.description,
             name: res.body.name,
             done: res.body.done,
-            grade: res.body.done ? res.body.grade.$numberDecimal : 0,
+            grade: res.body.done ? res.body.grade.$numberDecimal : null,
         });
 
         if (res.body.done) {
@@ -118,7 +118,7 @@ export class ModalTaskEditComponent implements OnInit {
             this.formTask.get('grade')?.disable();
         }
 
-        this.formTask.get('grade')?.patchValue(0);
+        this.formTask.get('grade')?.patchValue(null);
         this.disabled = !this.disabled;
     }
 
