@@ -14,6 +14,9 @@
                 <mat-panel-title>
                     {{ subject.name }}
                 </mat-panel-title>
+                <div class="mark">
+                    {{subject.globalModuleGrade ? subject.globalModuleGrade : 0}}/10
+                </div>
             </mat-expansion-panel-header>
             <div *ngFor="let uf of subject.ufs">
                 <mat-expansion-panel>
@@ -27,7 +30,7 @@
                             </div>
                         </mat-panel-title>
                         <mat-panel-description class="uf-mark">
-                            <strong *ngIf="uf.globalUfGrade !== '0.00' ">{{ uf.globalUfGrade }} /10</strong>
+                            <strong *ngIf="uf.globalUfGrade !== '0.00' ">{{ uf.globalUfGrade ? uf.globalUfGrade : 0}}/10</strong>
                             <strong *ngIf="uf.globalUfGrade === '0.00' ">N/A</strong>
                         </mat-panel-description>
                     </mat-expansion-panel-header>

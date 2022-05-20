@@ -36,7 +36,6 @@ export class ShowGradesComponent implements OnInit {
         response.forEach((data: any) => {
             this.subjectsInfo.push(data);
         });
-
     }
 
     selectTab(tabSelected: any) {
