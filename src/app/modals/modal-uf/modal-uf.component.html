@@ -81,7 +81,7 @@
                 <button mat-mini-fab class="rule-button" (click)="edit(rule)">
                     <mat-icon>edit</mat-icon>
                 </button>
-                <button mat-mini-fab class="rule-button" (click)="deleteRule(rule)">
+                <button *ngIf="rule.isTask == false" mat-mini-fab class="rule-button" (click)="deleteRule(rule)">
                     <mat-icon>delete</mat-icon>
                 </button>
             </th>
