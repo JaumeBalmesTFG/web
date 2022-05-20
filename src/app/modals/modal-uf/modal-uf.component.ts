@@ -18,14 +18,14 @@ export class ModalUfComponent implements OnInit {
         public dialogRef: MatDialogRef<ModalUfComponent>
     ) {
     }
-
+    rulesToDelete: any[] = [];
     error!: string;
     close = false;
     UFForm!: FormGroup;
     rulesAndPercentages!: FormGroup;
     arrayOfRules: any = []
     new = true;
-
+    isDisabled=false;
     async ngOnInit(): Promise<void> {
         this.UFForm = this.formBuilder.group({
             title: ['', Validators.required],
@@ -61,7 +61,6 @@ export class ModalUfComponent implements OnInit {
             });
         }
     }
-
     async addRule() {
         if (this.rulesAndPercentages.get('rule')?.value !== '' && this.rulesAndPercentages.get('percentage')?.value !== '' && Number(this.rulesAndPercentages.get('percentage')?.value)) {
             if (this.rulesAndPercentages.get('ruleId')?.value === -1) {
@@ -76,7 +75,6 @@ export class ModalUfComponent implements OnInit {
                 this.rulesAndPercentages.reset();
                 this.UFForm.get('rulesAndPercentages')?.setValue(this.arrayOfRules);
             } else {
-
                 let rule = {
                     ruleId: this.rulesAndPercentages.get('ruleId')?.value,
                     ufId: this.rulesAndPercentages.get('ufId')?.value,
@@ -84,30 +82,32 @@ export class ModalUfComponent implements OnInit {
                     percentage: Number(this.rulesAndPercentages.get('percentage')?.value),
                     isTask: false
                 };
-
                 if (rule.ruleId) {
                     const response: any = await haveRuleTasks(rule.ruleId);
                     rule.isTask = response.body;
                 }
-
                 this.arrayOfRules.push(rule);
                 this.rulesAndPercentages.reset();
                 this.UFForm.get('rulesAndPercentages')?.setValue(this.arrayOfRules);
             }
+            this.isDisabled = false
         } else {
             this.rulesAndPercentages.markAllAsTouched()
         }
+        
     }
 
     deleteRule(ruleToDelete: any) {
-        this.arrayOfRules.forEach((rule: any, index: Number) => {
-            if (ruleToDelete.rule === rule.rule) {
+        this.arrayOfRules.every((rule: any, index: Number) => {
+            if (ruleToDelete.ruleId === rule.ruleId) {
+                this.rulesToDelete.push(ruleToDelete);
                 this.arrayOfRules.splice(index, 1);
+                return false
             }
+            return true
         })
-        if (ruleToDelete.ruleId !== null) {
-            deleteRule(ruleToDelete.ruleId)
-        }
+        
+        
         this.UFForm.get('rulesAndPercentages')?.setValue(this.arrayOfRules);
     }
 
@@ -174,17 +174,25 @@ export class ModalUfComponent implements OnInit {
                         await updateRule(parametersRule);
                     }
                 }
+                this.rulesToDelete.forEach((ruleToDelete) => {
+                    
+                    if (ruleToDelete.ruleId !== undefined) {
+                        deleteRule(ruleToDelete.ruleId)
+                    }
+                })
                 this.dialogRef.close('Edited')
             }
         }
     }
 
     edit(ruleToEdit: any) {
-
-        this.arrayOfRules.forEach((rule: any, index: Number) => {
-            if (ruleToEdit.rule === rule.rule) {
+        this.isDisabled = true;
+        this.arrayOfRules.every((rule: any, index: Number) => {
+            if (ruleToEdit.ruleId === rule.ruleId) {
                 this.arrayOfRules.splice(index, 1);
+                return false
             }
+            return true
         })
         this.rulesAndPercentages.patchValue(ruleToEdit)
         this.UFForm.get('rulesAndPercentages')?.setValue(this.arrayOfRules);
