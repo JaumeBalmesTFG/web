@@ -38,7 +38,8 @@ export class CalendarComponent implements OnInit {
         events: [],
         eventClick: this.clickEvent.bind(this),
         editable: true,
-        eventDrop: this.dropEvent.bind(this)
+        eventDrop: this.dropEvent.bind(this),
+        eventDurationEditable: false
     }
 
     ngOnInit() {
