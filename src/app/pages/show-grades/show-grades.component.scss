@@ -53,6 +53,7 @@
 .uf .mat-expansion-panel-header-title {
     font-size: 18px;
     font-weight: 600;
+    width: 100%;
 }
 
 .mat-expansion-panel-header {
@@ -64,8 +65,10 @@
 }
 
 .uf-title-icon, .task-title-icon {
-    width: 45px;
-    height: 45px;
+    min-width: 45px;
+    min-height: 45px;
+    width: 45px !important;
+    height: 45px !important;
     background: #2ec4b6;
     border-radius: 50%;
     color: white;
@@ -81,6 +84,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+
 }
 
 .uf-mark {
@@ -222,7 +226,13 @@
     box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);
     cursor: pointer;
 }
-
+.uf-text-container{
+    padding:5px;
+    overflow:hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: block;
+}
 ::ng-deep .above-half .mat-progress-bar-buffer {
     background-color: #f3cecb !important;
 }
@@ -237,3 +247,5 @@
     }
 
 }
+
+
