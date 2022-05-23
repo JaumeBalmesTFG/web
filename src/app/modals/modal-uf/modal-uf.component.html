@@ -78,10 +78,10 @@
             <th>{{rule.rule}}</th>
             <th>{{rule.percentage}}%</th>
             <th>
-                <button mat-mini-fab class="rule-button" (click)="edit(rule)">
+                <button mat-mini-fab class="rule-button" (click)="edit(rule)" disabled="{{isDisabled}}">
                     <mat-icon>edit</mat-icon>
                 </button>
-                <button *ngIf="rule.isTask == false" mat-mini-fab class="rule-button" (click)="deleteRule(rule)">
+                <button *ngIf="rule.isTask == false" mat-mini-fab class="rule-button" (click)="deleteRule(rule)" disabled="{{isDisabled}}">
                     <mat-icon>delete</mat-icon>
                 </button>
             </th>
@@ -92,7 +92,7 @@
     </div>
     <div class="end-buttons">
         <button class="submit-button" mat-raised-button (click)="addUf()">Save</button>
-        <button mat-raised-button mat-dialog-close class="cancel-button">Cancel</button>
+        <button mat-raised-button mat-dialog-close class="cancel-button" >Cancel</button>
     </div>
     <div class="error" *ngIf="error">
         {{error}}
