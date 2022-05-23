@@ -62,9 +62,8 @@ export class ModalUfComponent implements OnInit {
         }
     }
     async addRule() {
-        if (this.rulesAndPercentages.get('rule')?.value !== '' && this.rulesAndPercentages.get('percentage')?.value !== '' && Number(this.rulesAndPercentages.get('percentage')?.value)) {
+        if (this.rulesAndPercentages.valid && this.rulesAndPercentages.get('rule')?.value !== '' && this.rulesAndPercentages.get('percentage')?.value !== '' && Number(this.rulesAndPercentages.get('percentage')?.value)) {
             if (this.rulesAndPercentages.get('ruleId')?.value === -1) {
-
                 let rule = {
                     rule: this.rulesAndPercentages.get('rule')?.value,
                     percentage: Number(this.rulesAndPercentages.get('percentage')?.value),
